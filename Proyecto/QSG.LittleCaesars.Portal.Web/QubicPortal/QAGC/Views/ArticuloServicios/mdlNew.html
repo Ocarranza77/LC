@@ -1,0 +1,108 @@
+﻿<!-- Modal -->
+<div id="mdlNew" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" ng-click="onCloseModal()">Salir</button>
+                <h4 class="modal-title">Información de registro</h4>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Producto:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="producto" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Unidad:</label>
+<!--                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="unidad" />
+                                        </div>-->
+                                        <div class="col-md-8">
+                                            <select class="form-control" ng-options="uu as uu.Nombre for uu in unidades track by uu.ID" ng-model="unidadd">
+                                                <option value="">- Select -</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+                      <!--              <div class="form-group">
+                                        <label class="control-label col-md-4">Código interno:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="codInterno" />
+                                        </div>
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Código Producto:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="codProducto" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Código de barras:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="codBarras" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4">Garantía proveedor:</label>
+                                        <div class="col-md-8">
+                                            <input type="text" class="form-control" ng-model="garantia" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Tipo:</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" ng-options="tt as tt.Nombre for tt in tipos track by tt.ID" ng-model="tipoo">
+                                                <option value="">- Select -</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Grupo:</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" ng-options="z as z.Nombre for z in grupos track by z.ID" ng-model="grupoo">
+                                                <option value="">- Select -</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Marca:</label>
+                                        <div class="col-md-9">
+                                            <select class="form-control" ng-options="y as y.Nombre for y in marcas track by y.ID" ng-model="marcaa">
+                                                <option value="">- Select -</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">Estatus:</label>
+                                        <div class="col-md-9">
+                                            <div class="switch">
+                                                <input id="chkStatus" ng-model="chkStatus" class="cmn-toggle cmn-toggle-yes-no" type="checkbox">
+                                                <label for="chkStatus" data-on="Activo" data-off="Inactivo"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button class="btn btn-default btn-lg" ng-click="onAceptModal()">
+                            <span class="glyphicon glyphicon-floppy-disk"></span> Aceptar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal ./ -->

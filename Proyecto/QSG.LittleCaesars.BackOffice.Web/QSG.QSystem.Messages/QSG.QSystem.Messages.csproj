@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80CC8CC5-6D94-4C33-846B-E3E77847198E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.QSystem.Messages</RootNamespace>
+    <AssemblyName>QSG.QSystem.Messages</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>\\QSGSERVER\Proyectos\Little Caesars\Proyecto\QSG.LittleCaesars.Portal.Web\packages\log4net.2.0.5\lib\net40-client\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CatalogoTipoMessage.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="CiudadMessage.cs" />
+    <Compile Include="MetodoPagoMessage.cs" />
+    <Compile Include="MonedaMessage.cs" />
+    <Compile Include="LoginMessage.cs" />
+    <Compile Include="PaisMessage.cs" />
+    <Compile Include="EstadoMessage.cs" />
+    <Compile Include="MenuMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\CatalogoTipoRequest.cs" />
+    <Compile Include="Requests\BaseRequest.cs" />
+    <Compile Include="Requests\CiudadRequest.cs" />
+    <Compile Include="Requests\MetodoPagoRequest.cs" />
+    <Compile Include="Requests\MonedaRequest.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="Requests\PaisRequest.cs" />
+    <Compile Include="Requests\EstadoRequest.cs" />
+    <Compile Include="Requests\MenuRequest.cs" />
+    <Compile Include="Requests\UsuarioRequest.cs" />
+    <Compile Include="Response\CatalogoTipoResponse.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\CiudadResponse.cs" />
+    <Compile Include="Response\MetodoPagoResponse.cs" />
+    <Compile Include="Response\MonedaResponse.cs" />
+    <Compile Include="Response\LoginResponse.cs" />
+    <Compile Include="Response\PaisResponse.cs" />
+    <Compile Include="Response\EstadoResponse.cs" />
+    <Compile Include="Response\MenuResponse.cs" />
+    <Compile Include="Response\UsuarioResponse.cs" />
+    <Compile Include="UsuarioMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QSG.QSystem.BL\QSG.QSystem.BL.csproj">
+      <Project>{ec822417-8da5-4214-b41a-a9c5f963d32e}</Project>
+      <Name>QSG.QSystem.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

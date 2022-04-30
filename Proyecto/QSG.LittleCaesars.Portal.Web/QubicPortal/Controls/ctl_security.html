@@ -1,0 +1,230 @@
+﻿<div ng-controller="securityController">
+    <div class="col-md-12 form-group">
+        <!--        <div class="panel panel-default">
+            <div class="panel-heading">Usuario Filtrar/Seleccionado</div>
+            <div class="panel-body">-->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Cod. Us.</th>
+                    <th>Nombre completo del usuario</th>
+                    <th>Alias</th>
+                    <th>Perfil de usuario</th>
+                    <th>Usuario (cuenta de correo)</th>
+                    <th>Puesto - posicion</th>
+                    <th>Fecha de Alta</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>
+                    <input type="text" ng-model="selectedUser.UsuarioID" class="form-control" placeholder="Codigo" /></td>
+                <td>
+                    <input type="text" ng-model="selectedUser.Nombre" class="form-control" placeholder="Nombre Completo" /></td>
+                <td>
+                    <input type="text" ng-model="selectedUser.Alias" class="form-control" placeholder="Alias" /></td>
+                <td>
+                    <select id="Select2" ng-model="selectedPerfil" class="form-control" ng-options="itm.name for itm in perfiles">
+                    </select>
+                </td>
+                <td>
+                    <input type="email" ng-model="selectedUser.Email" class="form-control" placeholder="Correo Electronico" /></td>
+                <td>
+                    <input type="text" ng-model="selectedUser.Titulo" class="form-control" placeholder="Puesto" /></td>
+                <td>
+                    <input type="date" ng-model="selectedUser.FAlta" class="form-control" placeholder="Fecha Alta" /></td>
+            </tr>
+        </table>
+        <div class="col-md-12 text-right">
+            <button class="btn btn-primary" id="cmdSearchUsers" ng-click="onSearch();">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </div>
+    </div>
+    <!--        </div>
+    </div>-->
+
+    <div class="col-md-12 form-group" id="pnlResultUsersSearch" style="display: none;">
+        <!--style="display: none;"-->
+        <!--        <div class="panel panel-default">
+            <div class="panel-heading">Usuarios Filtro</div>
+            <div class="panel-body">-->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>...</th>
+                    <th>Cod. Us.</th>
+                    <th>Nombre completo del usuario</th>
+                    <th>Alias</th>
+                    <th>Perfil de usuario</th>
+                    <th>Usuario (cuenta de correo)</th>
+                    <th>Puesto - posicion</th>
+                    <th>Fecha de Alta</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="user in users">
+                <td>
+                    <a href="#" ng-click="onUserSelected(user.Codigo)"><span class="glyphicon glyphicon-pencil"></span></a>
+                </td>
+                <td>{{user.UsuarioID}}</td>
+                <td>{{user.Nombre}}</td>
+                <td>{{user.Alias}}</td>
+                <td ng-show="user.Tipo==0">N/A</td>
+                <td ng-show="user.Tipo==1">Administrador</td>
+                <td ng-show="user.Tipo==2">Usuario</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Titulo}}</td>
+                <td>{{user.FAlta}}</td>
+            </tr>
+        </table>
+    </div>
+    <!--            </div>
+        </div>-->
+    <div class="col-md-10 form-group" id="pnlFiltros" style="display: none;">
+        <!--style="display: none;"-->
+        <div class="col-md-12"><strong>Filtros</strong></div>
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ver solo empresa:</th>
+                        <th>Ver aplicacion</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>
+                        <select id="Select3" ng-model="selectedCompany" class="form-control" ng-options="itm.Name for itm in filters.Companies">
+                        </select>
+                    </td>
+                    <td>
+                        <select id="Select4" ng-model="selectedApplication" class="form-control" ng-options="itm.DisplayName for itm in filters.Applications">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6 text-center" style="vertical-align: middle;">
+            <div class="checkbox">
+                <label>
+                    <input ng-model="ShowUserProfile" type="checkbox" />
+                    Ver perfil actual del usuario
+                </label>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-12 form-group" id="pnlFacultades" style="display: none;">
+        <!--style="display: none;"-->
+        <div class="col-md-12"><strong>Tabla de facultades del usuario</strong></div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Empresa</th>
+                    <th>Aplicacion</th>
+                    <th>Modulo</th>
+                    <th>Pantalla</th>
+                    <th style="width: 50px; text-align: center;">Ver</th>
+                    <th style="width: 50px; text-align: center;">Escribir</th>
+                    <th style="width: 50px; text-align: center;">Imprimir</th>
+                    <th style="width: 50px; text-align: center;">Eliminar</th>
+                    <th style="width: 50px; text-align: center;">Exportar</th>
+                    <th style="width: 50px; text-align: center;">Ver otros permisos</th>
+                    <th style="width: 200px;">Permisos adicionales (especiales)</th>
+                </tr>
+            </thead>
+            <tr ng-show="showRow(info.CompanyId, info.ApplicationId, $index)" ng-repeat="info in securityInfo">
+                <td>{{info.CompanyName}}</td>
+                <td>{{info.ApplicationName}}</td>
+                <td>{{info.ModuleName}}</td>
+                <td>{{info.ScreenName}}</td>
+                <td style="text-align: center;">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="info.Read" type="checkbox" />
+                        </label>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="info.Write" type="checkbox" />
+                        </label>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="info.Print" type="checkbox" />
+                        </label>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="info.Delete" type="checkbox" />
+                        </label>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="info.Export" type="checkbox" />
+                        </label>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <button class="btn btn-primary btn-xs" style="margin-top: 10px;" ng-click="onSpecialAccess($index)">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </td>
+                <td>{{info.OthersValue}}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- MODAL -->
+    <div id="pnlSpecialAccess" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title"></h4>
+                    <div>
+                        <label>Empresa: </label>
+                        {{selectedRow.CompanyName}}
+                    </div>
+                    <div>
+                        <label>Aplicacion: </label>
+                        {{ selectedRow.ApplicationName }}
+                    </div>
+                    <div>
+                        <label>Pantalla: </label>
+                        {{ selectedRow.ScreenName }}
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <!-- CONTENIDO DE LA MODAL -->
+                    <table class="table" ng-repeat="row in selectedRow.Others">
+                        <tr>
+                            <td>
+                                <input ng-model="row.Granted" type="checkbox" />
+                            </td>
+                            <td>{{row.Name}}
+                            </td>
+                            <td>{{row.Id}}
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- END CONTENIDO DE LA MODAL -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-click="onAcceptAccess()" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>

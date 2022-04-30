@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.Portal.Web", "QSG.LittleCaesars.Portal.Web\QSG.LittleCaesars.Portal.Web.csproj", "{ED05865D-C6E3-493B-BA84-8E0F47492AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.BackOffice.Web", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Web.csproj", "{9AE2B820-C532-459C-B2B2-9402D7F242C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.BackOffice.Common", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj", "{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.BackOffice.DAL", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.DAL\QSG.LittleCaesars.BackOffice.DAL.csproj", "{41E1115D-848B-474A-AE83-D264403DF8C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.BackOffice.BL", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.BL\QSG.LittleCaesars.BackOffice.BL.csproj", "{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.BackOffice.Messages", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Messages\QSG.LittleCaesars.BackOffice.Messages.csproj", "{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.FrontOffice.Web", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.FrontOffice.Web\QSG.LittleCaesars.FrontOffice.Web.csproj", "{D7223FFE-744D-41E8-9508-98DEDB778074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.Test", "..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.Test\QSG.LittleCaesars.Test.csproj", "{DA326642-658E-4FDA-A846-5745BA91DC51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.QSystem.Common", "..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.Common\QSG.QSystem.Common.csproj", "{70ED45A3-2268-4AAB-AD68-442EDA856137}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.QSystem.DAL", "..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.DAL\QSG.QSystem.DAL.csproj", "{AFA0C59F-A960-4C90-8072-72CF6BC66890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.QSystem.BL", "..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.BL\QSG.QSystem.BL.csproj", "{EC822417-8DA5-4214-B41A-A9C5F963D32E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.QSystem.Messages", "..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.Messages\QSG.QSystem.Messages.csproj", "{80CC8CC5-6D94-4C33-846B-E3E77847198E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSG.LittleCaesars.UnitTest", "QSG.LittleCaesars.UnitTest\QSG.LittleCaesars.UnitTest.csproj", "{C5E88F3D-320E-47D8-A0E5-E90A0BCE363F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ED05865D-C6E3-493B-BA84-8E0F47492AEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED05865D-C6E3-493B-BA84-8E0F47492AEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED05865D-C6E3-493B-BA84-8E0F47492AEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED05865D-C6E3-493B-BA84-8E0F47492AEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AE2B820-C532-459C-B2B2-9402D7F242C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AE2B820-C532-459C-B2B2-9402D7F242C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AE2B820-C532-459C-B2B2-9402D7F242C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AE2B820-C532-459C-B2B2-9402D7F242C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41E1115D-848B-474A-AE83-D264403DF8C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41E1115D-848B-474A-AE83-D264403DF8C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41E1115D-848B-474A-AE83-D264403DF8C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41E1115D-848B-474A-AE83-D264403DF8C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7223FFE-744D-41E8-9508-98DEDB778074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7223FFE-744D-41E8-9508-98DEDB778074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7223FFE-744D-41E8-9508-98DEDB778074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7223FFE-744D-41E8-9508-98DEDB778074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA326642-658E-4FDA-A846-5745BA91DC51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA326642-658E-4FDA-A846-5745BA91DC51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA326642-658E-4FDA-A846-5745BA91DC51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA326642-658E-4FDA-A846-5745BA91DC51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70ED45A3-2268-4AAB-AD68-442EDA856137}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70ED45A3-2268-4AAB-AD68-442EDA856137}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70ED45A3-2268-4AAB-AD68-442EDA856137}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70ED45A3-2268-4AAB-AD68-442EDA856137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AFA0C59F-A960-4C90-8072-72CF6BC66890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFA0C59F-A960-4C90-8072-72CF6BC66890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFA0C59F-A960-4C90-8072-72CF6BC66890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFA0C59F-A960-4C90-8072-72CF6BC66890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC822417-8DA5-4214-B41A-A9C5F963D32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC822417-8DA5-4214-B41A-A9C5F963D32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC822417-8DA5-4214-B41A-A9C5F963D32E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC822417-8DA5-4214-B41A-A9C5F963D32E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CC8CC5-6D94-4C33-846B-E3E77847198E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CC8CC5-6D94-4C33-846B-E3E77847198E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CC8CC5-6D94-4C33-846B-E3E77847198E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CC8CC5-6D94-4C33-846B-E3E77847198E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5E88F3D-320E-47D8-A0E5-E90A0BCE363F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5E88F3D-320E-47D8-A0E5-E90A0BCE363F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5E88F3D-320E-47D8-A0E5-E90A0BCE363F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5E88F3D-320E-47D8-A0E5-E90A0BCE363F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

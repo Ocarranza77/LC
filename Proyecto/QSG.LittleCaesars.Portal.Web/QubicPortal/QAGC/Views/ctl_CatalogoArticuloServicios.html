@@ -1,0 +1,121 @@
+﻿<div > <!--ng-controller="securityController"-->
+    <div class="row" style="height: 100px; margin-left: 5px; margin-right: 5px;">
+        <div class="row" style="height: 100px;">
+            <div class="col-md-9 ">
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <span class="panel-title">Filtros</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="input-title" style="line-height: 30px;">Grupos</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <select id="cboGrupo" ng-model="selectedPerfil" class="btn btn-default btn-sm" ng-options="itm.name for itm in perfiles">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="input-title" style="line-height: 30px;">Marca</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <select id="cboMarca" ng-model="selectedPerfil" class="btn btn-default btn-sm" ng-options="itm.name for itm in perfiles">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="input-title" style="line-height: 30px;">Estatus</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <select id="cboEstatus" ng-model="selectedPerfil" class="btn btn-default btn-sm" ng-options="itm.name for itm in perfiles">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <h4 class="input-title" style="line-height: 30px;">Tipo</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                           <select id="cboTipo" ng-model="selectedPerfil" class="btn btn-default btn-sm" ng-options="itm.name for itm in perfiles">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading ">
+                        <span class="panel-title">Catalogo de articulos y Productos</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <table class="table table-hover table-striped table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>Modificar</th>
+                                        <th>Eliminar</th>
+                                        <th>Estatus</th>
+                                        <th>TIPO</th>
+                                        <th>PRODUCTO, ARTICULO O SERVICIO</th>
+                                        <th>GRUPO</th>
+                                        <th>MARCA</th>
+                                        <th>PRECIO UNITARIO</th>
+                                        <th>CODIGO INTERNO</th>
+                                        <th>CODIGO PRODUCTOR</th>
+                                        <th>CODIGO DE BARRAS</th>
+                                        <th>GARANTIA PRODUCTOR</th>
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="item in articulos" ng-class="{dange: item.OperationType == '3', warning: item.OperationType == '2',success: item.OperationType == '1'}>
+                                    <td>
+                                        <button type="button" class="btn btn-primary">Modificar</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger">Eliminar</button></td>
+                                    <td>
+                                        <input ng-model="item.Estatus" type="checkbox" id="chkEstatus" />
+                                    </td>
+                                    <td>{{item.Nombre}}</td>
+                                    <td>{{item.Grupo}}</td>
+                                    <td>{{item.Marca}}</td>
+                                    <td>{{item.Unidad}}</td>
+                                    <td>{{item.Precio}}</td>
+                                    <td>{{item.ArticuloID}}</td>
+                                    <td>{{item.ProductorID}}</td>
+                                    <td>{{item.CodigoBarras}}</td>
+                                    <td>{{item.Grarantia}}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>

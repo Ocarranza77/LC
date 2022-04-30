@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel='icon' type='image/x-icon' href='/favicon.ico' />
+    <link rel="Shortcut Icon" type="image/png" href="favicon.png"/>
+
+    <title>Qbic • Portal Principal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sb-admin.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <style>
+        div.sidebar ul li {
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-bottom-color: #fff;
+        }
+
+
+            div.sidebar ul li ul li ul {
+                padding-left: 0px;
+            }
+
+                div.sidebar ul li ul li ul li {
+                    padding-left: 50px;
+                    display: block;
+                    list-style: none;
+                    background-color: #fff;
+                }
+
+        div ul li ul li ul li a {
+            display: block;
+            padding: 3px 3px 3px 3px;
+            text-decoration: none;
+            color: #777;
+        }
+
+            div ul li ul li ul li a:hover {
+                text-decoration: none;
+            }
+    </style>
+
+
+
+</head>
+
+<body ng-app="qubicApp">
+
+    <div id="wrapper" ng-controller="accountController">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Logo" style="margin-top: -15px;" ng-src="{{'images/' + selectedCompany.NombreBD + 'P.png'}}">
+                </a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #fff;">{{selectedCompany.Nombre}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="c in companies"><a href="#" ng-click="onCompanySelected(c.EmpresaID);">{{c.Nombre}}</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" style="color: #fff;">• Portal</a></li>
+            </ul>
+
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i><b class="caret"></b></a>
+                    <!-- TODO: AQUI VAN LAS ALERTAS -->
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview col-md-12" style="margin-bottom: 6px;">
+                            <div class="media col-md-12" ng-repeat="not in notifications">
+                                <div class="media-body {{not.NotificationType}}">
+                                    <h4 class="media-heading"><strong>{{not.Title}}</strong></h4>
+                                    <h5>{{not.CompanyName}}</h5>
+                                    <small>{{not.Description}}</small>
+                                    <div>
+                                        <a href="#">Ver mas...</a>
+                                        <input type="checkbox">
+                                        Permanecer
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- END ALERTAS -->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{loggedUser.Nombre}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-user"></i>Perfil</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-fw fa-gear"></i>C. Contraseña</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" ng-click="onCloseSession()"><i class="fa fa-fw fa-power-off"></i>Cerrar Sesion</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse sidebar">
+                <ul class="nav navbar-nav side-nav">
+                    <!--MenuSettings[0].Value['BackgroundColorLevel1']-->
+                    <!-- MENU DE NAVEGACION -->
+                    <li ng-repeat="itm in menuOptions">
+                        <a href="javascript:;" class="optMnu_{{itm.MenuTipo}}" data-toggle="collapse" data-target="#{{'A' + itm.AppID}}"><i class="glyphicon glyphicon-unchecked"></i>{{itm.Descripcion}}<i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="{{'A' + itm.AppID}}" class="collapse">
+                            <li ng-repeat="mnuM in itm.Menus">
+                                <a href="#" class="optMnu_{{mnuM.MenuTipo}}" ng-click="sendToUrl(mnuM.MenuID, mnuM.MenuTipo)" data-toggle="collapse" data-target="#{{'M' + mnuM.MenuID}}">{{mnuM.Descripcion}}</a>
+                                <ul id="{{'M' + mnuM.MenuID}}" class="collapse">
+                                    <li ng-repeat="opt in mnuM.Hijos">
+                                        <a class="optMnu_{{opt.MenuTipo}}" ng-href="{{getUrl(opt.MenuID, opt.MenuTipo)}}" target="_blank">{{opt.Descripcion}}</a>
+                                    </li>
+                                </ul>
+
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- END MENU DE NAVEGACION... -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+        <button id="cmdCloseMenu" ng-click="onToggleSideBar()" style="border: none; border-bottom-style: none; height: 50px; width: 50px; border-radius: 0px 30px 30px 0px;" class="optMnu_2">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </button>
+
+        <button id="cmdShowDashboard" ng-click="onToggleDashboard()" class="pull-right optMnu_0" style="border: none; border-bottom-style: none; height: 50px; width: 50px; border-radius: 30px 0px 0px 30px;">
+            <span class="glyphicon glyphicon-menu-left"></span>
+            <span style="display: none;"><strong>Ocultar Dashboard</strong></span>
+        </button>
+
+        <div id="page-wrapper">
+            <div class="container-fluid">
+
+                <div id="pnlDashboard" style="display: none;">
+                    TODO: Aqui va el dashboard
+                </div>
+
+                <!-- CONTENIDO... -->
+                <div class="row navbar-fixed-bottom">
+                    <div class="col-md-11" style="text-align: center; vertical-align: bottom; padding-top: 20px;">
+                        <a href="#" ng-click="onClickLinkAdmin()" id="linkAdmin">Administracion</a>
+                        <a href="index.html">Ayuda</a>
+                    </div>
+                    <div class="col-md-1">
+                        <img class="pull-right" src="images/QLogo.png" style="height: 45px;" />
+                    </div>
+                </div>
+
+
+                <!-- FIN CONTENIDO -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/angular.min.js"></script>
+    <script src="app/js/PortalController.js"></script>
+
+</body>
+
+</html>

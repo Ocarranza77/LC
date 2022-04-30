@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ACE31C2F-4DAD-4A28-B8E5-3FBC70EF89DE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.BackOffice.Common</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.BackOffice.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Constants\GeneralApp.cs" />
+    <Compile Include="Entities\CatalogoContable.cs" />
+    <Compile Include="Entities\PolizaContaStatus.cs" />
+    <Compile Include="Entities\PolizaContaDT.cs" />
+    <Compile Include="Entities\PolizaConta.cs" />
+    <Compile Include="Entities\PlantillaPolizaIngresoCtaBco.cs" />
+    <Compile Include="Entities\PlantillaPolizaIngresoAsiento.cs" />
+    <Compile Include="Entities\PlantillaPolizaIngreso.cs" />
+    <Compile Include="Entities\BaseEntity_old.cs" />
+    <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\CorteSucursalDeposito.cs" />
+    <Compile Include="Entities\CuentaBanco.cs" />
+    <Compile Include="Entities\AsientosPolizaIngresos.cs" />
+    <Compile Include="Entities\SucursalUsuario.cs" />
+    <Compile Include="Entities\CorteSucursal.cs" />
+    <Compile Include="Entities\CorteSucursalFilter.cs" />
+    <Compile Include="Entities\CorteZ.cs" />
+    <Compile Include="Entities\CorteZFilter.cs" />
+    <Compile Include="Entities\Creditos.cs" />
+    <Compile Include="Entities\EmpresaCliente.cs" />
+    <Compile Include="Entities\FacturarCon.cs" />
+    <Compile Include="Entities\Folios.cs" />
+    <Compile Include="Entities\MenuP.cs" />
+    <Compile Include="Entities\Sucursal.cs" />
+    <Compile Include="Entities\Ticket.cs" />
+    <Compile Include="Entities\TicketFilter.cs" />
+    <Compile Include="Entities\TicketTemp.cs" />
+    <Compile Include="Entities\Timbrado.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Enums\MessageOperationType_old.cs" />
+    <Compile Include="Enums\OperationType_old.cs" />
+    <Compile Include="Enums\ResultType_old.cs" />
+    <Compile Include="Enums\TicketSaveType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\BaseStrDub.cs" />
+    <Compile Include="Reports\RepFacturaPG.cs" />
+    <Compile Include="Reports\RepIngresosDSM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

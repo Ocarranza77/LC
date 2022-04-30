@@ -1,0 +1,74 @@
+﻿<div class="col-md-4 col-md-offset-4" ng-controller="officesController">
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Oficinas o Sucursales
+        <button class="btn btn-xs btn-primary" ng-click="onAddOffice()">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+            </h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover" id="tblOffices">
+                                <thead><tr>
+                    <th style="text-align: center;">...</th>
+                    <th style="width: 80px;">Abr.</th>
+                    <th>Nombre Oficina</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="office in offices">
+                    <td style="width: 50px; vertical-align: middle;">
+                        <a class="btnEdit" href="#" ng-click="onOfficeEdited($event, $index)"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a href="#" ng-click="onOfficeDeleted($event, $index)"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                    <td>
+                        <span class="readField">{{office.Abr}}</span>
+                        <input style="display: none;" class="editField form-control" ng-model="office.Abr" type="text" placeholder="Abr">
+                    </td>
+                    <td>
+                        <span class="readField">{{office.Nombre}}</span>
+                        <input style="display: none;" class="editField form-control" ng-model="office.Nombre" type="text" placeholder="Nombre">
+                    </td>
+                </tr>
+
+                <tr class="row_template" ng-repeat="office in officesAdded">
+                    <td></td>
+                    <td>
+                        <span></span>
+                        <input type="text" ng-model="office.Abr" class="form-control" placeholder="Abr">
+                    </td>
+                    <td>
+                        <span></span>
+                        <input type="text" ng-model="office.Nombre" class="form-control" placeholder="Nombre">
+                    </td>
+                </tr>
+                    </tbody>
+            </table>
+            <div id="pnlErrorMessage" class="alert alert-danger" style="display:none;">
+                <span id="lblAlertMessage">...</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="mdlDeleteOffice" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Elimar Registro</h4>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer eliminar la Oficina o Sucursal seleccionada?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" ng-click="onDelete()" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

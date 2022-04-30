@@ -1,0 +1,49 @@
+﻿.optMnu_0 {
+    background-color: #2980B9 !important;
+    color: #ddd;
+}
+
+.optMnu_0:hover {
+    color: yellow !important;
+}
+
+.optMnu_1 {
+    background-color:#fff !important;
+    color: #555 !important;
+}
+
+.optMnu_1:hover {
+    color: blue !important;
+}
+
+.optMnu_2 {
+    background-color:red !important;
+    color: #222 !important;
+}
+
+.optMnu_2:hover {
+    color: cyan !important;
+}
+
+.optMnu_3 {
+    background-color:#2980B9 !important;
+    color: #444 !important;
+}
+
+.optMnu_3:hover {
+    color: red !important;
+}
+
+.optMnu_4 {
+    background-color:#fff !important;
+    color: #555 !important;
+}
+
+.optMnu_4:hover {
+    color: green !important;
+}
+
+
+.side-nav {
+    border-right-color: #D35400 !important; 
+}

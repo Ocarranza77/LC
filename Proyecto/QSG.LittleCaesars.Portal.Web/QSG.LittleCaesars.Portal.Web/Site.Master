@@ -1,0 +1,13 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="QSG.LittleCaesars.Portal.Web.SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+    <link rel="stylesheet" type="text/css" href="../Styles/Style_caesars_pizza.css" />
+</head>
+<body>
+    
+</body>
+</html>

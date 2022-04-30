@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using QSG.QSystem.Common.Constants;
+using QSG.QSystem.Common.Entities;
+using QSG.QSystem.DAL;
+using QSG.QSystem.Common.Entities.SElite;
+using QSG.QSystem.DAL.SElite;
+
+namespace QSG.QSystem.BL.SElite
+{
+   public class UsuarioBL
+    {
+        private string _DBName;
+
+        public UsuarioBL(string dbName)
+        {
+            this._DBName = dbName;
+        }
+
+        public List<Usuario> GetUsuario(Usuario user, ref string FriendlyMessage)
+       {
+           string msg = string.Empty;
+           var result = new List<Usuario>();
+           var dal = new UsuarioDAL(_DBName);
+
+           msg = Satinizate(user);
+
+           if (msg != string.Empty)
+           {
+               FriendlyMessage = FriendlyMessage + Generales.msgSigInfo + msg;
+
+               return result;
+           }
+
+           result = dal.GetUsuarios(user, ref msg);
+           FriendlyMessage = FriendlyMessage + msg;
+
+           return result;
+       }
+
+
+        public bool SaveUsuario(Usuario usuario, out int id,  ref string friendlyMessage)
+        {
+            string msg = string.Empty;
+            var result = false;
+            var dal = new UsuarioDAL(_DBName);
+
+            //msg = SatinizateAlta(ticket);
+            //if (saveType == TicketSaveType.Factura)
+            //    msg += SatinizateFactura(ticket);
+
+            //if (msg != string.Empty)
+            //{
+            //    friendlyMessage = friendlyMessage + Generales.msgSigInfo + msg;
+
+            //    return result;
+            //}
+
+
+            result = dal.SaveUsuario(usuario,out id, ref friendlyMessage);
+
+            return result;
+
+        }
+
+        public List<Usuario> GetUsuarios(Usuario usuario, ref string friendlyMessage)
+        {
+            string msg = string.Empty;
+            var result = new List<Usuario>();
+            var dal = new UsuarioDAL(_DBName);
+
+            //msg = SatinizateQuery(ticket);
+            /*
+            if (msg != string.Empty)
+            {
+                FriendlyMessage = FriendlyMessage + Generales.msgSigInfo + msg;
+
+                return result;
+            }
+            */
+
+            result = dal.GetUsuarios(usuario, ref msg);
+            friendlyMessage = friendlyMessage + msg;
+
+            return result;
+
+        }
+
+        private string Satinizate(Usuario user)
+        {
+            string msg = string.Empty;
+
+            /*if (user.CodUsuario == 0) {
+                msg += "Codigo Usuario";
+            }*/
+
+
+            if (user.Alias == "")
+            {
+                msg += "Usuario  ";
+            }
+            if (user.Clave == "")
+            {
+                msg += "Contraseña";
+            }
+
+
+            return msg;
+        }
+
+    }
+}

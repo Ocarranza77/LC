@@ -1,0 +1,462 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
+using System.ServiceModel;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Web;
+using System.Text;
+using System.Web;
+using QubicPortal.Model;
+using QubicPortal.Model.Messages;
+
+
+namespace QubicPortal
+{
+    [ServiceContract(Namespace = "")]
+    [AspNetCompatibilityRequirements(RequirementsMode = AspNetCompatibilityRequirementsMode.Allowed)]
+    public class QubicService
+    {
+        SecurityBusiness _securityBusiness = new SecurityBusiness();
+
+        [WebGet(UriTemplate = "/Initialize", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<InitResponse> Initialize()
+        {
+            QubicResponse<InitResponse> response = new QubicResponse<InitResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                //TODO: Call business objects...
+                response.Content = new InitResponse();
+                response.Content.Version = "1.2.0";
+                response.Content.HidePIN = true;
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+
+            return response;
+        }
+
+        [WebInvoke(UriTemplate = "/Authenticate", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<AuthenticateResponse> Authenticate(QubicRequest<AuthenticateRequest> request)
+        {
+            QubicResponse<AuthenticateResponse> response = new QubicResponse<AuthenticateResponse>();
+            response.ResponseCode = "200";
+
+            try
+            {
+                response.Content = Execute<AuthenticateResponse, AuthenticateRequest>(this._securityBusiness, request.RequestMessage);
+
+                if (response.Content.Blocked)
+                {
+                    throw new ApplicationException("Este usuario se encuentra bloqueado, contactar al administrador del sistema.");
+                }
+
+                //Credenciales invalidas
+                if (response.Content.InvalidCredentials)
+                {
+                    int trys = 1;
+
+                    if (HttpContext.Current.Session["trys"] != null)
+                    {
+                        trys  = Convert.ToInt32(HttpContext.Current.Session["trys"]);
+                    }
+
+                    trys++;
+
+                    HttpContext.Current.Session.Add("trys", trys);
+
+                    if (trys > 3)
+                    {
+                        this._securityBusiness.BlockUser(request.RequestMessage.UserName);
+                        throw new ApplicationException("Ha intentando por tercera vez credenciales invalidas, el usuario ha sido bloqueado, contacte al adminsitrador del sistema");
+                    }
+                    else
+                    {
+                        throw new ApplicationException("Las credenciales proporcionadas no son validas.");
+                    }
+                }
+
+                this.LoggedUser = response.Content.LoggedUser;
+                HttpContext.Current.Session.Add("usertoken", response.Content.Token );
+            }
+            catch (ApplicationException ex)
+            {
+                response.ResponseCode = "403";
+                response.FriendlyMessage = ex.Message;
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Implementar el log.
+            }
+            
+            return response;
+        }
+
+        private Usuario LoggedUser 
+        {
+            set 
+            {
+                HttpContext.Current.Session.Add("userLogged", value);
+            }
+            get 
+            { 
+                return HttpContext.Current.Session["userLogged"] as Usuario;
+            }
+        }
+
+        [WebInvoke(UriTemplate = "/Authorize", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<AuthorizeResponse> Authorize(QubicRequest<AuthorizeRequest> request)
+        {
+            QubicResponse<AuthorizeResponse> response = new QubicResponse<AuthorizeResponse>();
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<AuthorizeResponse, AuthorizeRequest>(this._securityBusiness, request.RequestMessage);
+                response.Content.LoggedUser = this.LoggedUser;
+                HttpContext.Current.Session.Add("companies", response.Content.Companies);
+            }
+            catch (ApplicationException ex)
+            {
+                response.ResponseCode = "403";
+                response.FriendlyMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Implementar el log.
+            }
+
+            return response;
+        }
+
+        [WebInvoke(UriTemplate = "/GetMenuForCompany", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<AuthorizeResponse> GetMenuForCompany(QubicRequest<AuthorizeRequest> request)
+        {
+            QubicResponse<AuthorizeResponse> response = new QubicResponse<AuthorizeResponse>();
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<AuthorizeResponse, AuthorizeRequest>(this._securityBusiness, request.RequestMessage);
+                response.Content.LoggedUser = this.LoggedUser;
+                HttpContext.Current.Session.Add("companies", response.Content.Companies);
+            }
+            catch (ApplicationException ex)
+            {
+                response.ResponseCode = "403";
+                response.FriendlyMessage = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Implementar el log.
+            }
+
+            return response;
+        }
+
+        [WebGet(UriTemplate = "/CloseSession", ResponseFormat = WebMessageFormat.Json)]
+        public bool CloseSession()
+        {
+            HttpContext.Current.Session.Clear();
+            return true;
+        }
+
+        #region ALTA DE USUARIOS
+
+        //GET ALL USERS
+        [WebInvoke(UriTemplate = "/users", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<GetUsersResponse> GetAllUsers(QubicRequest<GetUsersRequest> request)
+        {
+            QubicResponse<GetUsersResponse> response = new QubicResponse<GetUsersResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<GetUsersResponse, GetUsersRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+
+            return response;
+        }
+
+        //SAVING USER
+        [WebInvoke(UriTemplate = "/user", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<SaveUserResponse> Save(QubicRequest<SaveUserRequest> request)
+        {
+            QubicResponse<SaveUserResponse> response = new QubicResponse<SaveUserResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<SaveUserResponse, SaveUserRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+        [WebInvoke(UriTemplate = "/deleteuser", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<SaveUserResponse> DeleteUser(QubicRequest<SaveUserRequest> request)
+        {
+            QubicResponse<SaveUserResponse> response = new QubicResponse<SaveUserResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = new SaveUserResponse();
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+
+        #endregion END ALTA DE USUARIOS
+
+        #region RESETEO DE CONTRASENA
+
+        //GET ALL USERS BY CRITERIA
+        [WebInvoke(UriTemplate = "/searchusers", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<SearchUsersResponse> GetAllUsersByCriteria(QubicRequest<SearchUsersRequest> request)
+        {
+            QubicResponse<SearchUsersResponse> response = new QubicResponse<SearchUsersResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<SearchUsersResponse, SearchUsersRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+        [WebInvoke(UriTemplate = "/resetpassword", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<ResetPasswordResponse> ResetPassword(QubicRequest<ResetPasswordRequest> request)
+        {
+            QubicResponse<ResetPasswordResponse> response = new QubicResponse<ResetPasswordResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<ResetPasswordResponse, ResetPasswordRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+
+        #endregion RESETEO DE CONTRASENA
+
+        #region SECURITY
+
+        [WebInvoke(UriTemplate = "/getsecurityfilters", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<SecurityFiltersResponse> GetSecurityFilters(QubicRequest<SecurityFiltersRequest> request)
+        {
+            QubicResponse<SecurityFiltersResponse> response = new QubicResponse<SecurityFiltersResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<SecurityFiltersResponse, SecurityFiltersRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+        [WebInvoke(UriTemplate = "/getsecurityinfo", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<GetSecurityAccessResponse> GetSecurityInfo(QubicRequest<GetSecurityAccessRequest> request)
+        {
+            QubicResponse<GetSecurityAccessResponse> response = new QubicResponse<GetSecurityAccessResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<GetSecurityAccessResponse, GetSecurityAccessRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+
+        #endregion SECURITY
+
+        #region QUBIC FORM
+
+        [WebInvoke(UriTemplate = "/initQbicForm", ResponseFormat = WebMessageFormat.Json)]
+        public QubicResponse<InitFormResponse> InitializeQbicForm(QubicRequest<InitFormRequest> request)
+        {
+            QubicResponse<InitFormResponse> response = new QubicResponse<InitFormResponse>();
+
+            response.ResponseCode = "200";
+
+            try
+            {
+                if (!ValidateIfTokenIsValid(request.Token))
+                {
+                    throw new ApplicationException("El token actual no es valido, favor de iniciar sesion nuevamente.");
+                }
+
+                response.Content = Execute<InitFormResponse, InitFormRequest>(this._securityBusiness, request.RequestMessage);
+
+            }
+            catch (Exception)
+            {
+                response.ResponseCode = "500";
+                response.FriendlyMessage = "Se ha producido una falla interna en el sistema.";
+                //TODO: Log Exception...
+            }
+
+            return response;
+        }
+
+
+        #endregion END QUBIC FORM
+
+
+        #region private implementation...
+
+        private bool ValidateIfTokenIsValid(string token)
+        {
+            string storedToken = string.Empty;
+
+            if (HttpContext.Current.Session["usertoken"] != null)
+            {
+                storedToken = HttpContext.Current.Session["usertoken"].ToString();
+            }
+
+            return storedToken.Equals(token);
+        }
+
+        private T Execute<T, U>(object bo, U requestMessage)
+        {
+            string methodName = requestMessage.GetType().Name.Replace("Request", "") + "Message";
+
+            //MethodInfo method = bo.GetType().GetMethod(methodName, BindingFlags.Instance | BindingFlags.NonPublic, null, new Type[] { typeof(AuthenticateRequest) }, null);
+
+            MethodInfo[] ms = bo.GetType().GetMethods();
+            MethodInfo method = ms.First(x => x.Name == methodName);
+
+            object[] parameters = new object[1];
+            parameters[0] = requestMessage;
+
+            return (T) method.Invoke(bo, parameters);
+        }
+
+        #endregion  private implementation...
+    }
+}

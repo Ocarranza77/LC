@@ -1,0 +1,352 @@
+
+    
+    <div class="container">
+        <div class="row form-group">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#mdlAltaModFactores">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+        </div>
+
+        <div class="row form-group">
+            <table class="table">
+                <tr>
+                    <th style="width:50px;"><label for="">...</label></th>
+                    <th><label for="">Cod</label></th>
+                    <th><label for="">orden</label></th>
+                    <th><label for="">Concepto</label></th>
+                    <th><label for="">Tipo</label></th>
+                    <th><label for="">Valor Tipo</label></th>
+                    <th><label for="">Valor Predeterminado</label></th>
+                    <th><label for="">Formula (regla)</label></th>
+                    <th><label for="">Descripcion</label></th>
+                    <th><label for="">Ejemplo</label></th>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td><span>Importacion</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>1.05</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>1.05</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td style="text-align:center;"><span>2</span></td>
+                    <td><span>Costo Fabricante</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>120</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>120</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td style="text-align:center;"><span>3</span></td>
+                    <td><span>Desc fab a CAS</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td style="text-align:center;"><span>4</span></td>
+                    <td><span>Costo USA</span></td>
+                    <td><span>Regla</span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td><span>=cod10*cod11</span></td>
+                    <td><span>=Costo fabricante * Desc fab a CAS</span></td>
+                    <td style="text-align:center;"><span>120</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>7</span></td>
+                    <td style="text-align:center;"><span>5</span></td>
+                    <td><span>IGI</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>1</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>2</span></td>
+                    <td style="text-align:center;"><span>6</span></td>
+                    <td><span>Costo Import</span></td>
+                    <td><span>Regla</span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td><span>=cod2*cod1</span></td>
+                    <td><span>= Costo USA * IGI</span></td>
+                    <td style="text-align:center;"><span>120</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>3</span></td>
+                    <td style="text-align:center;"><span>7</span></td>
+                    <td><span>Indirecto operacion</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>0.7</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>0.7</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>8</span></td>
+                    <td style="text-align:center;"><span>8</span></td>
+                    <td><span>Indirecto Utilidades</span></td>
+                    <td><span>Valor</span></td>
+                    <td style="text-align:center;"><span>$</span></td>
+                    <td style="text-align:center;"><span>0.7</span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span>0.7</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>4</span></td>
+                    <td style="text-align:center;"><span>9</span></td>
+                    <td><span>Costo Tijuana</span></td>
+                    <td><span>Regla</span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td><span>=cod2*cod1</span></td>
+                    <td><span>=consto import * imp</span></td>
+                    <td style="text-align:center;"><span>126</span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>5</span></td>
+                    <td style="text-align:center;"><span>10</span></td>
+                    <td><span>precio venta final</span></td>
+                    <td><span>Regla</span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td><span></span></td>
+                    <td><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                </tr>
+                <tr>
+                    <td><a href="#"><span class="glyphicon glyphicon-pencil"></span></a><a href="#"><span class="glyphicon glyphicon-trash"></span></a></td>
+                    <td style="text-align:center;"><span>6</span></td>
+                    <td style="text-align:center;"><span>11</span></td>
+                    <td><span>precio base</span></td>
+                    <td><span>Regla</span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td style="text-align:center;"><span></span></td>
+                    <td><span>=cod3*(cod4+cod8)</span></td>
+                    <td><span>=costo tijuana * (indirecto operacion + indirecto utilidades)</span></td>
+                    <td style="text-align:center;"><span>1.05</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+<div class="modal fade" tabindex="-1" role="dialog" id="mdlAltaModFactores">
+  <div class="modal-dialog modal-lg" role="document">
+     <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">Modal title</h4>
+        </div>
+        <div class="modal-body">
+            <!-- CONTENIDO -->
+    <div class="col-md-6">
+            <div class="col-md-12 form-group">
+                <div class="col-md-6">
+                    <label>Estatus</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="" id="" class="form-control">
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div> 
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Cod</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>orden</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Tipo</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="" id="" class="form-control">
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Valor tipo</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="" id="" class="form-control">
+                        <option value=""></option>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Valor prederterminado</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Formula (regla)</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control"/>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Descripcion Ejemplo</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Fecha creacion</label>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-6">
+                    <label>Usuario</label>
+                </div>
+                <div class="col-md-6"></div>
+            </div>
+            </div>
+
+
+    <div class="col-md-6">
+        <div class="col-md-12 form-group">
+            <div class="col-md-1 col-md-offset-1">
+                <button class="btn btn-primary">Calcular</button>
+            </div>
+            <div class="col-md-8"></div>
+            <div class="col-md-1">
+                <button class="btn btn-primary">Aceptar</button>
+            </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <table class="table">
+                        <tr>
+                            <th>Cod</th>
+                            <th>orden</th>
+                            <th>Concepto</th>
+                            <th>Valores ejemplo</th>
+                        </tr>
+                        <tr>
+                            <td><span>1</span></td>
+                            <td><span>8</span></td>
+                            <td><span>Importacion</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>10</span></td>
+                            <td><span>2</span></td>
+                            <td><span>Costo fabricante</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>9</span></td>
+                            <td><span>4</span></td>
+                            <td><span>Costo USA</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>7</span></td>
+                            <td><span>6</span></td>
+                            <td><span>IGI</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>2</span></td>
+                            <td><span>7</span></td>
+                            <td><span>Costo Import</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>3</span></td>
+                            <td><span>9</span></td>
+                            <td><span>Indirecto operacion</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>8</span></td>
+                            <td><span>10</span></td>
+                            <td><span>Indirecto Utilidades</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>4</span></td>
+                            <td><span>3</span></td>
+                            <td><span>Costo Tijuana</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>5</span></td>
+                            <td><span>11</span></td>
+                            <td><span>precio venta final</span></td>
+                            <td><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span>6</span></td>
+                            <td><span>1</span></td>
+                            <td><span>precio base</span></td>
+                            <td style="text-align:right;"><span>100.00</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>            
+        </div>
+    </div>
+
+            <div style="clear:both;"/>
+            <!-- END CONTENIDO -->
+        </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+

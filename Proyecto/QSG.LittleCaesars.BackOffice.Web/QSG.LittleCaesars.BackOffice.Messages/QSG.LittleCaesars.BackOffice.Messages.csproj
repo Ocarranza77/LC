@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC3DB8AA-14DD-485A-B85E-D1C34E3512A9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.BackOffice.Messages</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.BackOffice.Messages</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\..\QSG.LittleCaesars.Portal.Web\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="PlantillaContaIngresosMessage.cs" />
+    <Compile Include="EmpresaClienteMessage.cs" />
+    <Compile Include="ClienteMessage.cs" />
+    <Compile Include="DepositoMessage.cs" />
+    <Compile Include="CuentaBancoMessage.cs" />
+    <Compile Include="Requests\ClienteRequest.cs" />
+    <Compile Include="Requests\DepositoRequest.cs" />
+    <Compile Include="Requests\CuentaBancoRequest.cs" />
+    <Compile Include="Requests\PlantillaContaIngresosRequest.cs" />
+    <Compile Include="Response\PlantillaContaIngresosResponse.cs" />
+    <Compile Include="Response\EmpresaClienteResponse.cs" />
+    <Compile Include="Response\DepositolResponse.cs" />
+    <Compile Include="Response\CuentaBancoResponse.cs" />
+    <Compile Include="SucursalUsuarioMessage.cs" />
+    <Compile Include="RepFacturaPGMessage.cs" />
+    <Compile Include="CorteSucursalMessage.cs" />
+    <Compile Include="CorteZMessage.cs" />
+    <Compile Include="FacturarConMessage.cs" />
+    <Compile Include="MenuMessage.cs" />
+    <Compile Include="RepIngresosDSMMessage.cs" />
+    <Compile Include="Requests\BaseRequest.cs" />
+    <Compile Include="Requests\EmpresaClienteRequest.cs" />
+    <Compile Include="Requests\SucursalUsuarioRequest.cs" />
+    <Compile Include="Requests\RepFacturaPGRequest.cs" />
+    <Compile Include="Requests\CorteSucursalRequest.cs" />
+    <Compile Include="Requests\CorteZRequest.cs" />
+    <Compile Include="Requests\FacturarConRequest.cs" />
+    <Compile Include="Requests\MenuRequest.cs" />
+    <Compile Include="Requests\RepIngresosDSMRequest.cs" />
+    <Compile Include="Requests\SucursalRequest.cs" />
+    <Compile Include="Requests\UsuarioRequest.cs" />
+    <Compile Include="Response\BaseResponse.cs" />
+    <Compile Include="Response\ClienteResponse.cs" />
+    <Compile Include="Response\SucursalUsuarioResponse.cs" />
+    <Compile Include="Response\RepFacturaPGResponse.cs" />
+    <Compile Include="Response\CorteSucursalResponse.cs" />
+    <Compile Include="Response\CorteZResponse.cs" />
+    <Compile Include="Response\FacturarConResponse.cs" />
+    <Compile Include="Response\MenuResponse.cs" />
+    <Compile Include="Response\RepIngresosDSMResponse.cs" />
+    <Compile Include="Response\SucursalResponse.cs" />
+    <Compile Include="Response\UsuarioResponse.cs" />
+    <Compile Include="SucursalMessage.cs" />
+    <Compile Include="TicketMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Requests\TicketRequest.cs" />
+    <Compile Include="Response\TicketResponse.cs" />
+    <Compile Include="UsuarioMessage.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.BL\QSG.LittleCaesars.BackOffice.BL.csproj">
+      <Project>{2876e0ff-8802-4cea-a3ba-5cabd76b8e58}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj">
+      <Project>{ace31c2f-4dad-4a28-b8e5-3fbc70ef89de}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.BL\QSG.QSystem.BL.csproj">
+      <Project>{ec822417-8da5-4214-b41a-a9c5f963d32e}</Project>
+      <Name>QSG.QSystem.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

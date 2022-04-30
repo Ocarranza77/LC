@@ -1,0 +1,236 @@
+﻿<style>
+    table.factorsTable tr:hover td
+    {
+        background-color: #ccc;
+    }
+</style>
+
+<div ng-controller="factorController">
+
+    <div class="row form-group">
+        <button ng-click="onAddNewFactor()" class="btn btn-primary" data-toggle="modal" data-target="#mdlAltaModFactores">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+    </div>
+
+
+    <div class="row form-group">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th style="width: 70px;">
+                        <label for="">...</label></th>
+                    <th>
+                        <label for="">Cod</label></th>
+                    <th>
+                        <label for="">orden</label></th>
+                    <th>
+                        <label for="">Status</label>
+                    </th>
+                    <th>
+                        <label for="">Concepto</label></th>
+                    <th>
+                        <label for="">Tipo</label></th>
+                    <th>
+                        <label for="">Valor Tipo</label></th>
+                    <th>
+                        <label for="">Valor Predeterminado</label></th>
+                    <th>
+                        <label for="">Formula (regla)</label></th>
+                    <th>
+                        <label for="">Descripcion</label></th>
+                    <th>
+                        <label for="">Ejemplo</label></th>
+                </tr>
+            </thead>
+            <tr ng-repeat="factor in factorsReport">
+                <td>
+                    <button class="btn btn-default btn-xs" ng-click="onFactorEdited(factor.FactorID)"><span class="glyphicon glyphicon-pencil"></span></button>
+                    <button class="btn btn-default btn-xs" ng-click="onFactorDeleted(factor.FactorID)" ng-disabled="factor.isUsed"><span class="glyphicon glyphicon-trash"></span></button>
+                </td>
+                <td style="text-align: center;"><span>{{factor.FactorID}}</span></td>
+                <td style="text-align: center;"><span>{{factor.Orden}}</span></td>
+                <td>
+                    <span ng-show="factor.Activo == false">Inactivo</span>
+                    <span ng-show="factor.Activo == true">Activo</span>
+                </td>
+                <td><span>{{factor.Nombre}}</span></td>
+                <td><span>{{factor.ValorTipo}}</span></td>
+                <td style="text-align: center;"><span>{{factor.Abr}}</span></td>
+                <td style="text-align: center;"><span>{{factor.Valor}}</span></td>
+                <td><span>{{factor.Formula}}</span></td>
+                <td><span>{{factor.FormulaDesc}}</span></td>
+                <td style="text-align: center;"><span>{{factor.ValorFinal}}</span></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="mdlAltaModFactores">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alta y/o modificaciones a factores</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- CONTENIDO -->
+                    <div class="col-md-12">
+                        <div class="alert alert-danger" id="lblError" style="display: none;">{{selectedFactor.errorMessage}}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Estatus</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select ng-disabled="selectedFactor.isUsed" ng-model="selectedFactor.Activo" class="form-control" ng-options="itm for itm in statusList"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Cod</label>
+                            </div>
+                            <div class="col-md-6">
+                                <span>{{selectedFactor.FactorID}}</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>orden</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" ng-model="selectedFactor.Orden" required class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Descripcion</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" ng-model="selectedFactor.Nombre" required class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Tipo</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select ng-model="selectedFactor.ValorTipo" class="form-control" ng-options="itm for itm in typeList"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-show="selectedFactor.ValorTipo == 'Valor'">
+                            <div class="col-md-6">
+                                <label>Valor tipo</label>
+                            </div>
+                            <div class="col-md-6">
+                                <select ng-model="selectedFactor.valueType" class="form-control" ng-options="itm for itm in valueTypeList"></select>
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-show="selectedFactor.ValorTipo == 'Valor'">
+                            <div class="col-md-6">
+                                <label>Valor prederterminado</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="number" ng-model="selectedFactor.Valor" required class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-show="selectedFactor.ValorTipo == 'Regla'">
+                            <div class="col-md-6">
+                                <label>Formula (regla)</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" id="txtFormula" onkeypress="return onFormulaChange(event)" ng-model="selectedFactor.Formula" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="row form-group" ng-show="selectedFactor.ValorTipo == 'Regla'">
+                            <div class="col-md-6">
+                                <label>Descripcion Ejemplo</label>
+                            </div>
+                            <div class="col-md-6">
+                                <span>{{selectedFactor.FormulaDesc}}</span>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Fecha creacion</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{selectedFactor.CDate}}
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col-md-6">
+                                <label>Usuario</label>
+                            </div>
+                            <div class="col-md-6">
+                                {{selectedFactor.UserID}}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="col-md-12 form-group">
+                            <div class="col-md-1 col-md-offset-1">
+                                <button class="btn btn-primary" ng-click="onCalculate()">Calcular</button>
+                            </div>
+                            <div class="col-md-6"></div>
+                            <div class="col-md-1">
+                                <button id="cmdSaveFactor" ng-click="onSaveFactor()" class="btn btn-primary">Aceptar</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <table class="table factorsTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Cod</th>
+                                                <th>orden</th>
+                                                <th>Concepto</th>
+                                                <th>Valores ejemplo</th>
+                                            </tr>
+                                        </thead>
+                                        <tr ng-show="(factor.Activo)" ng-repeat="factor in clonedFactorsReport" style="cursor: pointer;" ng-click="onAddFactorToFormula(factor.FactorID)">
+                                            <td><span>{{factor.FactorID}}</span></td>
+                                            <td><span>{{factor.Orden}}</span></td>
+                                            <td><span>{{factor.Nombre}}</span></td>
+                                            <td style="text-align:right;"><span>{{factor.ValorFinal}}</span></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="clear: both;" />
+                    <!-- END CONTENIDO -->
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+
+    <div id="mdlDeleteFactor" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Elimar Registro</h4>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer eliminar el factor seleccionado?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" ng-click="onDelete()" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

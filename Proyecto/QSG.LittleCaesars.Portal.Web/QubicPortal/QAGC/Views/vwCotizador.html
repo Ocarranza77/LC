@@ -1,0 +1,1059 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cotizador</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+        <!-- SEARCH BAR -->
+        <div class="row">
+            <div class="col-md-12 form-group"> 
+                <button class="btn btn-primary">Buscar</button>
+                <label>Ver ultimas 5 actualizacions</label>
+            </div>
+            <div class="col-md-12">
+                <table class="table">
+                    <tr>
+                        <th colspan=2>Cliente</th>
+                        <th>Telefono (Lada + Numero)</th>
+                        <th>Estatus</th>
+                        <th>Folio Cotizacion</th>
+                        <th>Fecha Cotizacion</th>
+                        <th>Lista de Precios</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" style="width:80px;"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"/>
+                        </td>
+                        <td>
+                            <input type="text" class="form-control"/>
+                        </td>
+                        <td>
+                            <select name="" id="" class="form-control">
+                                <option value=""></option>
+                                <option value="">Option 1</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>                
+            </div>
+        </div>
+        <!-- END SEARC BAR -->
+
+
+        <!-- PANEL CONTAINER -->
+        <div class="col-md-12">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#generales" aria-controls="generales" role="tab" data-toggle="tab">Generales de la cotizacion</a></li>
+                <li role="presentation"><a href="#concepto" aria-controls="concepto" role="tab" data-toggle="tab">Conceptos (producto)</a></li>
+                <li role="presentation"><a href="#concepto01" aria-controls="concepto01" role="tab" data-toggle="tab">1.- Nombre del Concepto (maximo 20 digitos)...</a></li>
+                <li role="presentation"><a href="#explosion" aria-controls="explosion" role="tab" data-toggle="tab">Explosion de los insumos</a></li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="generales">
+                    <!-- GENERALES -->
+                    <div class="col-md-12 form-group">
+                            <div class="row form-group col-md-12">
+                                <button class="btn btn-primary" onclick="launchSearchCustomerResultModal();" ><span class="glyphicon glyphicon-plus"></span></button>
+                                <button class="btn btn-success" onclick="launchSearchCustomerModal();">Generico</button>
+                            </div>
+
+                        <div class="col-md-6">
+                            <div class="row form-group">
+                                <table class="table">
+                                    <tr>
+                                        <th>
+                                            <label for="txtFCotizacion">Fecha cotizacion</label>
+                                        </th>
+                                        <th>
+                                            <label for="cboTipoCotizacion">Tipo de Cotizacion</label>
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" class="form-control">
+                                        </td>
+                                        <td>
+                                            <select name="cboTipoCotizacion" id="" class="form-control">
+                                                <option value="">PROYECTO</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-success" onclick="showProjectInfo();">Datos del Proyecto</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row  form-group">
+                                <div>Condiciones de la cotizacion</div>
+                                <div><input type="text" class="form-control"></div>
+                            </div>
+                            <div class="row form-group panel panel-default">
+                                <div class="panel-body">
+                                    <div class="col-md-1">1</div>
+                                    <div class="col-md-11">La moneda de esta cotizacion es en dolares.</div>
+                                    <div class="col-md-1">2</div>
+                                    <div class="col-md-11">Vigencia de la cotizacion es de 15 dias habiles a partir de la fecha de emision</div>
+                                    <div class="col-md-1">3</div>
+                                    <div class="col-md-11">Material puesto en la Cd. de Celaya</div>
+                                    <div class="col-md-1">4</div>
+                                    <div class="col-md-11">Se require 50% de anticipo y resto en...</div>
+                                    <div class="col-md-1">5</div>
+                                    <div class="col-md-11"></div>
+                                </div>
+                            </div>
+                            <div class="row form-group panel panel-default">
+                                <div class="panel-heading">Archivo documental</div>
+                                <div class="panel-body">
+                                    <div class="col-md-11">Plano diseño general planta.pdf</div>
+                                    <div class="col-md-1"><span class="glyphicon glyphicon-download-alt"></span></div>
+                                    <div class="col-md-11">Plano diseño oficina recursos humanos</div>
+                                    <div class="col-md-1"><span class="glyphicon glyphicon-download-alt"></span></div>
+                                    <div class="col-md-11">Sala de juntas</div>
+                                    <div class="col-md-1"><span class="glyphicon glyphicon-download-alt"></span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- RESUMEN DE LA COTIZACION -->
+                        <div class="col-md-5 col-md-offset-1 panel panel-default" style="display:block;" id="pnlResumen">
+                                <div class="panel-heading">Resumen de la Cotizacion (Moneda Dolares Americanos)</div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <th style="border:none;"></th>
+                                            <th style="text-align:center; border:none;">Cantidad</th>
+                                            <th style="text-align:right; border:none;">Importe</th>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">Productos</td>
+                                            <td style="text-align:center; border:none;">245</td>
+                                            <td style="text-align:right; border:none;">$ 207,662.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">Articulos</td>
+                                            <td style="text-align:center; border:none;">2205</td>
+                                            <td style="text-align:right; border:none;">$ 145,230.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">Servicios</td>
+                                            <td style="text-align:center; border:none;">320</td>
+                                            <td style="text-align:right; border:none;">$ 28,432.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">Mano de Obra</td>
+                                            <td style="text-align:center; border:none;">432</td>
+                                            <td style="text-align:right; border:none;">$ 34,000.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">Subtotal</td>
+                                            <td style="text-align:center; border:none;"></td>
+                                            <td style="text-align:right; border:none;">$ 207,662.00</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;">IVA</td>
+                                            <td style="text-align:center; border:none;"></td>
+                                            <td style="text-align:right; border:none;">16%<br/>$ 33,225.92</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="border:none;"><strong>Total<strong></td>
+                                            <td style="text-align:center; border:none;"></td>
+                                            <td style="text-align:right; border:none;">$ 240,887.92</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                        </div>
+                        <!-- END RESUMEN DE LA COTIZACION -->
+                        <!-- DATOS DEL PROYECTO -->
+                        <div class="col-md-5 col-md-offset-1 panel panel-default" style="display:none;" id="pnlProyecto">
+                                <div class="panel-heading">Datos del proyecto</div>
+                                <div class="panel-body">
+                                    <form>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Nombre del Proyecto</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre del proyecto">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Descripcion general</label>
+                                            <textarea class="form-control" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Ubicacion del Proyecto</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Ubicacion del proyecto">
+                                        </div>
+                                    </form>
+                                    <ol class="breadcrumb">
+                                        <li>Contacto(s)</li>
+                                    </ol>
+                                    <table class="table">
+                                        <tr>
+                                            <th style="border:none;">Nombre</th>
+                                            <th style="border:none;">Telefono</th>
+                                            <th style="border:none;">Correo Electronico</th>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                        </div>
+                        <!-- END DATOS DEL PROYECTO -->
+                        
+                    </div>
+                    <!-- END GENERALES -->
+                </div>
+                <div role="tabpanel" class="tab-pane" id="concepto">
+                    <!-- CONCEPTO -->
+                    <div class="col-md-12 form-group">
+                        <div class="row form-group col-md-12">
+                             <button class="btn btn-primary" onclick="addConcept();" ><span class="glyphicon glyphicon-plus"></span></button>
+                             <button class="btn btn-success" >Generico</button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th style="width:50px;">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </th>
+                            <th>Cantidad</th>
+                            <th>Codigo</th>
+                            <th>Abreviatura</th>
+                            <th>Concepto</th>
+                            <th>Unidad</th>
+                            <th>Clave(s) Cliente</th>
+                            <th>Detallar articulos</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;">145</td>
+                            <td>PM36X80</td>
+                            <td>PM36X80</td>
+                            <td>Puerta de madera sencilla 36x80</td>
+                            <td style="text-align:center;">Pza</td>
+                            <td>024, 124, 128, 224, 228, 324, 424, 524, 528, 624, 628, 724, 728, 824, 924, 1024.</td>
+                            <td style="text-align:center;">
+                                <input type="checkbox" checked="checked" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td style="text-align:center;">
+                                <input type="checkbox">
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- END CONCEPTO -->
+                </div>
+                <div role="tabpanel" class="tab-pane" id="concepto01">
+                    <!-- CONCEPTO 01 -->
+                    <div class="col-md-12 form-group">
+                        <div class="row form-group col-md-12">
+                             <button class="btn btn-primary" onclick="addConcept01();" ><span class="glyphicon glyphicon-plus"></span></button>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <tr>
+                            <th>No.</th>
+                            <th style="width:50px;">
+                                ...
+                            </th>
+                            <th style="text-align:center;">Cantidad</th>
+                            <th>Descripcion</th>
+                            <th style="text-align:center;">Marca</th>
+                            <th style="text-align:center;">Precio Unitario</th>
+                            <th style="text-align:center;">Unidad</th>
+                            <th style="text-align:center;">Propuesta</th>
+                            <th style="text-align:center;">Importe</th>
+                            <th style="text-align:center;">Requiere autorizacion</th>
+                            <th style="text-align:center; width:120px;">Autorizacion</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;">1</td>
+                            <td>Puerta de madera solida core prime 36x80" 20 min prep 86 verificada</td>
+                            <td style="text-align:center;">ABS</td>
+                            <td style="text-align:right;">89.44</td>
+                            <td style="text-align:center;">Pza</td>
+                            <td style="text-align:right;">80.55</td>
+                            <td style="text-align:right;">80.55</td>
+                            <td style="text-align:center;">SI</td>
+                            <td>EN PROCESO</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;">1</td>
+                            <td>Marco metalico sencillo 6 5/8" de 36x80" Calibre 16 F20</td>
+                            <td style="text-align:center;">GH</td>
+                            <td style="text-align:right;">72.62</td>
+                            <td style="text-align:center;">Pza</td>
+                            <td style="text-align:right;">- </td>
+                            <td style="text-align:right;">72.62</td>
+                            <td style="text-align:center;">NO</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;">3</td>
+                            <td>Bisagra 4.5 x 4.5 bommer LB4310C-454-626</td>
+                            <td style="text-align:center;">BOMMER</td>
+                            <td style="text-align:right;">26.63</td>
+                            <td style="text-align:center;">Pza</td>
+                            <td style="text-align:right;">- </td>
+                            <td style="text-align:right;">79.89</td>
+                            <td style="text-align:center;">NO</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;">1</td>
+                            <td>Cerrojo de privacidad Mod. PDL26D/15</td>
+                            <td style="text-align:center;">PEMKO</td>
+                            <td style="text-align:right;">14.58</td>
+                            <td style="text-align:center;">Pza</td>
+                            <td style="text-align:right;">13.95</td>
+                            <td style="text-align:right;">13.95</td>
+                            <td style="text-align:center;">SI</td>
+                            <td>EN PROCESO</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="text-align:center;"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    <!-- END CONCEPTO 01 -->                    
+                </div>
+                <div role="tabpanel" class="tab-pane" id="explosion">...</div>
+            </div>
+
+        </div>        
+        <!-- END PANEL CONTAINER -->
+
+        <!-- MODAL SEARCH CUSTOMER -->
+        <div id="mdlSearchCustomer" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Busqueda</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- MODAL BODY -->
+                    
+                        <table class="table">
+                            <tr>
+                                <th colspan=2 style="border:none;">Cliente</th>
+                                <th style="border:none;">Telefono (Lada + Numero)</th>
+                                <th style="border:none;">Folio Cotizacion</th>
+                                <th style="border:none;"></th>
+                            </tr>
+                            <tr>
+                                <td style="border:none;">
+                                    <input type="text" class="form-control" style="width:80px;"/>
+                                </td>
+                                <td style="border:none;">
+                                    <input type="text" class="form-control"/>
+                                </td>
+                                <td style="border:none;">
+                                    <input type="text" class="form-control"/>
+                                </td>
+                                <td style="border:none;">
+                                    <input type="text" class="form-control"/>
+                                </td>
+                                <td style="border:none;">
+                                    <input type="checkbox" class="checkbox" checked="checked">
+                                </td>
+                            </tr>
+                        </table>     
+
+                        <table class="table">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Folio</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;">10/11/2016</td>
+                                <td style="valign=middle;">A-0101001</td>
+                                <td style="valign=middle;">Generica</td>
+                                <td style="valign=middle;">Angel Perez</td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox" checked="checked">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;">10/11/2016</td>
+                                <td style="valign=middle;">A-0101045</td>
+                                <td style="valign=middle;">Proyecto</td>
+                                <td style="valign=middle;">Promotora Plasticos Baja SA</td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;">
+                                    <input type="checkbox">
+                                </td>
+                            </tr>
+                        </table>           
+                    
+                    <!-- END MODAL BODY -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->        
+        <!-- END MODAL SEARCH CUSTOMER -->
+
+        <!-- MODAL SEARCH CUSTOMER RESULT-->
+        <div id="mdlSearchCustomerResult" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ultimas 5 cotizaciones registradas...</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- MODAL BODY -->
+                        <table class="table">
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Folio</th>
+                                <th>Tipo</th>
+                                <th>Cliente</th>
+                                <th>...</th>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;">10/11/2016</td>
+                                <td style="valign=middle;">A-0101001</td>
+                                <td style="valign=middle;">Generica</td>
+                                <td style="valign=middle;">Angel Perez</td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox" checked="checked">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;">10/11/2016</td>
+                                <td style="valign=middle;">A-0101045</td>
+                                <td style="valign=middle;">Proyecto</td>
+                                <td style="valign=middle;">Promotora Plasticos Baja SA</td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;"></td>
+                                <td style="valign=middle;">
+                                        <input type="checkbox">
+                                </td>
+                            </tr>
+                        </table>           
+                    
+                    <!-- END MODAL BODY -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->        
+        <!-- END MODAL SEARCH CUSTOMER RESULT -->
+
+        <!-- MODAL ALTA CONCEPTOS -->
+        <div id="mdlAltaConceptos" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Alta de Conceptos o productos</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- MODAL BODY -->
+                    <div class="row">
+                        <div class="col-md-12">
+                                    <form>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputEmail1">Concepto</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nombre del proyecto" value="Puerta de Madera sencilla 36x80">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputPassword1">Codigo</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" value="PM36X80">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputPassword1">Abreviatura</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" value="PM36X80">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputPassword1">Cantidad</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" value="145">
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label for="exampleInputPassword1">Unidad</label>
+                                            <input type="text" class="form-control" id="exampleInputEmail1" value="PZA">
+                                        </div>
+                                        <div class="form-group col-md-12">
+                                            <label for="exampleInputEmail1">Clave(s) cliente</label>
+                                            <textarea class="form-control" rows="3">024, 124, 128, 224, 228, 324, 424, 524, 528, 624, 628, 724, 728, 824, 924, 1024.</textarea>
+                                        </div>
+                                    </form>
+                        </div>                
+                    </div>
+                    <!-- END MODAL BODY -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Aceptar</button>
+                </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->        
+        <!-- END MODAL ALTA CONCEPTOS -->
+
+        <!-- MODAL ALTA CONCEPTOS 01-->
+        <div id="mdlAltaConceptos01" class="modal fade" tabindex="-1" role="dialog" style="width:100%;">
+            <div class="modal-dialog modal-lg" role="document" style="width:80%;">
+                <div class="modal-content">
+                <div class="modal-body">
+                    <!-- MODAL BODY -->
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Filtros</div>
+                                    <div class="panel-body">
+                                    <form>
+                                        <div class="form-group col-md-2">
+                                            <label for="exampleInputPassword1">Grupo</label>
+                                            <select name="" id="" class="form-control">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="exampleInputPassword1">Marca</label>
+                                            <select name="" id="" class="form-control">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="exampleInputPassword1">Estatus</label>
+                                            <select name="" id="" class="form-control">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label for="exampleInputPassword1">Tipo</label>
+                                            <select name="" id="" class="form-control">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="exampleInputEmail1">Nombre del Producto</label>
+                                            <select name="" id="" class="form-control">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    </div>
+                                </div>
+                        </div>         
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                        </div>
+                        <div class="col-md-12 text-right"> 
+                            <a href="#">Ver factores, reglas y variables...</a>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Lista de Precios: Tijuan vigencia al 31 octubre 2016 (seleccione con doble clic en el articulo o servicio de la lista)</div>
+                                <div class="panel-body">
+                                    <table class="table">
+                                        <tr>
+                                            <th><span class="glyphicon glyphicon-star"></span></th>
+                                            <th>Cant</th>
+                                            <th>Tipo</th>
+                                            <th>Producto, articulo o servicio</th>
+                                            <th>Grupo</th>
+                                            <th>Marca</th>
+                                            <th>Unidad</th>
+                                            <th>Precio Unitario</th>
+                                            <th>Propuesta de precio</th>
+                                            <th>IMPORTE</th>
+                                            <th>Require autorizacion</th>
+                                            <th>Seleccion multiple</th>
+                                            <th>Descuento al cliente</th>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox" checked="checked"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><span class="glyphicon glyphicon-star-empty"></span></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td><input type="checkbox"/></td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END MODAL BODY -->
+                </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->        
+        <!-- END MODAL ALTA CONCEPTOS 01-->
+
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+        function launchSearchCustomerModal() {
+            $('#mdlSearchCustomer').modal('toggle');
+        }
+
+        function launchSearchCustomerResultModal() {
+            $('#mdlSearchCustomerResult').modal('toggle');
+        }
+
+        function showProjectInfo() {
+            $('#pnlResumen').hide();
+            $('#pnlProyecto').show();
+        }
+
+        function addConcept() {
+            $('#mdlAltaConceptos').modal('toggle');
+        }
+
+        function addConcept01() {
+            $('#mdlAltaConceptos01').modal('toggle');
+        }
+    </script>
+  </body>
+</html>

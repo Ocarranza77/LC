@@ -1,0 +1,155 @@
+﻿<div ng-controller="usersController">
+    <div class="col-md-12">
+        <button ng-click="onNewUser()" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+    <div class="col-md-12 form-group">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>...</th>
+                <th>Cod. Us.</th>
+                <th>Nombre completo del usuario</th>
+                <th>Alias</th>
+                <th>Perfil de usuario</th>
+                <th>Estatus</th>
+                <th>Usuario (cuenta de correo)</th>
+                <th>Puesto - posicion</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>
+                    <a href="#" ng-click="onUserEdited(user.UsuarioID)"><span class="glyphicon glyphicon-pencil"></span></a>
+                    <a href="#" ng-click="onUserDeleted(user.UsuarioID)" ng-hide="deleteAction" ><span class="glyphicon glyphicon-trash"></span></a>
+                </td>
+                <td>{{user.UsuarioID}}</td>
+                <td>{{user.Nombre}}</td>
+                <td>{{user.Alias}}</td>
+                <td ng-show="user.Tipo==0">N/A</td>
+                <td ng-show="user.Tipo==1">Administrador</td>
+                <td ng-show="user.Tipo==2">Usuario</td>
+                <td ng-show="user.Activo==1">Activo</td>
+                <td ng-show="user.Activo==0">Inactivo</td>
+                <td>{{user.Email}}</td>
+                <td>{{user.Titulo}}</td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="pnlUserModal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Editando usuario: {{selectedUser.UsuarioID}}</h4>
+                </div>
+                <div class="modal-body">
+                    <!-- CONTENIDO DE LA MODAL -->
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="txtNombre" class="col-sm-4 control-label">Nombre completo del usuario</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="selectedUser.Nombre" class="form-control" id="txtNombre" placeholder="Nombre completo">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtAlias" class="col-sm-4 control-label">Alias</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="selectedUser.Alias" class="form-control" id="txtAlias" placeholder="Alias">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cboPerfil" class="col-sm-4 control-label">Perfil de usuario</label>
+                            <div class="col-sm-8">
+                                <select id="cboPerfil" ng-model="selectedPerfil" class="form-control" ng-options="itm.name for itm in perfiles">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="cboStatus" class="col-sm-4 control-label">Estatus (Activo-Inactivo)</label>
+                            <div class="col-sm-8">
+                                <select id="cboStatus" ng-model="selectedStatus" class="form-control" ng-options="itm.name for itm in status">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtCorreo" class="col-sm-4 control-label">Usuario (cuenta de correo)</label>
+                            <div class="col-sm-8">
+                                <input type="email" ng-model="selectedUser.Email" class="form-control" id="txtCorreo" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtPuesto" class="col-sm-4 control-label">Puesto o posicion</label>
+                            <div class="col-sm-8">
+                                <input type="text" ng-model="selectedUser.Titulo" class="form-control" id="txtPuesto" placeholder="Puesto">
+                            </div>
+                        </div>
+
+                        <hr />
+                        <div class="form-group">
+                            <label for="txtClaveAcceso" class="col-sm-4 control-label">Password (Preliminar)</label>
+                            <div class="col-sm-8">
+                                <input ng-model="selectedUser.UsPwd" type="password" class="form-control" id="txtClaveAcceso" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="txtConfirmacion" class="col-sm-4 control-label">Confirme Password (Preliminar)</label>
+                            <div class="col-sm-8">
+                                <input ng-model="selectedUser.Confirmacion" type="password" class="form-control" id="txtConfirmacion" placeholder="Password">
+                            </div>
+                        </div>
+
+                        <hr />
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="checkbox" style="display: none">
+                                    <label>
+                                        <input ng-model="selectedUser.SolicitarCambioContrasena" type="checkbox">
+                                        Solicitar al usuario que cambie su contraseña al acceder por primera vez
+                                    </label>
+                                </div>
+                                <div class="funkyradio">
+                                    <div class="funkyradio-success">
+                                        <input ng-model="selectedUser.SolicitarCambioContrasena" type="checkbox" id="chkCmabioContrasena" />
+                                        <label for="chkCmabioContrasena">
+                                            Solicitar al usuario que cambie su contraseña al acceder por primera vez
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-8">
+                                <div class="checkbox" style="display:none">
+                                    <label>
+                                        <input ng-model="selectedUser.EnviarContrasena" type="checkbox">
+                                        Enviar contraseña provisional al usuario via correo electronico
+                                    </label>
+                                </div>
+                                <div class="funkyradio">
+                                    <div class="funkyradio-success">
+                                        <input ng-model="selectedUser.EnviarContrasena" type="checkbox" id="chkEnviarContrasena" />
+                                        <label for="chkEnviarContrasena">
+                                            Enviar contraseña provisional al usuario via correo electronico
+                                        </label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- END CONTENIDO DE LA MODAL -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button type="button" ng-click="onUserSaved()" ng-disabled="saveAction" class="btn btn-primary">Aceptar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>

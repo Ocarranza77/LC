@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<cfdi:Comprobante xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd" Moneda="PESOS" total="261" tipoDeComprobante="ingreso" metodoDePago="01" NumCtaPago="NO APLICA" TipoCambio="1.00" LugarExpedicion="TIJUANA, B.C. MEXICO" subTotal="225" condicionesDePago="CONTADO" formaDePago="PAGO EN UNA SOLA EXHIBICION" fecha="2017-12-05T15:11:14" folio="1532" serie="DO" version="3.2" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" sello="mO6ePE4MtGmxApf1sMUI/n2TpbFBgShRS6vyqqwiES5EHvjvyjy9bW/LU31NfUxHfJ+s1xwJMksp8YQPhmkwQFAgSHJYfBaCFKmXJJdFrTlJ6AMtrFAhvoKNDozt+yvMEEkluIVKpXZr/Zf4yKUIVRk+sFcaADtxjMnYGtci1n3PeQa31D82vmZflHvIF8Wlx1Vk/Z7BDW1SZxF/9t4lR1xuMrZ7QoeFZ7LSFBFob8D69V6ebBsyrDdVkMyR5+mAwlgZAMJTCAu57Ar4jr/A4DIqcoEO57UWWyfnlDtcQ6+SA/EMNG00O3xa86BB0Iek7E3CXNbpIjqEIKjWPYrTQg==">
+  <cfdi:Emisor rfc="TEST010203001" nombre="EMPRESA PRUEBA">
+    <cfdi:DomicilioFiscal calle="LA calle" noExterior="12345" noInterior="no int" colonia="La Coloia" localidad="Tijuana" municipio="Tijuana" estado="Baja California" pais="MEXICO" codigoPostal="22000" />
+    <cfdi:ExpedidoEn calle="BLVD GUSTAVO DIAZ ORDAZ" noExterior="935" colonia="SANTA FE" localidad="TIJUANA" estado="Baja California" pais="MEXICO" codigoPostal="22620" />
+    <cfdi:RegimenFiscal Regimen="REGIMEN DE INCORPORACION FISCAL" />
+  </cfdi:Emisor>
+  <cfdi:Receptor rfc="TEST010203001" nombre="empresa nombre">
+    <cfdi:Domicilio calle="empresa calle" noExterior="5678" noInterior="1234" colonia="coloni empresa" localidad="delegacion empresa" municipio="TIJUANA" estado="BAJA CALIFORNIA" pais="MEXICO" codigoPostal="22000" />
+  </cfdi:Receptor>
+  <cfdi:Conceptos>
+    <cfdi:Concepto cantidad="1" unidad="NO APLICA" noIdentificacion="006002#5334" descripcion="Consumo de Alimentos" valorUnitario="225" importe="225" />
+  </cfdi:Conceptos>
+  <cfdi:Impuestos totalImpuestosRetenidos="0" totalImpuestosTrasladados="36">
+    <cfdi:Traslados>
+      <cfdi:Traslado impuesto="IVA" tasa="16" importe="36" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

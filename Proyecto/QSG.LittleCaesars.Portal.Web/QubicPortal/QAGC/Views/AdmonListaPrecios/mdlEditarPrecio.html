@@ -1,0 +1,173 @@
+﻿<div id="mdlEditarPrecio" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <label class="panel-title">Alta y/o actualizción de variables de precio</label>
+                        <button class="close pull-right" data-dismiss="modal">Salir</button>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12" >
+                                <table class="table table-responsive table-condensed">
+                                    <thead>
+                                        <tr class="active">
+                                            <th>Fecha actualizacion</th>
+                                            <th>Producto</th>
+                                            <th>Proveedor</th>
+                                            <th>Telefono proveedor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="active">
+                                            <td>{{ fechaAct | date: 'MM/dd/yyyy' }}</td>
+                                            <td>{{ tempProducto }}</td>
+                                            <td>{{ provedor }}</td>
+                                            <td>{{ proveedorTel }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Precio actual</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                <input type="text" ng-model="tempPrecio" class="form-control" />
+                                                <span class="input-group-addon">.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="control-label">Precio validar (NUEVO)</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-usd"></i></span>
+                                                <input type="text" ng-model="precioNuevo" class="form-control" />
+                                                <span class="input-group-addon">.00</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-right">Importe de las variables y factores calculados</p>
+                                        <button class="btn btn-default pull-right" data-ng-click="onRefreshPrice(tempoCompleto)">
+                                            <span class="fa fa-refresh"></span>&nbsp; Actualizar precio
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="active">
+                            <th>Concepto</th>
+                            <th>Tipo</th>
+                            <th>Valor predeterminado</th> 
+                            <th>Regla</th>
+                            <th>Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><b>Descuento</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" /></td>
+                            <td></td>
+                            <td>Descuento que el fabricante otorga a CAS</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo cliente</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" /></td>
+                            <td></td>
+                            <td>Costo excepcional a cargar clientes (cadenas productivas) es porcentual</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo fabricante</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" value="120" /></td>
+                            <td></td>
+                            <td>Es el precio de lista del fabricante (proveeodr)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo USA</b></td>
+                            <td>REGLA</td>
+                            <td><label class="label label-info center-block" style="font-size:15px">120</label></td>
+                            <td><input type="text" class="hdb-textbox" value="=cod10*cod11" /></td>
+                            <td>Costo.Precio a CAS en USA</td>
+                        </tr>
+                        <tr>
+                            <td><b>IGI</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" value="1" /></td>
+                            <td></td>
+                            <td>Arancel aduanal (costo), valor ejm. 1.01, 1.00 (nacional e interior)</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo para importación</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" value="1.05" /></td>
+                            <td></td>
+                            <td>Costo para importación</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo importación</b></td>
+                            <td>Regla</td>
+                            <td><label class="label label-info center-block" style="font-size:15px">120</label></td>
+                            <td><input type="text" class="hdb-textbox" value="=cod9*cod7" /></td>
+                            <td>Costo DE importación, es porcentual</td>
+                        </tr>
+                        <tr>
+                            <td><b>Costo Tijuana</b></td>
+                            <td>Regla</td>
+                            <td><label class="label label-info center-block" style="font-size:15px">126</label></td>
+                            <td><input type="text" class="hdb-textbox" value="=cod2*cod1" /></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td><b>Indirecto-operación</b></td>
+                            <td>Valor</td>
+                            <td><input  type="text" class="hdb-textbox" value="70%" /></td>
+                            <td></td>
+                            <td>Cargo al cliente de indirectos operación</td>
+                        </tr>
+                        <tr>
+                            <td><b>Indirecto ganancia</b></td>
+                            <td>Valor</td>
+                            <td><input type="text" class="hdb-textbox" value="0.7" /></td>
+                            <td></td>
+                            <td>Cargo al cliente de indirectos margen  de ganancia</td>
+                        </tr>
+                        <tr>
+                            <td><b>BASE</b></td>
+                            <td>Regla</td>
+                            <td><label class="label label-info center-block" style="font-size:15px">176.4</label></td>
+                            <td><input type="text" class="hdb-textbox" value="=cod3*(cod4+cod8)" /></td>
+                            <td>=costo tijuana *  (indirecto operación+indirecto util)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!--<div class="row">
+                    <div class="col-md-12">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="control-label input-lg col-md-3">Precio actual</label>
+                                <div class="col-md-8">
+                                    <input type="text" ng-model="tempPrecio" class="form-control input-lg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+            <!--<div class="modal-footer">
+                <button class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" data-ng-click="onRefreshPrice(tempoCompleto)">Aceptar</button>
+            </div>-->
+        </div>
+    </div>
+</div>

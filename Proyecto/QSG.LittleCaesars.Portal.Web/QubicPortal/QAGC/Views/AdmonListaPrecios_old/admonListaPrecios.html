@@ -1,0 +1,170 @@
+﻿<div ng-controller="ctrlAdmonListaPrecios">
+    <!-- Crear lista -->
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span style="font-size:18px" class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;
+                            <label class="panel-title">Lista </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Lista</th>
+                                <th>Moneda</th>
+                                <th>Oficinas o sucursales</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="form-control">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td><input type="text" class="form-control" /></td>
+                                <td>
+                                    <select class="form-control" ng-options="suc as suc.sucursal for suc in sucursales track by suc.id" ng-change="onOpenSucursales(sucursal)" ng-model="sucursal">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Filtros -->
+        <div class="col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span style="font-size:18px" class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;
+                            <label class="panel-title">Filtros</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Grupo</th>
+                                <th>Marca</th>
+                                <th>Estatus</th>
+                                <th>Tipo</th>
+                                <th>Nombre del producto</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <select class="form-control" ng-options="g as g.grupo for g in grupos track by g.id" ng-model="grupo">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="m as m.marca for m in marcas track by m.id" ng-model="marca">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" data-ng-model="estatus">
+                                        <option value="">-Select -</option>
+                                        <option value="false">false</option>
+                                        <option value="true">true</option>
+                                    </select>
+
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="t as t.tipo for t in tipos track by t.id" ng-model="tipo">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="p as p.producto for p in prodPrecios track by p.idProd" ng-model="producto">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button class="btn btn-default pull-right fa-lg" data-ng-click="onReset()"><span class="fa fa-refresh"></span> &nbsp; Resetear filtro</button>
+                </div>
+            </div>
+        </div>
+    </div><!-- Filtros -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label class="panel-title">Cátalogo de Articulos y Productos</label>
+                    <button class="btn btn-primary btn-circle btn-xs" title="Agregar">
+                        <span class="glyphicon glyphicon-plus fa-lg"></span>
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                                <th><span class="glyphicon glyphicon-star fa-lg"></span></th>
+                                <th>Estatus</th>
+                                <th>Tipo</th>
+                                <th>Producto</th>
+                                <th>Grupo</th>
+                                <th>Marca</th>
+                                <th>Unidad</th>
+                                <td>Precio unitario</td>
+                                <th>Cod Interno</th>
+                                <th>Cod Producto</th>
+                                <th>Cod de Barras</th>
+                                <th>Garantía proveedor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="prod in prodPrecios | filter: grupo.grupo | filter: marca.marca | filter: estatus | filter: tipo.tipo | filter: producto.producto">
+                                <td><button class="btn btn-success btn-circle" title="Editar" data-ng-click="onEdit(prod)"><span class="glyphicon glyphicon-pencil fa-lg"></span></button></td>
+                                <td>
+                                    <button class="btn btn-danger btn-circle" ng-click="onConfirm(prod)" title="Eliminar">
+                                        <span class="glyphicon glyphicon-trash fa-lg"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default btn-circle fa-lg" ng-class="prod.isImportante ? 'hdb_active' : 'hdb_inactive'" ng-click="onChangeImportant(prod)">
+                                        <span ng-class="prod.isImportante ? 'glyphicon glyphicon-star fa-lg' : 'glyphicon glyphicon-star-empty fa-lg'"></span>
+                                    </button> 
+                                </td>
+                                <td>
+                                    <label ng-class="prod.estatus ? 'label label-primary' : 'label label-default'">{{ prod.estatus ? "ACTIVO" : "INACTIVO" }}</label>
+                                </td>
+                                <td>{{ prod.tipo.tipo }}</td>
+                                <td>{{ prod.producto }}</td>
+                                <td>{{ prod.grupo.grupo }}</td>
+                                <td>{{ prod.marca.marca }}</td>
+                                <td>{{ prod.unidad }}</td>
+                                <td class="text-primary" style="font-size:18px"><b>{{ prod.precioUnitario }}</b></td>
+                                <td>{{ prod.codInterno }}</td>
+                                <td>{{ prod.codProducto }}</td>
+                                <td>{{ prod.codBarras }}</td>
+                                <td>{{ prod.garantia }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <mdl-Sucursal></mdl-Sucursal>
+    <mdl-Editar-Precio></mdl-Editar-Precio>
+    <mdl-Eliminar></mdl-Eliminar>
+</div>

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9306B768-167A-416A-B23F-4646E1DD4D3D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QubicPortal</RootNamespace>
+    <AssemblyName>QubicPortal</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Users\majahide-ent\Downloads\Json90r1\Bin\Net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app\js\Controller.js" />
+    <Content Include="app\js\PortalController.js" />
+    <Content Include="app\js\QFormController.js" />
+    <Content Include="app\js\UsersController.js" />
+    <Content Include="Controls\ctl_regusuarios.html" />
+    <Content Include="Controls\ctl_resetpwd.html" />
+    <Content Include="Controls\ctl_security.html" />
+    <Content Include="css\bootstrap-rtl.css" />
+    <Content Include="css\bootstrap-rtl.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\companies\company01.css" />
+    <Content Include="css\companies\company02.css" />
+    <Content Include="css\plugins\morris.css" />
+    <Content Include="css\sb-admin-rtl.css" />
+    <Content Include="css\sb-admin.css" />
+    <Content Include="js\angular.min.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery-2.2.2.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\plugins\flot\excanvas.min.js" />
+    <Content Include="js\plugins\flot\flot-data.js" />
+    <Content Include="js\plugins\flot\jquery.flot.js" />
+    <Content Include="js\plugins\flot\jquery.flot.pie.js" />
+    <Content Include="js\plugins\flot\jquery.flot.resize.js" />
+    <Content Include="js\plugins\flot\jquery.flot.tooltip.min.js" />
+    <Content Include="js\plugins\morris\morris-data.js" />
+    <Content Include="js\plugins\morris\morris.js" />
+    <Content Include="js\plugins\morris\morris.min.js" />
+    <Content Include="js\plugins\morris\raphael.min.js" />
+    <Content Include="Login.html" />
+    <Content Include="QubicForm.html" />
+    <Content Include="QubicPortal.html" />
+    <Content Include="QubicService.svc" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\Messages\AuthenticateRequest.cs" />
+    <Compile Include="Model\Messages\AuthenticateResponse.cs" />
+    <Compile Include="Model\Messages\AuthorizeRequest.cs" />
+    <Compile Include="Model\Messages\AuthorizeResponse.cs" />
+    <Compile Include="Model\Messages\Broker.cs" />
+    <Compile Include="Model\Messages\ColorSettings.cs" />
+    <Compile Include="Model\Messages\Company.cs" />
+    <Compile Include="Model\Messages\Form.cs" />
+    <Compile Include="Model\Messages\GetSecurityAccessRequest.cs" />
+    <Compile Include="Model\Messages\GetSecurityAccessResponse.cs" />
+    <Compile Include="Model\Messages\GetUsersRequest.cs" />
+    <Compile Include="Model\Messages\GetUsersResponse.cs" />
+    <Compile Include="Model\Messages\InitFormRequest.cs" />
+    <Compile Include="Model\Messages\InitFormResponse.cs" />
+    <Compile Include="Model\Messages\InitResponse.cs" />
+    <Compile Include="Model\Messages\MenuOption.cs" />
+    <Compile Include="Model\Messages\MenuType.cs" />
+    <Compile Include="Model\Messages\Notification.cs" />
+    <Compile Include="Model\Messages\OtherAccess.cs" />
+    <Compile Include="Model\Messages\PerfilType.cs" />
+    <Compile Include="Model\Messages\ResetPassword.cs" />
+    <Compile Include="Model\Messages\ResetPasswordRequest.cs" />
+    <Compile Include="Model\Messages\ResetPasswordResponse.cs" />
+    <Compile Include="Model\Messages\SaveUserRequest.cs" />
+    <Compile Include="Model\Messages\SaveUserResponse.cs" />
+    <Compile Include="Model\Messages\SearchUsersRequest.cs" />
+    <Compile Include="Model\Messages\SearchUsersResponse.cs" />
+    <Compile Include="Model\Messages\SecurityBusiness.cs" />
+    <Compile Include="Model\Messages\SecurityFilters.cs" />
+    <Compile Include="Model\Messages\SecurityFiltersRequest.cs" />
+    <Compile Include="Model\Messages\SecurityFiltersResponse.cs" />
+    <Compile Include="Model\Messages\StatusType.cs" />
+    <Compile Include="Model\Messages\Usuario.cs" />
+    <Compile Include="Model\QubicRequest.cs" />
+    <Compile Include="Model\QubicResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QubicService.svc.cs">
+      <DependentUpon>QubicService.svc</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:65125/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

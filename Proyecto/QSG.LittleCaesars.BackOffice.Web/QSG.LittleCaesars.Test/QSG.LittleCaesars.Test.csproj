@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA326642-658E-4FDA-A846-5745BA91DC51}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.Test</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.Test</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClienteTest.cs" />
+    <Compile Include="SucursalUsuarioTest.cs" />
+    <Compile Include="CorteSucursalTest.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TicketTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.BL\QSG.LittleCaesars.BackOffice.BL.csproj">
+      <Project>{2876e0ff-8802-4cea-a3ba-5cabd76b8e58}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj">
+      <Project>{ace31c2f-4dad-4a28-b8e5-3fbc70ef89de}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.DAL\QSG.LittleCaesars.BackOffice.DAL.csproj">
+      <Project>{41e1115d-848b-474a-ae83-d264403df8c7}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.Messages\QSG.LittleCaesars.BackOffice.Messages.csproj">
+      <Project>{cc3db8aa-14dd-485a-b85e-d1c34e3512a9}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.BL\QSG.QSystem.BL.csproj">
+      <Project>{ec822417-8da5-4214-b41a-a9c5f963d32e}</Project>
+      <Name>QSG.QSystem.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.Messages\QSG.QSystem.Messages.csproj">
+      <Project>{80cc8cc5-6d94-4c33-846b-e3e77847198e}</Project>
+      <Name>QSG.QSystem.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

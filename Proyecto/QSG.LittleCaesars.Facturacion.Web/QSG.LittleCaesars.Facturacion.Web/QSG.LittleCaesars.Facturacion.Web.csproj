@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E3A9E63A-DB44-4584-AFF2-2FE4AD3BF346}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.Facturacion.Web</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.Facturacion.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.6.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.4.1.2\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="QSG.QSystem.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.Common\bin\Debug\QSG.QSystem.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="RazorPDF">
+      <HintPath>..\packages\RazorPDF.1.0.0\lib\net45\RazorPDF.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="uQRCode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\uQRCode.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="BouncyCastle.Crypto.dll" />
+    <Content Include="Certificados\Certificado PF.txt" />
+    <Content Include="Certificados\Certificado PM .txt" />
+    <Content Include="Contact.aspx" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Dats\cadenaoriginal_TFD_1_0.xslt" />
+    <Content Include="Facturas\Factura_2.xml" />
+    <Content Include="Facturas\TEST010203001DO1537.xml" />
+    <Content Include="Facturas\TEST010203001DO1538.xml" />
+    <Content Include="Facturas\TEST010203001DO1540.xml" />
+    <Content Include="Facturas\TEST010203001DO1542.xml" />
+    <Content Include="Facturas\TEST010203001DO1544.xml" />
+    <Content Include="Facturas\TEST010203001DO1553.xml" />
+    <Content Include="Facturas\TEST010203001DO1554.xml" />
+    <Content Include="Facturas\TEST010203001DO1561.xml" />
+    <Content Include="Facturas\TEST010203001DO1564.xml" />
+    <Content Include="Facturas\TEST010203001DO1566.xml" />
+    <Content Include="Facturas\TEST010203001DO1567.xml" />
+    <Content Include="Facturas\TEST010203001DO1568.xml" />
+    <Content Include="Facturas\TEST010203001DO1569.xml" />
+    <Content Include="Facturas\TEST010203001DO1571.xml" />
+    <Content Include="Facturas\TEST010203001DO1572.xml" />
+    <Content Include="Facturas\TEST010203001DO1573.xml" />
+    <Content Include="Facturas\TEST010203001DO1574.xml" />
+    <Content Include="Facturas\TEST010203001DO1575.xml" />
+    <Content Include="Facturas\TEST010203001DO1576.xml" />
+    <Content Include="Facturas\TEST010203001DO1579.xml" />
+    <Content Include="Facturas\TEST010203001DO1593.xml" />
+    <Content Include="Facturas\TEST010203001DO1601.xml" />
+    <Content Include="Facturas\TEST010203001DO1603.xml" />
+    <Content Include="Facturas\TEST010203001DO1612.xml" />
+    <Content Include="Facturas\TEST010203001DO1614.xml" />
+    <Content Include="Facturas\TEST010203001DO1619.xml" />
+    <Content Include="Facturas\XAXX010101000PJ2.xml" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\ajax-loader.gif" />
+    <Content Include="Images\asterisk.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\cancel-26.png" />
+    <Content Include="Images\folio.png" />
+    <Content Include="Images\help-25.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\ic_plus.png" />
+    <Content Include="Images\Image.jpg" />
+    <Content Include="Images\importe.png" />
+    <Content Include="Images\little-caesars-logo.jpg" />
+    <Content Include="Images\little.jpg" />
+    <Content Include="Images\loading-image GIF-d25a21d46e895882a99949c0ca65ce82.gif" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\loading1.gif" />
+    <Content Include="Images\Logo_Qbic.jpg" />
+    <Content Include="Images\logo_qbic.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\pizza2.png" />
+    <Content Include="Images\SLP1.jpg" />
+    <Content Include="packages.config" />
+    <Content Include="Files\Proyecto_Facturacion_Electronica_a_Clientes.pdf" />
+    <Content Include="Files\Política de Privacidad de la Aplicación Web.pdf" />
+    <Content Include="Dats\Ejemplo 1a - Crear CFDI %28basico%29.ini" />
+    <Content Include="Dats\Ejemplo 1b - Crear CFDI %28completo%29.ini" />
+    <Content Include="Dats\Ejemplo 1c - Crear CFDI %28nomina%29.ini" />
+    <Content Include="Dats\Ejemplo 1d - Crear CFDI %28notarios publicos%29.ini" />
+    <Content Include="Dats\Ejemplo 2 - Timbrado.ini" />
+    <Content Include="Dats\Ejemplo 3 - Cancelacion.ini" />
+    <Content Include="Dats\Ejemplo 4 - Recuperar Acuse de Cancelacion.ini" />
+    <Content Include="Dats\Ejemplo 5 - Consulta de Saldo.ini" />
+    <Content Include="Dats\Ejemplo 6 - Recuperar CFDI.ini" />
+    <Content Include="Fact.aspx" />
+    <Content Include="Certificados\00001000000201255121.cer" />
+    <Content Include="Certificados\ces070913fq3_1206020920s.key" />
+    <Content Include="Certificados\CES070913FQ3_20160603_111637.key" />
+    <Content Include="Certificados\CES070913FQ3_20160603_111637s.cer" />
+    <Content Include="Certificados\00001000000403528555.cer" />
+    <Content Include="Certificados\CSD_MATRIZ_GLB150904CU1_20160830_125030.key" />
+    <Content Include="Certificados\00001000000404697858.cer" />
+    <Content Include="Certificados\00001000000404697897.cer" />
+    <Content Include="Certificados\00001000000404697957.cer" />
+    <Content Include="Certificados\00001000000404698033.cer" />
+    <Content Include="Certificados\CSD_MATRIZ_CBC160908K41_20170102_104128.key" />
+    <Content Include="Certificados\CSD_MATRIZ_CRG160908IW8_20170102_104427.key" />
+    <Content Include="Certificados\CSD_MATRIZ_GOF160908SM3_20170102_103757.key" />
+    <Content Include="Certificados\CSD_MATRIZ_PAA160908RP5_20170102_103414.key" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.WSFEL.RespuestaCancelacion.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.WSFEL.RespuestaCreditos.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.WSFEL.RespuestaReporte.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.WSFEL.RespuestaTFD.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCancelacion.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCancelacionAsincrona.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCreditos.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaEstatusCancelacionAsincrona.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaReporte.datasource" />
+    <Content Include="Properties\DataSources\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaTFD33.datasource" />
+    <Content Include="XML\TEST010203001DO1521.xml" />
+    <Content Include="XML\TEST010203001DO1522.xml" />
+    <Content Include="XML\TEST010203001DO1523.xml" />
+    <Content Include="XML\TEST010203001DO1524.xml" />
+    <Content Include="XML\TEST010203001DO1525.xml" />
+    <Content Include="XML\TEST010203001DO1526.xml" />
+    <Content Include="XML\TEST010203001DO1527.xml" />
+    <Content Include="XML\TEST010203001DO1528.xml" />
+    <Content Include="XML\TEST010203001DO1529.xml" />
+    <Content Include="XML\TEST010203001DO1531.xml" />
+    <Content Include="XML\TEST010203001DO1532.xml" />
+    <Content Include="XML\TEST010203001DO1533.xml" />
+    <Content Include="XML\TEST010203001DO1537.xml" />
+    <Content Include="XML\TEST010203001DO1539.xml" />
+    <Content Include="XML\TEST010203001DO1540.xml" />
+    <Content Include="XML\TEST010203001DO1542.xml" />
+    <Content Include="XML\TEST010203001DO1544.xml" />
+    <Content Include="XML\TEST010203001DO1554.xml" />
+    <Content Include="XML\TEST010203001DO1559.xml" />
+    <Content Include="XML\TEST010203001DO1560.xml" />
+    <Content Include="XML\TEST010203001DO1562.xml" />
+    <Content Include="XML\TEST010203001DO1563.xml" />
+    <Content Include="XML\TEST010203001DO1564.xml" />
+    <Content Include="XML\TEST010203001DO1570.xml" />
+    <Content Include="XML\TEST010203001DO1575.xml" />
+    <Content Include="XML\TEST010203001DO1576.xml" />
+    <Content Include="XML\Timbrados_old\CAGX760228A89PJ2.xml" />
+    <Content Include="XML\Timbrados_old\QSG1409252TAMA619.xml" />
+    <Content Include="XML\Timbrados_old\QSG1409252TAMA620.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1726.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1727.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1728.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1731.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1732.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1734.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1735.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1736.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1737.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1738.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1739.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000CU1742.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PA1371.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PA1376.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PA1379.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PJ2.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PJ45.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PR908.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PT1334.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PT1335.xml" />
+    <Content Include="XML\Timbrados_old\XAXX010101000PT1336.xml" />
+    <Content Include="XSLT\zzcadenaoriginal_3_3_temp.xslt" />
+    <Content Include="Certificados\CertificadoFirmadoPF.cer" />
+    <Content Include="Certificados\CertificadoFirmadoPM.cer" />
+    <Content Include="Certificados\LlavePkcs8PF.key" />
+    <Content Include="Certificados\LlavePkcs8PM.key" />
+    <Content Include="XSLT\zzcadenaoriginal_TFD_1_1.xslt" />
+    <Content Include="XSLT\zznomina12.xslt" />
+    <Content Include="XSLT\zzpagos10.xslt" />
+    <Content Include="XSLT\zzutilerias.xslt" />
+    <Content Include="Facturas\OmarTest.PDF" />
+    <Content Include="Facturas\QSG1409252TABL2268.pdf" />
+    <Content Include="Facturas\QSG1409252TABL2272.pdf" />
+    <Content Include="Facturas\QSG1409252TACA0.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2382.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2389.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2390.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2405.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2407.pdf" />
+    <Content Include="Facturas\QSG1409252TACU2408.pdf" />
+    <Content Include="Facturas\QSG1409252TADO1481.pdf" />
+    <Content Include="Facturas\QSG1409252TADO1482.pdf" />
+    <Content Include="Facturas\QSG1409252TAFDN1005.pdf" />
+    <Content Include="Facturas\QSG1409252TAFI1.pdf" />
+    <Content Include="Facturas\QSG1409252TAFU1026.pdf" />
+    <Content Include="Facturas\QSG1409252TALPN1.pdf" />
+    <Content Include="Facturas\QSG1409252TAMA1352.pdf" />
+    <Content Include="Facturas\QSG1409252TAPA1754.pdf" />
+    <Content Include="Facturas\QSG1409252TAPA1769.pdf" />
+    <Content Include="Facturas\QSG1409252TAPA1772.pdf" />
+    <Content Include="Facturas\QSG1409252TAPA1774.pdf" />
+    <Content Include="Facturas\QSG1409252TAPT2484.pdf" />
+    <Content Include="Facturas\QSG1409252TASA1119.pdf" />
+    <Content Include="Facturas\SME110117IV1CU2378.pdf" />
+    <Content Include="Facturas\SME110117IV1LC798.pdf" />
+    <Content Include="Facturas\TEST010203001DO1540.pdf" />
+    <Content Include="Facturas\TEST010203001DO1542.pdf" />
+    <Content Include="Facturas\TEST010203001DO1544.pdf" />
+    <Content Include="Facturas\TEST010203001DO1554.pdf" />
+    <Content Include="Facturas\TEST010203001DO1561.pdf" />
+    <Content Include="Facturas\TEST010203001DO1564.pdf" />
+    <Content Include="Facturas\TEST010203001DO1566.pdf" />
+    <Content Include="Facturas\TEST010203001DO1567.pdf" />
+    <Content Include="Facturas\TEST010203001DO1568.pdf" />
+    <Content Include="Facturas\TEST010203001DO1571.pdf" />
+    <Content Include="Facturas\TEST010203001DO1572.pdf" />
+    <Content Include="Facturas\TEST010203001DO1573.pdf" />
+    <Content Include="Facturas\TEST010203001DO1574.pdf" />
+    <Content Include="Facturas\TEST010203001DO1575.pdf" />
+    <Content Include="Facturas\TEST010203001DO1576.pdf" />
+    <Content Include="Facturas\TEST010203001DO1579.pdf" />
+    <Content Include="Facturas\TEST010203001DO1593.pdf" />
+    <Content Include="Facturas\TEST010203001DO1601.pdf" />
+    <Content Include="Facturas\TEST010203001DO1603.pdf" />
+    <Content Include="Facturas\TEST010203001DO1612.pdf" />
+    <Content Include="Facturas\TEST010203001DO1614.pdf" />
+    <Content Include="Facturas\TEST010203001DO1619.pdf" />
+    <Content Include="Facturas\XAXX010101000.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1726.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1779.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1780.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1813.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1814.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1815.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1825 - copia.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1825.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1830.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1831.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1834.pdf" />
+    <Content Include="Facturas\XAXX010101000DO1186.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1380.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1702.pdf" />
+    <Content Include="Facturas\XAXX010101000PLP930.pdf" />
+    <Content Include="Facturas\XAXX010101000PT1337.pdf" />
+    <Content Include="Facturas\XAXX010101000SA1060.pdf" />
+    <Content Include="Certificados\CSD_GNH_Administradora_Restaurantera_GAR180716P37_20180925_132604.key" />
+    <Content Include="Certificados\CSD_GNH_Administradora_Restaurantera_GAR180716P37_20180925_132604s.cer" />
+    <Content Include="Certificados\00001000000504089467.cer" />
+    <Content Include="Certificados\CSD_NOMINAS_CES070913FQ3_20200601_113227.key" />
+    <Content Include="Certificados\00001000000504828114.cer" />
+    <Content Include="Certificados\CSD_NOMINAS123_GLB150904CU1_20200824_110857.key" />
+    <Content Include="Certificados\00001000000506110437.cer" />
+    <Content Include="Certificados\00001000000506110459.cer" />
+    <Content Include="Certificados\00001000000506110482.cer" />
+    <Content Include="Certificados\00001000000506110514.cer" />
+    <Content Include="Certificados\CSD_NOMINASGLZ_GOF160908SM3_20210102_130226.key" />
+    <Content Include="Certificados\CSD_SELLOSCESAR_CBC160908K41_20210102_133225.key" />
+    <Content Include="Certificados\CSD_SELLOSCOMERCIAL_CRG160908IW8_20210102_140830.key" />
+    <Content Include="Certificados\CSD_SELLOSPLC_PAA160908RP5_20210102_132357.key" />
+    <None Include="Properties\PublishProfiles\LCFacturacion.pubxml" />
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="QRCode\CFDLib.dll" />
+    <Content Include="QRCode\libeay32.dll" />
+    <Content Include="QRCode\QRCodeLib.dll" />
+    <Content Include="QRCode\ssleay32.dll" />
+    <Content Include="Scripts\Facturacion.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Styles\style.css" />
+    <Content Include="uQRCode.dll" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Fact.aspx.cs">
+      <DependentUpon>Fact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Fact.aspx.designer.cs">
+      <DependentUpon>Fact.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Facturas_HTML\ImagesQR\" />
+    <Folder Include="XML\Timbrados\" />
+    <Folder Include="XML\XTimbrar\" />
+    <Folder Include="XML\XTimbrar_old\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.BL\QSG.LittleCaesars.BackOffice.BL.csproj">
+      <Project>{2876e0ff-8802-4cea-a3ba-5cabd76b8e58}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj">
+      <Project>{ace31c2f-4dad-4a28-b8e5-3fbc70ef89de}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.DAL\QSG.LittleCaesars.BackOffice.DAL.csproj">
+      <Project>{41e1115d-848b-474a-ae83-d264403df8c7}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Messages\QSG.LittleCaesars.BackOffice.Messages.csproj">
+      <Project>{cc3db8aa-14dd-485a-b85e-d1c34e3512a9}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:10875/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

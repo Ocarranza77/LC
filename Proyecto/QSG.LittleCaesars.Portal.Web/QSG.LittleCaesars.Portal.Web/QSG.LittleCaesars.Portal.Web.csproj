@@ -1,0 +1,862 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED05865D-C6E3-493B-BA84-8E0F47492AEA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.Portal.Web</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.Portal.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="About.aspx" />
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Manage.aspx" />
+    <Content Include="Account\OpenAuthProviders.ascx" />
+    <Content Include="Account\Register.aspx" />
+    <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="AcuseHTML\EMM7507127Z2LP1060.html" />
+    <Content Include="AcuseHTML\IJS930831J80BL1732.html" />
+    <Content Include="AcuseHTML\XAXX010101000CU1727.html" />
+    <Content Include="AcuseHTML\XAXX010101000CU1731.html" />
+    <Content Include="AcuseHTML\XAXX010101000CU1737.html" />
+    <Content Include="AcuseHTML\XAXX010101000CU1739.html" />
+    <Content Include="AcuseHTML\XAXX010101000PA1371.html" />
+    <Content Include="AcuseHTML\XAXX010101000PT1335.html" />
+    <Content Include="Acuse_XML\acuse.xml" />
+    <Content Include="Acuse_XML\XAXX010101000CU1727.xml" />
+    <Content Include="Acuse_XML\XAXX010101000CU1731.xml" />
+    <Content Include="Acuse_XML\XAXX010101000CU1737.xml" />
+    <Content Include="Acuse_XML\XAXX010101000CU1739.xml" />
+    <Content Include="Acuse_XML\XAXX010101000PA1371.xml" />
+    <Content Include="Acuse_XML\XAXX010101000PT1335.xml" />
+    <Content Include="Certificados\Certificado PF.txt" />
+    <Content Include="Certificados\Certificado PM .txt" />
+    <Content Include="Contact.aspx" />
+    <Content Include="cssBoostrap\bootstrap.min.css" />
+    <Content Include="cssBoostrap\font-awesome.min.css" />
+    <Content Include="cssBoostrap\fontawesome-webfont.svg" />
+    <Content Include="cssBoostrap\sb-admin.css" />
+    <Content Include="Dats\cadenaoriginal_TFD_1_0.xslt" />
+    <Content Include="Facturas\Acuse_XAXX010101000CU1834.html" />
+    <Content Include="Facturas\Acuse_XAXX010101000PA1487.html" />
+    <Content Include="Facturas\Factura_2.xml" />
+    <Content Include="Facturas\XAXX010101000.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1726.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1779.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1780.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1813.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1814.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1815.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1825 - copia.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1825.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1830.pdf" />
+    <Content Include="Facturas\XAXX010101000DO1587.xml" />
+    <Content Include="Facturas\XAXX010101000DO1588.xml" />
+    <Content Include="Facturas\XAXX010101000DO1589.xml" />
+    <Content Include="Facturas\XAXX010101000DO1591.xml" />
+    <Content Include="Facturas\XAXX010101000DO1592.xml" />
+    <Content Include="Facturas\XAXX010101000DO1594.xml" />
+    <Content Include="Facturas\XAXX010101000DO1595.xml" />
+    <Content Include="Facturas\XAXX010101000DO1596.xml" />
+    <Content Include="Facturas\XAXX010101000DO1600.xml" />
+    <Content Include="Facturas\XAXX010101000DO1602.xml" />
+    <Content Include="Facturas\XAXX010101000DO1604.xml" />
+    <Content Include="Facturas\XAXX010101000DO1605.xml" />
+    <Content Include="Facturas\XAXX010101000DO1606.xml" />
+    <Content Include="Facturas\XAXX010101000DO1607.xml" />
+    <Content Include="Facturas\XAXX010101000DO1608.xml" />
+    <Content Include="Facturas\XAXX010101000DO1609.xml" />
+    <Content Include="Facturas\XAXX010101000DO1610.xml" />
+    <Content Include="Facturas\XAXX010101000DO1611.xml" />
+    <Content Include="Facturas\XAXX010101000DO1613.xml" />
+    <Content Include="Facturas\XAXX010101000DO1615.xml" />
+    <Content Include="Facturas\XAXX010101000DO1616.xml" />
+    <Content Include="Facturas\XAXX010101000DO1617.xml" />
+    <Content Include="Facturas\XAXX010101000DO1618.xml" />
+    <Content Include="Facturas\XAXX010101000DO1620.xml" />
+    <Content Include="Facturas\XAXX010101000DO1621.xml" />
+    <Content Include="Facturas\XAXX010101000DO1622.xml" />
+    <Content Include="Facturas\XAXX010101000DO1623.xml" />
+    <Content Include="Facturas\XAXX010101000DO1629.xml" />
+    <Content Include="Facturas\XAXX010101000DO1630.xml" />
+    <Content Include="Facturas\XAXX010101000PA1380.pdf" />
+    <Content Include="Facturas\XAXX010101000PJ2.xml" />
+    <Content Include="Facturas\XAXX010101000PT1337.pdf" />
+    <Content Include="iconos\1416367254_login.png" />
+    <Content Include="iconos\add-link-24.png" />
+    <Content Include="iconos\address_book-26.png" />
+    <Content Include="iconos\add_link-26.png" />
+    <Content Include="iconos\add_user-25.png" />
+    <Content Include="iconos\Administrador.png" />
+    <Content Include="iconos\Administrador2.png" />
+    <Content Include="iconos\Administrador3.png" />
+    <Content Include="iconos\ajax-loader.gif" />
+    <Content Include="iconos\back-25.png" />
+    <Content Include="iconos\back.png" />
+    <Content Include="iconos\back1.png" />
+    <Content Include="iconos\back_arrow.png" />
+    <Content Include="iconos\calendar-add-icon.png" />
+    <Content Include="iconos\calendar-icon.png" />
+    <Content Include="iconos\calendar-icon2.png" />
+    <Content Include="iconos\cancel-26.png" />
+    <Content Include="iconos\cancelado_stt.png" />
+    <Content Include="iconos\check.png" />
+    <Content Include="iconos\check2.png" />
+    <Content Include="iconos\checkbox_checked.png" />
+    <Content Include="iconos\checkbox_unchecked %281%29.png" />
+    <Content Include="iconos\checked_user-50.png" />
+    <Content Include="iconos\check_icon1.png" />
+    <Content Include="iconos\check_icon2.png" />
+    <Content Include="iconos\comment2.png" />
+    <Content Include="iconos\comment21.png" />
+    <Content Include="iconos\comment_rect.png" />
+    <Content Include="iconos\comment_user_add.png" />
+    <Content Include="iconos\conference-25.png" />
+    <Content Include="iconos\date-icon.png" />
+    <Content Include="iconos\delete.png" />
+    <Content Include="iconos\delete_sign-25.png" />
+    <Content Include="iconos\details-25.png" />
+    <Content Include="iconos\dialog-cancel.png" />
+    <Content Include="iconos\discussion.png" />
+    <Content Include="iconos\document-print-frame.png" />
+    <Content Include="iconos\document-save-as.png" />
+    <Content Include="iconos\down4-25.png" />
+    <Content Include="iconos\download2-25.png" />
+    <Content Include="iconos\editing.png" />
+    <Content Include="iconos\eraser-25.png" />
+    <Content Include="iconos\Events-Calendar-icon.png" />
+    <Content Include="iconos\exclamation.png" />
+    <Content Include="iconos\favicon.ico" />
+    <Content Include="iconos\filter_report.png" />
+    <Content Include="iconos\find_user-16.png" />
+    <Content Include="iconos\find_user-25.png" />
+    <Content Include="iconos\forward-25.png" />
+    <Content Include="iconos\happy-50.png" />
+    <Content Include="iconos\help-25.png" />
+    <Content Include="iconos\home-25.png" />
+    <Content Include="iconos\home-26.png" />
+    <Content Include="iconos\home1.png" />
+    <Content Include="iconos\home2.png" />
+    <Content Include="iconos\home3.png" />
+    <Content Include="iconos\home_filled-25.png" />
+    <Content Include="iconos\house_2.png" />
+    <Content Include="iconos\Icon-warning.png" />
+    <Content Include="iconos\icon_factura - copia.png" />
+    <Content Include="iconos\icon_factura.png" />
+    <Content Include="iconos\ic_brush.png" />
+    <Content Include="iconos\ic_chat.png" />
+    <Content Include="iconos\ic_chats.png" />
+    <Content Include="iconos\ic_delete.png" />
+    <Content Include="iconos\ic_down.png" />
+    <Content Include="iconos\ic_edit.png" />
+    <Content Include="iconos\ic_edit1.png" />
+    <Content Include="iconos\ic_empty_document.png" />
+    <Content Include="iconos\ic_favorite.png" />
+    <Content Include="iconos\ic_plus.png" />
+    <Content Include="iconos\ic_users.png" />
+    <Content Include="iconos\ic_zoom.png" />
+    <Content Include="iconos\im-user-away.png" />
+    <Content Include="iconos\left_round-26.png" />
+    <Content Include="iconos\loader2.gif" />
+    <Content Include="iconos\loading.gif" />
+    <Content Include="iconos\loanding_min.gif" />
+    <Content Include="iconos\loanding_min2.gif" />
+    <Content Include="iconos\lock-25.png" />
+    <Content Include="iconos\logo_qbic.png" />
+    <Content Include="iconos\msgNew.png" />
+    <Content Include="iconos\new_stt1.png" />
+    <Content Include="iconos\next_arrow.png" />
+    <Content Include="iconos\ok-24.png" />
+    <Content Include="iconos\ok-26.png" />
+    <Content Include="iconos\ok.png" />
+    <Content Include="iconos\player-time.png" />
+    <Content Include="iconos\print-25.png" />
+    <Content Include="iconos\question-50.png" />
+    <Content Include="iconos\question_shield-50.png" />
+    <Content Include="iconos\rechazado_stt.png" />
+    <Content Include="iconos\rechazado_stt1.png" />
+    <Content Include="iconos\refresh.png" />
+    <Content Include="iconos\refresh1.png" />
+    <Content Include="iconos\right_round-26.png" />
+    <Content Include="iconos\save_as-25.png" />
+    <Content Include="iconos\search-25.png" />
+    <Content Include="iconos\seo8.png" />
+    <Content Include="iconos\show_property-26.png" />
+    <Content Include="iconos\sign_down.png" />
+    <Content Include="iconos\Status-tray-away-icon.png" />
+    <Content Include="iconos\Status-tray-busy-icon.png" />
+    <Content Include="iconos\Status-tray-online-icon.png" />
+    <Content Include="iconos\Status-user-online-icon.png" />
+    <Content Include="iconos\switch.png" />
+    <Content Include="iconos\switch1.png" />
+    <Content Include="iconos\switch2.png" />
+    <Content Include="iconos\Sync-25.png" />
+    <Content Include="iconos\Sync-32.png" />
+    <Content Include="iconos\sync.png" />
+    <Content Include="iconos\tasma.png" />
+    <Content Include="iconos\terminado_stt.png" />
+    <Content Include="iconos\tools.png" />
+    <Content Include="iconos\transform-move.png" />
+    <Content Include="iconos\transform-rotate.png" />
+    <Content Include="iconos\trash-empty.png" />
+    <Content Include="iconos\uncheck2.png" />
+    <Content Include="iconos\uncheck_icon1.png" />
+    <Content Include="iconos\uncheck_icon2.png" />
+    <Content Include="iconos\up4-25.png" />
+    <Content Include="iconos\update-25.png" />
+    <Content Include="iconos\User-blue-icon.png" />
+    <Content Include="iconos\Usuario.png" />
+    <Content Include="iconos\Usuario1.png" />
+    <Content Include="iconos\Usuario2.png" />
+    <Content Include="iconos\validado_stt.png" />
+    <Content Include="iconos\voicecall.png" />
+    <Content Include="iconos\warning-24.png" />
+    <Content Include="iconos\warning_shield-50.png" />
+    <Content Include="iconos\xorg.png" />
+    <Content Include="iconos\_checked.png" />
+    <Content Include="iconos\_unchecked.png" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bg.jpg" />
+    <Content Include="Images\bullet.gif" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\clock.gif" />
+    <Content Include="Images\column-header-bg.png" />
+    <Content Include="Images\column-header-over-bg.gif" />
+    <Content Include="Images\comment.gif" />
+    <Content Include="Images\construccion.png" />
+    <Content Include="Images\cross.png" />
+    <Content Include="Images\firefox-gray.jpg" />
+    <Content Include="Images\gradientbg.jpg" />
+    <Content Include="Images\headerphoto.jpg" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\horiz-bg.png" />
+    <Content Include="Images\horiz-slider-bg.png" />
+    <Content Include="Images\Lg.png" />
+    <Content Include="Images\little-caesars-logo - copia.jpg" />
+    <Content Include="Images\little-caesars-logo.jpg" />
+    <Content Include="Images\little.png" />
+    <Content Include="Images\loader2.gif" />
+    <Content Include="Images\loading.gif" />
+    <Content Include="Images\Logo_Qbic.jpg" />
+    <Content Include="Images\logo_shcp.jpg" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Images\page-first-gray.gif" />
+    <Content Include="Images\page-last-gray.gif" />
+    <Content Include="Images\page-next-gray.gif" />
+    <Content Include="Images\page-prev-gray.gif" />
+    <Content Include="Images\page.gif" />
+    <Content Include="Images\pbar-ani.gif" />
+    <Content Include="Images\PixelGreen.css" />
+    <Content Include="Images\PonzaAD.jpg" />
+    <Content Include="Images\PonzaAT.jpg" />
+    <Content Include="Images\PonzaBD.jpg" />
+    <Content Include="Images\PonzaBT.jpg" />
+    <Content Include="Images\PositanoAD.jpg" />
+    <Content Include="Images\PositanoAT.jpg" />
+    <Content Include="Images\PositanoBD.jpg" />
+    <Content Include="Images\PositanoBT.jpg" />
+    <Content Include="Images\Refresh.gif" />
+    <Content Include="Images\RepDisponibilidad.png" />
+    <Content Include="Images\ScalaAD.jpg" />
+    <Content Include="Images\ScalaAT.jpg" />
+    <Content Include="Images\ScalaBD.jpg" />
+    <Content Include="Images\ScalaBT.jpg" />
+    <Content Include="Images\sort_asc.gif" />
+    <Content Include="Images\sort_desc.gif" />
+    <Content Include="Images\sprite.png" />
+    <Content Include="Images\tick.png" />
+    <Content Include="Images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Images\ui-icons_222222_256x240.png" />
+    <Content Include="Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Images\ui-icons_454545_256x240.png" />
+    <Content Include="Images\ui-icons_888888_256x240.png" />
+    <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Images\vert-bg.png" />
+    <Content Include="Images\vert-slider-bg.png" />
+    <Content Include="mapa\css\style.css" />
+    <Content Include="mapa\js\map.js" />
+    <Content Include="mapa\js\map_old.js" />
+    <Content Include="mapa\mapa.html" />
+    <Content Include="packages.config" />
+    <Content Include="Portal.aspx" />
+    <Content Include="CapTickets.aspx" />
+    <Content Include="LogOut.aspx" />
+    <Content Include="RepTicketsFac.aspx" />
+    <Content Include="CancelacionFacturas.aspx" />
+    <Content Include="Certificados\00001000000201255121.cer" />
+    <Content Include="Certificados\ces070913fq3_1206020920s.key" />
+    <Content Include="Certificados\FAO.rar" />
+    <Content Include="Certificados\Files_Pkcs12\archivo.pem" />
+    <Content Include="Certificados\Files_Pkcs12\archivo.pfx" />
+    <Content Include="CapZDaylis.aspx" />
+    <Content Include="Scripts\CapZDays.js" />
+    <Content Include="FacturacionGlobal.aspx" />
+    <Content Include="Scripts\FacturaGeneral.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\wfrAdminUsers.js" />
+    <Content Include="Scripts\wfrCtasBanco.js" />
+    <Content Include="Scripts\wfrIngresosDep.js" />
+    <Content Include="Scripts\wfrPermisoSU.js" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\external\jquery\jquery.js" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-icons_222222_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-icons_454545_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-icons_888888_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\index.html" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.css" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.js" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.min.css" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.min.js" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.structure.css" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.structure.min.css" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.theme.css" />
+    <Content Include="Styles\jquery-ui-1.11.4.custom\jquery-ui.theme.min.css" />
+    <Content Include="Styles\Style.css" />
+    <Content Include="Styles\Style_caesars_pizza.css" />
+    <Content Include="wfrAdminUsers.aspx" />
+    <Content Include="wfrPermisoSU.aspx" />
+    <Content Include="wfrCtasBanco.aspx" />
+    <Content Include="wfrIngresosDep.aspx" />
+    <Content Include="wfrRepDailys.aspx" />
+    <Content Include="Dats\Ejemplo 1a - Crear CFDI %28basico%29.ini" />
+    <Content Include="Dats\Ejemplo 1b - Crear CFDI %28completo%29.ini" />
+    <Content Include="Dats\Ejemplo 1c - Crear CFDI %28nomina%29.ini" />
+    <Content Include="Dats\Ejemplo 1d - Crear CFDI %28notarios publicos%29.ini" />
+    <Content Include="Dats\Ejemplo 2 - Timbrado.ini" />
+    <Content Include="Dats\Ejemplo 3 - Cancelacion.ini" />
+    <Content Include="Dats\Ejemplo 4 - Recuperar Acuse de Cancelacion.ini" />
+    <Content Include="Dats\Ejemplo 5 - Consulta de Saldo.ini" />
+    <Content Include="Dats\Ejemplo 6 - Recuperar CFDI.ini" />
+    <Content Include="cssBoostrap\fontawesome-webfont.eot" />
+    <Content Include="cssBoostrap\fontawesome-webfont.ttf" />
+    <Content Include="cssBoostrap\fontawesome-webfont.woff" />
+    <Content Include="cssBoostrap\FontAwesome.otf" />
+    <Content Include="Certificados\CES070913FQ3_20160603_111637.key" />
+    <Content Include="Certificados\CES070913FQ3_20160603_111637s.cer" />
+    <Content Include="Certificados\Files_Pkcs12\archivoCer.pem" />
+    <Content Include="Certificados\Files_Pkcs12\ArchivoKey.pem" />
+    <Content Include="Certificados\CSD_MATRIZ_GLB150904CU1_20160830_125030.key" />
+    <Content Include="Certificados\00001000000403528555.cer" />
+    <Content Include="Certificados\00001000000404697858.cer" />
+    <Content Include="Certificados\00001000000404697897.cer" />
+    <Content Include="Certificados\00001000000404697957.cer" />
+    <Content Include="Certificados\00001000000404698033.cer" />
+    <Content Include="Certificados\CSD_MATRIZ_CBC160908K41_20170102_104128.key" />
+    <Content Include="Certificados\CSD_MATRIZ_CRG160908IW8_20170102_104427.key" />
+    <Content Include="Certificados\CSD_MATRIZ_GOF160908SM3_20170102_103757.key" />
+    <Content Include="Certificados\CSD_MATRIZ_PAA160908RP5_20170102_103414.key" />
+    <Content Include="Certificados\Files_Pkcs12\cesarpizza.pem" />
+    <Content Include="Certificados\Files_Pkcs12\comercializadora.pem" />
+    <Content Include="Certificados\Files_Pkcs12\csdCER20160611.pem" />
+    <Content Include="Certificados\Files_Pkcs12\csdKEY20160611.pem" />
+    <Content Include="Certificados\Files_Pkcs12\glzpizza.pem" />
+    <Content Include="Certificados\Files_Pkcs12\alimentos.pem" />
+    <Content Include="Certificados\CertificadoFirmadoPF.cer" />
+    <Content Include="Certificados\CertificadoFirmadoPM.cer" />
+    <Content Include="Certificados\LlavePkcs8PF.key" />
+    <Content Include="Certificados\LlavePkcs8PM.key" />
+    <Content Include="XML\XAXX010101000CU2406.xml" />
+    <Content Include="XML\XAXX010101000DO1583.xml" />
+    <Content Include="XML\XAXX010101000DO1584.xml" />
+    <Content Include="XML\XAXX010101000DO1585.xml" />
+    <Content Include="XML\XAXX010101000DO1586.xml" />
+    <Content Include="XML\XAXX010101000DO1625.xml" />
+    <Content Include="XML\XAXX010101000DO1626.xml" />
+    <Content Include="XML\XAXX010101000DO1627.xml" />
+    <Content Include="XML\XAXX010101000DO1628.xml" />
+    <Content Include="XML\XAXX010101000PA1766.xml" />
+    <Content Include="XML\XAXX010101000PA1773.xml" />
+    <Content Include="XSLT\zzcadenaoriginal_3_3_temp.xslt" />
+    <Content Include="XSLT\zzcadenaoriginal_TFD_1_1.xslt" />
+    <Content Include="XSLT\zznomina12.xslt" />
+    <Content Include="XSLT\zzpagos10.xslt" />
+    <Content Include="XSLT\zzutilerias.xslt" />
+    <Content Include="Facturas\XAXX010101000BL2221.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1831.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1834.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1843.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1844.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1845.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1846.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1847.pdf" />
+    <Content Include="Facturas\XAXX010101000CU1849.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2332.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2384.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2397.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2398.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2399.pdf" />
+    <Content Include="Facturas\XAXX010101000CU2406.pdf" />
+    <Content Include="Facturas\XAXX010101000DO1623.pdf" />
+    <Content Include="Facturas\XAXX010101000DO1629.pdf" />
+    <Content Include="Facturas\XAXX010101000DO1630.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1704.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1751.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1766.pdf" />
+    <Content Include="Facturas\XAXX010101000PA1773.pdf" />
+    <Content Include="Facturas\XAXX010101000PR1523.pdf" />
+    <Content Include="Facturas\XAXX010101000SA1118.pdf" />
+    <Content Include="Certificados\CSD_GNH_Administradora_Restaurantera_GAR180716P37_20180925_132604.key" />
+    <Content Include="Certificados\CSD_GNH_Administradora_Restaurantera_GAR180716P37_20180925_132604s.cer" />
+    <Content Include="Certificados\Archivo_GNH.pem" />
+    <Content Include="Certificados\Files_Pkcs12\Archivo_GNH.pem" />
+    <Content Include="Certificados\00001000000504089467.cer" />
+    <Content Include="Certificados\CSD_NOMINAS_CES070913FQ3_20200601_113227.key" />
+    <Content Include="Certificados\00001000000504828114.cer" />
+    <Content Include="Certificados\CSD_NOMINAS123_GLB150904CU1_20200824_110857.key" />
+    <Content Include="Certificados\Files_Pkcs12\cesarmex.pem" />
+    <Content Include="Certificados\Files_Pkcs12\GrupoLitca.pem" />
+    <Content Include="Certificados\00001000000506110437.cer" />
+    <Content Include="Certificados\00001000000506110459.cer" />
+    <Content Include="Certificados\00001000000506110482.cer" />
+    <Content Include="Certificados\00001000000506110514.cer" />
+    <Content Include="Certificados\CSD_NOMINASGLZ_GOF160908SM3_20210102_130226.key" />
+    <Content Include="Certificados\CSD_SELLOSCESAR_CBC160908K41_20210102_133225.key" />
+    <Content Include="Certificados\CSD_SELLOSCOMERCIAL_CRG160908IW8_20210102_140830.key" />
+    <Content Include="Certificados\CSD_SELLOSPLC_PAA160908RP5_20210102_132357.key" />
+    <Content Include="Certificados\Files_Pkcs12\glz.pem" />
+    <Content Include="Certificados\Files_Pkcs12\cesarp.pem" />
+    <Content Include="Certificados\Files_Pkcs12\Comercial.pem" />
+    <Content Include="Certificados\Files_Pkcs12\plc.pem" />
+    <None Include="Properties\PublishProfiles\LCPortal.pubxml" />
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\CancelacionFact.js" />
+    <Content Include="Scripts\CapTickets.js" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.8.3.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery.maskedinput-1.2.2.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\Portal_inicial.js" />
+    <Content Include="Scripts\ScriptGeneral.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\dataTables.bootstrap.css" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Bundle.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="About.aspx.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="About.aspx.designer.cs">
+      <DependentUpon>About.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Manage.aspx.designer.cs">
+      <DependentUpon>Manage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\OpenAuthProviders.ascx.designer.cs">
+      <DependentUpon>OpenAuthProviders.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
+      <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Conexion.cs" />
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\resTest.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>resTest.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Portal.aspx.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Portal.aspx.designer.cs">
+      <DependentUpon>Portal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CapTickets.aspx.cs">
+      <DependentUpon>CapTickets.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CapTickets.aspx.designer.cs">
+      <DependentUpon>CapTickets.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogOut.aspx.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogOut.aspx.designer.cs">
+      <DependentUpon>LogOut.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="RepTicketsFac.aspx.cs">
+      <DependentUpon>RepTicketsFac.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RepTicketsFac.aspx.designer.cs">
+      <DependentUpon>RepTicketsFac.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CancelacionFacturas.aspx.cs">
+      <DependentUpon>CancelacionFacturas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CancelacionFacturas.aspx.designer.cs">
+      <DependentUpon>CancelacionFacturas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CapZDaylis.aspx.cs">
+      <DependentUpon>CapZDaylis.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CapZDaylis.aspx.designer.cs">
+      <DependentUpon>CapZDaylis.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="FacturacionGlobal.aspx.cs">
+      <DependentUpon>FacturacionGlobal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="FacturacionGlobal.aspx.designer.cs">
+      <DependentUpon>FacturacionGlobal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfrAdminUsers.aspx.cs">
+      <DependentUpon>wfrAdminUsers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfrAdminUsers.aspx.designer.cs">
+      <DependentUpon>wfrAdminUsers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfrPermisoSU.aspx.cs">
+      <DependentUpon>wfrPermisoSU.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfrPermisoSU.aspx.designer.cs">
+      <DependentUpon>wfrPermisoSU.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfrCtasBanco.aspx.cs">
+      <DependentUpon>wfrCtasBanco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfrCtasBanco.aspx.designer.cs">
+      <DependentUpon>wfrCtasBanco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfrIngresosDep.aspx.cs">
+      <DependentUpon>wfrIngresosDep.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfrIngresosDep.aspx.designer.cs">
+      <DependentUpon>wfrIngresosDep.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="wfrRepDailys.aspx.cs">
+      <DependentUpon>wfrRepDailys.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="wfrRepDailys.aspx.designer.cs">
+      <DependentUpon>wfrRepDailys.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Certificados\File_Pkcs12\" />
+    <Folder Include="XML\Timbrados\" />
+    <Folder Include="XML\Timbrados_old\" />
+    <Folder Include="XML\XTimbrar\" />
+    <Folder Include="XML\XTimbrar_old\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Account\Web.config" />
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.BL\QSG.LittleCaesars.BackOffice.BL.csproj">
+      <Project>{2876e0ff-8802-4cea-a3ba-5cabd76b8e58}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj">
+      <Project>{ace31c2f-4dad-4a28-b8e5-3fbc70ef89de}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.DAL\QSG.LittleCaesars.BackOffice.DAL.csproj">
+      <Project>{41e1115d-848b-474a-ae83-d264403df8c7}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Messages\QSG.LittleCaesars.BackOffice.Messages.csproj">
+      <Project>{cc3db8aa-14dd-485a-b85e-d1c34e3512a9}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Messages</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Web\QSG.LittleCaesars.BackOffice.Web.csproj">
+      <Project>{9ae2b820-c532-459c-b2b2-9402d7f242c6}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QSG.LittleCaesars.BackOffice.Web\QSG.QSystem.Messages\QSG.QSystem.Messages.csproj">
+      <Project>{80cc8cc5-6d94-4c33-846b-e3e77847198e}</Project>
+      <Name>QSG.QSystem.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\resTest.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>resTest.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49243</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1167/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

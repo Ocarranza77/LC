@@ -1,0 +1,172 @@
+﻿<div data--ng-controller="ctrlArticuloServicio">
+    
+    <!-- Filtros -->
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <span style="font-size:18px" class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;
+                            <label class="panel-title">Filtros</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div style="display:table">
+                    <div class="col-md-10" style="display:table-cell; float:none">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Grupo</th>
+                                <th>Marca</th>
+                                <th>Estatus</th>
+                                <th>Tipo</th>
+                                <th>Nombre</th>
+                            </tr>
+                        </thead>
+                        <tbody>                          
+                            <tr>
+                                <td> 
+                                   <select class="form-control" ng-options="fg.Nombre for fg in grupos track by fg.ID" 
+                                           ng-model="filtro.grupo" ng-change="onAlan(filtro.grupo)" >
+                                        <option value="" >- Select -</option>
+                                   </select>
+
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="fm.Nombre for fm in marcas track by fm.ID" ng-model="filtro.marca">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-model="filtro.status">
+                                        <option value="">-Select -</option>
+                                        <option value=false>Inactivo</option>
+                                        <option value=true>Activo</option>
+                                    </select>
+                                    
+                                </td>
+                                <td>
+                                    <select class="form-control" ng-options="ft.Nombre for ft in tipos track by ft.ID" ng-model="filtro.tipo">
+                                        <option value="">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" ng-model="filtro.nombre" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                        </div>
+                    <div class="col-md-2" style="display:table-cell; float:none; vertical-align: bottom" >
+                    <button class="btn btn-default pull-right fa-lg" ng-click="onReset()" ><span class="fa fa-refresh" ></span> &nbsp; Resetear filtro</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- Filtros -->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <label class="panel-title">Cátalogo de Articulos y Productos</label>
+                    <button class="btn btn-primary btn-circle btn-xs" title="Agregar" ng-click="onOpenEdit()">
+                        <span class="glyphicon glyphicon-plus fa-lg"></span>
+                    </button>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Editar</th>
+                                <th>Deshacer</th>
+                                <th>Estatus</th>
+                                <th>Tipo</th>
+                                <th>Producto</th>
+                                <th>Grupo</th>
+                                <th>Marca</th>
+                                <th>Unidad</th>
+                                <th>Cod Interno</th>
+                                <th>Cod Producto</th>
+                                <th>Cod de Barras</th>
+                                <th>Garantía proveedor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-ng-repeat="pro in productos | filter: filtros | filter: {Activo:filtro.status, Nombre:filtro.nombre}">
+
+                                <td>
+                                        <span ng-show="pro.habilita" class="glyphicon glyphicon-floppy-disk fa-lg" ng-click="edicion(pro)"></span>
+                                        <span ng-show="!pro.habilita" class="glyphicon glyphicon-pencil fa-lg" ng-click="edicion(pro)"></span>
+                                        <span class="glyphicon glyphicon-trash fa-lg" ng-click="onConfirm(pro)"></span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-warning btn-circle" title="Deshacer" ng-disabled="!pro.habilita" ng-click="onUndo(pro)">
+                                        <span class="fa fa-undo fa-lg"></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-default" ng-class="pro.Activo ? 'hdb_active' : 'hdb_inactive'" ng-click="onChangeStatus(pro)">
+                                        <span ng-class="pro.Activo ? 'glyphicon glyphicon-ok' : 'glyphicon glyphicon-remove'" ></span>
+                                    </button>                                    
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{ pro.Tipo.Nombre }}</div>
+                                    <select ng-if="pro.habilita" class="form-control" ng-disabled="!pro.habilita" ng-options="x as x.Nombre for x in tipos track by x.ID" ng-model="pro.Tipo">
+                                        <option value="value">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{pro.Nombre}}</div>
+                                    <input type="text" ng-if="pro.habilita" class="form-control" ng-model="pro.Nombre" />
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{ pro.Grupo.Nombre }}</div>
+                                    <select ng-if="pro.habilita" class="form-control" ng-disabled="!pro.habilita" ng-options="gr as gr.Nombre for gr in grupos track by gr.ID" ng-model="pro.Grupo">
+                                        <option value="value">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{ pro.Marca.Nombre }}</div>
+                                    <select ng-if="pro.habilita" class="form-control" ng-disabled="!pro.habilita" ng-options="m as m.Nombre for m in marcas track by m.ID" ng-model="pro.Marca">
+                                        <option value="value">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{pro.Unidad.Nombre}}</div>
+                                    <select ng-if="pro.habilita" class="form-control" ng-disabled="!pro.habilita" ng-options="u as u.Nombre for u in unidades track by u.ID" ng-model="pro.Unidad">
+                                        <option value="value">- Select -</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <div >{{pro.ArticuloID}}</div>
+                                    <!--<div ng-if="!pro.habilita">{{pro.ArticuloID}}</div>
+                                    <input type="text" ng-if="pro.habilita" class="form-control" ng-model="pro.ArticuloID" />-->
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{pro.CodigoProductor}}</div>
+                                    <input type="text" ng-if="pro.habilita" class="form-control" ng-model="pro.CodigoProductor" />
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{pro.CodigoBarras}}</div>
+                                    <input type="text" ng-if="pro.habilita" class="form-control" ng-model="pro.CodigoBarras" />
+                                </td>
+                                <td>
+                                    <div ng-if="!pro.habilita">{{pro.Garantia}}</div>
+                                    <input type="text" ng-if="pro.habilita" class="form-control" ng-model="pro.Garantia" />
+                               </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <mdl-Delete></mdl-Delete>
+    <mdl-New></mdl-New>
+
+</div>

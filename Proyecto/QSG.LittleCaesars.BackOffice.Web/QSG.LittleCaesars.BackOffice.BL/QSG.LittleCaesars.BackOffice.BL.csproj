@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2876E0FF-8802-4CEA-A3BA-5CABD76B8E58}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSG.LittleCaesars.BackOffice.BL</RootNamespace>
+    <AssemblyName>QSG.LittleCaesars.BackOffice.BL</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.6.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\QSG.LittleCaesars.BackOffice.Web\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=6.2.12.1017, Culture=neutral, PublicKeyToken=a9d7983dfcc261be" />
+    <Reference Include="uCFDsLib">
+      <HintPath>..\QSG.LittleCaesars.BackOffice.Web\uCFDsLib.dll</HintPath>
+    </Reference>
+    <Reference Include="uQRCode, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\QSG.LittleCaesars.BackOffice.Web\uQRCode.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Certificado.cs" />
+    <Compile Include="CFDI2015.cs" />
+    <Compile Include="cfdv32.cs" />
+    <Compile Include="claseCFDIv33.cs" />
+    <Compile Include="claseTemporal.cs" />
+    <Compile Include="ClienteBL.cs" />
+    <Compile Include="ConvertToLetter.cs" />
+    <Compile Include="DepositoBL.cs" />
+    <Compile Include="CuentaBancoBL.cs" />
+    <Compile Include="PlantillaContaIngresosBL.cs" />
+    <Compile Include="Service References\FELv33\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="SucursalUsuarioBL.cs" />
+    <Compile Include="RepFacturaPGBL.cs" />
+    <Compile Include="CorteSucursalBL.cs" />
+    <Compile Include="CorteZBL.cs" />
+    <Compile Include="EmpresaClienteBL.cs" />
+    <Compile Include="FacturarConBL.cs" />
+    <Compile Include="GenerarCodeQR.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Hash.cs" />
+    <Compile Include="Llave.cs" />
+    <Compile Include="MenuBL.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="RepIngresosDSMBL.cs" />
+    <Compile Include="Report1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SucursalBL.cs" />
+    <Compile Include="TicketBL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimbreFiscalDigital.cs" />
+    <Compile Include="UsuarioBL.cs" />
+    <Compile Include="ZipStorer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.Common\QSG.LittleCaesars.BackOffice.Common.csproj">
+      <Project>{ace31c2f-4dad-4a28-b8e5-3fbc70ef89de}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.LittleCaesars.BackOffice.DAL\QSG.LittleCaesars.BackOffice.DAL.csproj">
+      <Project>{41e1115d-848b-474a-ae83-d264403df8c7}</Project>
+      <Name>QSG.LittleCaesars.BackOffice.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.BL\QSG.QSystem.BL.csproj">
+      <Project>{ec822417-8da5-4214-b41a-a9c5f963d32e}</Project>
+      <Name>QSG.QSystem.BL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
+      <Project>{70ed45a3-2268-4aab-ad68-442eda856137}</Project>
+      <Name>QSG.QSystem.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QSG.QSystem.DAL\QSG.QSystem.DAL.csproj">
+      <Project>{afa0c59f-a960-4c90-8072-72cf6bc66890}</Project>
+      <Name>QSG.QSystem.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaAceptacionRechazo1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCancelacion2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCancelacionAsincrona2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaCreditos2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaEstatusCancelacionAsincrona2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaPeticionesPendientes1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaRelacionados1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaReporte2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaTFD332.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\QSG.LittleCaesars.BackOffice.BL.FELv33.RespuestaValidacionRFC1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI33.wsdl" />
+    <None Include="Service References\FELv33\WSCFDI33.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI331.wsdl" />
+    <None Include="Service References\FELv33\WSCFDI331.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI332.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI333.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI334.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI3341.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI3342.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\FELv33\WSCFDI3343.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\FELv33\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FELv33\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FELv33\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\FELv33\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

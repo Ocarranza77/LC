@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="QubicPortal.QubicService" CodeBehind="QubicService.svc.cs" %>
