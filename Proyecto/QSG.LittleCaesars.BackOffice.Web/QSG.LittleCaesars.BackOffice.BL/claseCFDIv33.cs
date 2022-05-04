@@ -22,6 +22,8 @@ using Telerik.Reporting;
 
 using System.Xml.Serialization;
 using QSG.LittleCaesars.BackOffice.Common.Entities;
+using SAT_Entities = QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities; // Para la version 4.0 del XML del SAT
+
 using System.Web;
 
 namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
@@ -50,13 +52,14 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
         private string _xmlPorTimbrar = string.Empty;
 
 
-        public const string URI_SAT = "http://www.sat.gob.mx/cfd/3";
-        public const string URI_XSI = "http://www.w3.org/2001/XMLSchema-instance";
-        public const string XSI_SCHEMALOCATION = "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
+        //public const string URI_SAT = "http://www.sat.gob.mx/cfd/3";
+        //public const string URI_XSI = "http://www.w3.org/2001/XMLSchema-instance";
+        //public const string XSI_SCHEMALOCATION = "http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd";
 
         //Estas variables de nivel de modulo nos facilitan las operaciones en las demas subrutinas
-        private static XmlDocument m_xmlDOM;
-        private static XmlElement ComprobanteCfdi;
+        // private static XmlDocument m_xmlDOM;            // Version 3.3 XML del SAT
+        // private static XmlElement ComprobanteCfdi;      // Version 3.3 XML del SAT
+        private SAT_Entities.Comprobante ComprobanteCfdi40 = new SAT_Entities.Comprobante();  // Version 4.0 XML del SAT
 
         // TODO: Reemplazar la ClassEmpresa por la propia, igual que 
         // ClassEmpresa Utilizaremos la nuestra
@@ -71,7 +74,11 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
 
         private string _FechaCancelacion;
         private string _Sello;
-        
+
+        //"rutacer", "rutakey", "clavekey"
+        private string _rutacer;
+        private string _rutakey;
+        private string _clavekey;
 
         //claseEmpresa ClassEmpresa = new claseEmpresa();
         //claseClientes ClassCliente = new claseClientes();
@@ -91,9 +98,9 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
         public claseCFDIv33()
         {
         }
-        public claseCFDIv33(string Instruccion, EmpresaCliente prm_EmpresaCliente, Cliente prm_Cliente, string importeVentaSinIva, string traslado, string serie, string folio, string importeVentaConIva, string tasaIva)
+        public claseCFDIv33(string Instruccion, EmpresaCliente prm_EmpresaCliente, Cliente prm_Cliente, string importeVentaSinIva, string traslado, string serie, string folio, string importeVentaConIva, string tasaIva, string rutacer, string rutakey, string clavekey)
         {
-
+            //"rutacer", "rutakey", "clavekey"
             EmpresaCliente = prm_EmpresaCliente;
             Cliente = prm_Cliente;
             _serieTicket = serie;
@@ -104,13 +111,13 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             _TasaIva = tasaIva;
 
             //Inicializamos la variable para que contenga el DOM del CFD
-            m_xmlDOM = new XmlDocument();
+            //m_xmlDOM = new XmlDocument();
 
-            XmlNode Nodo = m_xmlDOM.CreateProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
-            m_xmlDOM.AppendChild(Nodo);
+            //XmlNode Nodo = m_xmlDOM.CreateProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
+            //m_xmlDOM.AppendChild(Nodo);
 
             //creamos el nodo raiz "Comprobante"
-            ComprobanteCfdi = m_xmlDOM.CreateElement("cfdi", "Comprobante", URI_SAT);
+            //ComprobanteCfdi = m_xmlDOM.CreateElement("cfdi", "Comprobante", URI_SAT);
 
             
             //ClassEmpresa = new claseEmpresa(1);
@@ -133,70 +140,92 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
 
         public void CrearAtributosComprobante()
         {
-            _VersionCFDI = "3.3";
+            //_VersionCFDI = "3.3";
             _SerieCFDI = _serieTicket;  //ClassEmpresa._SeriedeFactura;
             _fechaEmision = Convert.ToDateTime(claseTemporal.FechaEmision.ToString("yyyy-MM-ddTHH:mm:ss"));
             //Inicializamos la variable para que contenga el DOM del CFD
-            m_xmlDOM = new XmlDocument();
+            //m_xmlDOM = new XmlDocument();
 
-            XmlNode Nodo = m_xmlDOM.CreateProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
-            m_xmlDOM.AppendChild(Nodo);
+            //XmlNode Nodo = m_xmlDOM.CreateProcessingInstruction("xml", "version='1.0' encoding='UTF-8'");
+            //m_xmlDOM.AppendChild(Nodo);
 
             //creamos el nodo raiz "Comprobante"
-            ComprobanteCfdi = m_xmlDOM.CreateElement("cfdi", "Comprobante", URI_SAT);
+            //ComprobanteCfdi = m_xmlDOM.CreateElement("cfdi", "Comprobante", URI_SAT);
 
-            XmlAttribute xsichemaLocation = m_xmlDOM.CreateAttribute("xsi", "schemaLocation", URI_XSI);
-            xsichemaLocation.Value = XSI_SCHEMALOCATION;
+            // XmlAttribute xsichemaLocation = m_xmlDOM.CreateAttribute("xsi", "schemaLocation", URI_XSI);
+            // xsichemaLocation.Value = XSI_SCHEMALOCATION;
 
-            ComprobanteCfdi.SetAttribute("xmlns:cfdi", URI_SAT);
-            ComprobanteCfdi.SetAttribute("xmlns:xsi", URI_XSI);
-            ComprobanteCfdi.SetAttributeNode(xsichemaLocation);
+            // ComprobanteCfdi.SetAttribute("xmlns:cfdi", URI_SAT);
+            // ComprobanteCfdi.SetAttribute("xmlns:xsi", URI_XSI);
+            // ComprobanteCfdi.SetAttributeNode(xsichemaLocation);
 
 
-            ComprobanteCfdi.SetAttribute("Version", "3.3");
-            ComprobanteCfdi.SetAttribute("Serie", _SerieCFDI);
-            ComprobanteCfdi.SetAttribute("Folio", claseTemporal.SiguienteFolio);
-            ComprobanteCfdi.SetAttribute("Fecha", claseTemporal.FechaEmision.ToString("yyyy-MM-ddTHH:mm:ss"));
+            // ComprobanteCfdi.SetAttribute("Version", "3.3");
+            //ComprobanteCfdi.SetAttribute("Serie", _SerieCFDI);
+            ComprobanteCfdi40.Serie = _SerieCFDI;
+            //ComprobanteCfdi.SetAttribute("Folio", claseTemporal.SiguienteFolio);
+            ComprobanteCfdi40.Folio =claseTemporal.SiguienteFolio;
+            //ComprobanteCfdi.SetAttribute("Fecha", claseTemporal.FechaEmision.ToString("yyyy-MM-ddTHH:mm:ss"));
+            ComprobanteCfdi40.Fecha =claseTemporal.FechaEmision;
             //sello
-            ComprobanteCfdi.SetAttribute("FormaPago", claseTemporal.FormaDePagoClave);
-            ComprobanteCfdi.SetAttribute("NoCertificado", EmpresaCliente.CertificadoCerSerie);// EmpresaCliente.CertificadoCer); //serie ClassEmpresa._SerieCertificado); //?
-            ComprobanteCfdi.SetAttribute("Certificado", EmpresaCliente.CertificadoCer64bits); // EmpresaCliente.CertificadoKey); // certificado 64ClassEmpresa._CertificadoBase64); //?
+            //ComprobanteCfdi.SetAttribute("FormaPago", claseTemporal.FormaDePagoClave);
+            ComprobanteCfdi40.FormaPago = claseTemporal.FormaDePagoClave;
+            //ComprobanteCfdi.SetAttribute("NoCertificado", EmpresaCliente.CertificadoCerSerie);// EmpresaCliente.CertificadoCer); //serie ClassEmpresa._SerieCertificado); //?
+            ComprobanteCfdi40.NoCertificado = EmpresaCliente.CertificadoCerSerie;
+            //ComprobanteCfdi.SetAttribute("Certificado", EmpresaCliente.CertificadoCer64bits); // EmpresaCliente.CertificadoKey); // certificado 64ClassEmpresa._CertificadoBase64); //?
+            ComprobanteCfdi40.Certificado = EmpresaCliente.CertificadoCer64bits;
             if (claseTemporal.Condiciones != string.Empty)
             {
-                ComprobanteCfdi.SetAttribute("CondicionesDePago", claseTemporal.Condiciones);
+                //ComprobanteCfdi.SetAttribute("CondicionesDePago", claseTemporal.Condiciones);
+                ComprobanteCfdi40.CondicionesDePago = claseTemporal.Condiciones;
             }
-            ComprobanteCfdi.SetAttribute("SubTotal", claseTemporal.Subtotal.ToString());
+            //ComprobanteCfdi.SetAttribute("SubTotal", claseTemporal.Subtotal.ToString());
+            ComprobanteCfdi40.SubTotal = claseTemporal.Subtotal;
             //descuento
-            ComprobanteCfdi.SetAttribute("Moneda", claseTemporal.MonedaClave);
-            ComprobanteCfdi.SetAttribute("TipoCambio", claseTemporal.TipoDeCambio);
-            ComprobanteCfdi.SetAttribute("Total", claseTemporal.Total.ToString());
-            ComprobanteCfdi.SetAttribute("TipoDeComprobante", "I");
-            ComprobanteCfdi.SetAttribute("MetodoPago", claseTemporal.MetodoDePagoClave);
-            ComprobanteCfdi.SetAttribute("LugarExpedicion", EmpresaCliente.CP); // ClassEmpresa._CPExpedicion);
+            //ComprobanteCfdi.SetAttribute("Moneda", claseTemporal.MonedaClave);
+            ComprobanteCfdi40.Moneda = claseTemporal.MonedaClave;
+            //ComprobanteCfdi.SetAttribute("TipoCambio", claseTemporal.TipoDeCambio);
+            ComprobanteCfdi40.TipoCambio = Convert.ToDecimal(claseTemporal.TipoDeCambio);
+            //ComprobanteCfdi.SetAttribute("Total", claseTemporal.Total.ToString());
+            ComprobanteCfdi40.Total = claseTemporal.Total;
+            //ComprobanteCfdi.SetAttribute("TipoDeComprobante", "I");
+            ComprobanteCfdi40.TipoDeComprobante = "I";
+            //ComprobanteCfdi.SetAttribute("MetodoPago", claseTemporal.MetodoDePagoClave);
+            ComprobanteCfdi40.MetodoPago = claseTemporal.MetodoDePagoClave;
+            //ComprobanteCfdi.SetAttribute("LugarExpedicion", EmpresaCliente.CP); // ClassEmpresa._CPExpedicion);
+            ComprobanteCfdi40.LugarExpedicion =  EmpresaCliente.CP;
             if (claseTemporal.CodigoConfirmacion != string.Empty)
             {
-                ComprobanteCfdi.SetAttribute("Confirmacion", claseTemporal.CodigoConfirmacion);
+                //ComprobanteCfdi.SetAttribute("Confirmacion", claseTemporal.CodigoConfirmacion);
+                ComprobanteCfdi40.Confirmacion = claseTemporal.CodigoConfirmacion;
             }
 
-            m_xmlDOM.AppendChild(ComprobanteCfdi);
-            IndentarNodo(ComprobanteCfdi);
+            //m_xmlDOM.AppendChild(ComprobanteCfdi);
+            //IndentarNodo(ComprobanteCfdi);
         }
         public void CrearNodoEmisor()
         {
-            XmlElement Emisor = m_xmlDOM.CreateElement("cfdi", "Emisor", URI_SAT);
-            Emisor.SetAttribute("Rfc", EmpresaCliente.RFC); // ClassEmpresa._RFC);
-            Emisor.SetAttribute("Nombre", EmpresaCliente.Nombre); // ClassEmpresa._RazonSocial);
-            Emisor.SetAttribute("RegimenFiscal", "601"); // ClassEmpresa._ClaveRegimenFiscal);
+            //XmlElement Emisor = m_xmlDOM.CreateElement("cfdi", "Emisor", URI_SAT);
+            ComprobanteCfdi40.Emisor = new Common.SAT_XML_Entities.Emisor();
+            //Emisor.SetAttribute("Rfc", EmpresaCliente.RFC); // ClassEmpresa._RFC);
+            ComprobanteCfdi40.Emisor.Rfc =EmpresaCliente.RFC; // ClassEmpresa._RFC);
+            //Emisor.SetAttribute("Nombre", EmpresaCliente.Nombre); // ClassEmpresa._RazonSocial);
+            ComprobanteCfdi40.Emisor.Nombre = EmpresaCliente.Nombre; // ClassEmpresa._RazonSocial);
+            //Emisor.SetAttribute("RegimenFiscal", "601"); // ClassEmpresa._ClaveRegimenFiscal);
+            ComprobanteCfdi40.Emisor.RegimenFiscal ="601"; // ClassEmpresa._ClaveRegimenFiscal);
             //IndentarNodo(Emisor);
 
-            ComprobanteCfdi.AppendChild(Emisor);
+            //ComprobanteCfdi.AppendChild(Emisor);
             //IndentarNodo(ComprobanteCfdi);
         }
         public void CrearNodoReceptor()
         {
-            XmlElement Receptor = m_xmlDOM.CreateElement("cfdi", "Receptor", URI_SAT);
-            Receptor.SetAttribute("Rfc", Cliente.RFC); // ClassClienteDireccion._Rfc);
-            Receptor.SetAttribute("Nombre", Cliente.RazonSocial); //ClassClienteDireccion._RazonSocial);
+            //XmlElement Receptor = m_xmlDOM.CreateElement("cfdi", "Receptor", URI_SAT);
+            ComprobanteCfdi40.Receptor = new SAT_Entities.Receptor();
+            //Receptor.SetAttribute("Rfc", Cliente.RFC); // ClassClienteDireccion._Rfc);
+            ComprobanteCfdi40.Receptor.Rfc = Cliente.RFC; // ClassClienteDireccion._Rfc);
+            //Receptor.SetAttribute("Nombre", Cliente.RazonSocial); //ClassClienteDireccion._RazonSocial);
+            ComprobanteCfdi40.Receptor.Nombre = Cliente.RazonSocial; //ClassClienteDireccion._RazonSocial);
 
             //if (ClassClienteDireccion._Extranjero)
             //{
@@ -205,67 +234,87 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             //}
             if (Cliente.RFC == "XAXX010101000")
             {
-                Receptor.SetAttribute("UsoCFDI", "P01");
+                //Receptor.SetAttribute("UsoCFDI", "P01");
+                ComprobanteCfdi40.Receptor.UsoCFDI = "P01";
             }
             else {
-                Receptor.SetAttribute("UsoCFDI", "G03"); // claseTemporal.UsoCfdiClave
+                //Receptor.SetAttribute("UsoCFDI", "G03"); // claseTemporal.UsoCfdiClave
                 //Receptor.SetAttribute("UsoCFDI", "P01"); // claseTemporal.UsoCfdiClave
+                ComprobanteCfdi40.Receptor.UsoCFDI = "G03"; // claseTemporal.UsoCfdiClave
             }
             
-
             //IndentarNodo(Receptor);
-
             
-            ComprobanteCfdi.AppendChild(Receptor);
+            //ComprobanteCfdi.AppendChild(Receptor);
             //IndentarNodo(ComprobanteCfdi);
         }
         public void CrearNodoConceptos()
         {
-            XmlElement Conceptos = m_xmlDOM.CreateElement("cfdi", "Conceptos", URI_SAT);
-            IndentarNodo(Conceptos);
+            //XmlElement Conceptos = m_xmlDOM.CreateElement("cfdi", "Conceptos", URI_SAT);
+            ComprobanteCfdi40.Conceptos = new SAT_Entities.Conceptos();
+            var Concepto = new SAT_Entities.Concepto();
+            //IndentarNodo(Conceptos);
 
             foreach (DataRow drConcepto in _dtConceptosCfdi.Rows)
             {
-                XmlElement Concepto = m_xmlDOM.CreateElement("cfdi", "Concepto", URI_SAT);
-                Concepto.SetAttribute("ClaveProdServ", drConcepto["det_claveprodser"].ToString());
-                Concepto.SetAttribute("NoIdentificacion", drConcepto["det_codigo"].ToString());
-                Concepto.SetAttribute("Cantidad", drConcepto["det_cantidad"].ToString());
-                Concepto.SetAttribute("ClaveUnidad", drConcepto["det_claveum"].ToString());
-                Concepto.SetAttribute("Unidad", drConcepto["det_unidaddemedida"].ToString());
-                Concepto.SetAttribute("Descripcion", drConcepto["det_descripcion"].ToString());
-                Concepto.SetAttribute("ValorUnitario", drConcepto["det_preciounitario"].ToString());
-                Concepto.SetAttribute("Importe", drConcepto["det_importeunitario"].ToString());
+                var ConceptoItem = new SAT_Entities.Concepto();
+                //XmlElement Concepto = m_xmlDOM.CreateElement("cfdi", "Concepto", URI_SAT);
+                //Concepto.SetAttribute("ClaveProdServ", drConcepto["det_claveprodser"].ToString());
+                ConceptoItem.ClaveProdServ = drConcepto["det_claveprodser"].ToString();
+                //Concepto.SetAttribute("NoIdentificacion", drConcepto["det_codigo"].ToString());
+                ConceptoItem.NoIdentificacion = drConcepto["det_codigo"].ToString();
+                //Concepto.SetAttribute("Cantidad", drConcepto["det_cantidad"].ToString());
+                ConceptoItem.Cantidad = Convert.ToDecimal(drConcepto["det_cantidad"].ToString());
+                //Concepto.SetAttribute("ClaveUnidad", drConcepto["det_claveum"].ToString());
+                ConceptoItem.ClaveUnidad = drConcepto["det_claveum"].ToString();
+                //Concepto.SetAttribute("Unidad", drConcepto["det_unidaddemedida"].ToString());
+                ConceptoItem.Unidad = drConcepto["det_unidaddemedida"].ToString();
+                //Concepto.SetAttribute("Descripcion", drConcepto["det_descripcion"].ToString());
+                ConceptoItem.Descripcion = drConcepto["det_descripcion"].ToString();
+                //Concepto.SetAttribute("ValorUnitario", drConcepto["det_preciounitario"].ToString());
+                ConceptoItem.ValorUnitario = Convert.ToDecimal(drConcepto["det_preciounitario"].ToString());
+                //Concepto.SetAttribute("Importe", drConcepto["det_importeunitario"].ToString());
+                ConceptoItem.Importe = Convert.ToDecimal(drConcepto["det_importeunitario"].ToString());
                 //descuento
 
 
                 //int idtemp = Convert.ToInt32(drConcepto["det_idtemp"]);
                 DataTable dtTraslados = LeerConceptosCfdiTraslados(_importeVtaSinIva, _traslado,_TasaIva); //idtemp);
                 //DataTable dtRetenciones = LeerConceptosCfdiRetenciones(idtemp);  // No manejamos retenciones
+                ConceptoItem.Impuestos = new SAT_Entities.ImpuestosC();
 
                 if (dtTraslados.Rows.Count > 0 ) // || dtRetenciones.Rows.Count > 0) // No manejamos retenciones
                 {
-                    XmlElement Impuestos = m_xmlDOM.CreateElement("cfdi", "Impuestos", URI_SAT);
-                    IndentarNodo(Impuestos);
+                    //XmlElement Impuestos = m_xmlDOM.CreateElement("cfdi", "Impuestos", URI_SAT);
+                    //IndentarNodo(Impuestos);
 
 
                     if (dtTraslados.Rows.Count > 0)
                     {
-                        XmlElement Traslados = m_xmlDOM.CreateElement("cfdi", "Traslados", URI_SAT);
-                        IndentarNodo(Traslados);
+                        //XmlElement Traslados = m_xmlDOM.CreateElement("cfdi", "Traslados", URI_SAT);
+                        //IndentarNodo(Traslados);
+                        var Traslados = new SAT_Entities.TrasladosC();
 
                         foreach (DataRow drTraslado in dtTraslados.Rows)
                         {
-                            XmlElement Traslado = m_xmlDOM.CreateElement("cfdi", "Traslado", URI_SAT);
-                            Traslado.SetAttribute("Base", drTraslado["tra_base"].ToString());
-                            Traslado.SetAttribute("Impuesto", drTraslado["tra_impuesto"].ToString());
-                            Traslado.SetAttribute("TipoFactor", drTraslado["tra_tipofactor"].ToString());
-                            Traslado.SetAttribute("TasaOCuota", drTraslado["tra_tasaocuota"].ToString());
-                            Traslado.SetAttribute("Importe", drTraslado["tra_importe"].ToString());
+                            var Traslado = new SAT_Entities.TrasladoC();
+                            //XmlElement Traslado = m_xmlDOM.CreateElement("cfdi", "Traslado", URI_SAT);
+                            //Traslado.SetAttribute("Base", drTraslado["tra_base"].ToString());
+                            Traslado.Basee = Convert.ToDecimal(drTraslado["tra_base"].ToString());
+                            //Traslado.SetAttribute("Impuesto", drTraslado["tra_impuesto"].ToString());
+                            Traslado.Impuesto = drTraslado["tra_impuesto"].ToString();
+                            //Traslado.SetAttribute("TipoFactor", drTraslado["tra_tipofactor"].ToString());
+                            Traslado.TipoFactor = drTraslado["tra_tipofactor"].ToString();
+                            //Traslado.SetAttribute("TasaOCuota", drTraslado["tra_tasaocuota"].ToString());
+                            Traslado.TasaOCuota = Convert.ToDecimal(drTraslado["tra_tasaocuota"].ToString());
+                            //Traslado.SetAttribute("Importe", drTraslado["tra_importe"].ToString());
+                            Traslado.Importe = Convert.ToDecimal(drTraslado["tra_importe"].ToString());
 
-                            Traslados.AppendChild(Traslado);
+                            //Traslados.AppendChild(Traslado);
+                            ConceptoItem.Impuestos.Traslados.Add(Traslado);
                         }
 
-                        Impuestos.AppendChild(Traslados);
+                        //Impuestos.AppendChild(Traslados);
                     }
 
                     //if (dtRetenciones.Rows.Count > 0)
@@ -290,17 +339,17 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
 
 
 
-                    Concepto.AppendChild(Impuestos);
+                    //Concepto.AppendChild(Impuestos);
                     //IndentarNodo(Impuestos);
                 }
 
 
-
-                Conceptos.AppendChild(Concepto);
+                ComprobanteCfdi40.Conceptos.Concepto.Add(ConceptoItem);
+                //Conceptos.AppendChild(Concepto);
                 //IndentarNodo(Conceptos);
             }
 
-            ComprobanteCfdi.AppendChild(Conceptos);
+            //ComprobanteCfdi.AppendChild(Conceptos);
             //IndentarNodo(ComprobanteCfdi);
         }
         public void CrearNodoImpuestos()
@@ -308,37 +357,46 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             decimal totTraslado = claseTemporal.IvaTotal + claseTemporal.IepsTotal;
             decimal totRetenido = claseTemporal.RetencionISR + claseTemporal.RetencionIVA + claseTemporal.RetencionIEP;
 
-            XmlElement Impuestos = m_xmlDOM.CreateElement("cfdi", "Impuestos", URI_SAT);
+            //XmlElement Impuestos = m_xmlDOM.CreateElement("cfdi", "Impuestos", URI_SAT);
+            var Impuestos = new SAT_Entities.Impuestos();
             if (totTraslado > 0m)
             {
-                Impuestos.SetAttribute("TotalImpuestosTrasladados", totTraslado.ToString());
+                //Impuestos.SetAttribute("TotalImpuestosTrasladados", totTraslado.ToString());
+                Impuestos.TotalImpuestosTrasladados = totTraslado;
             }
             if (totRetenido > 0m)
             {
-                Impuestos.SetAttribute("TotalImpuestosRetenidos", totRetenido.ToString());
+                //Impuestos.SetAttribute("TotalImpuestosRetenidos", totRetenido.ToString());
+                Impuestos.TotalImpuestosRetenidos = totRetenido;
             }
-            IndentarNodo(Impuestos);
+            //IndentarNodo(Impuestos);
 
 
             if (totTraslado > 0m)
             {
-                XmlElement Traslados = m_xmlDOM.CreateElement("cfdi", "Traslados", URI_SAT);
-                IndentarNodo(Traslados);
+                //XmlElement Traslados = m_xmlDOM.CreateElement("cfdi", "Traslados", URI_SAT);                
+                //IndentarNodo(Traslados);
 
                 DataTable dtTraslados = LeerConceptosCfdiTraslados(_importeVtaSinIva, _traslado,_TasaIva);//LeerConceptosCfdiTrasladosGlobal(); // Solo manejamos una sola Retencion, hay que usar LeerConceptosCfdiTraslados
 
                 foreach (DataRow drTraslado in dtTraslados.Rows) // TODO: podemos usar lo que tenemos en LeerConceptosCfdiTraslados.
                 {
-                    XmlElement Traslado = m_xmlDOM.CreateElement("cfdi", "Traslado", URI_SAT);
-                    Traslado.SetAttribute("Impuesto", drTraslado["tra_impuesto"].ToString());
-                    Traslado.SetAttribute("TipoFactor", drTraslado["tra_tipofactor"].ToString());
-                    Traslado.SetAttribute("TasaOCuota", drTraslado["tra_tasaocuota"].ToString());
-                    Traslado.SetAttribute("Importe", drTraslado["tra_importe"].ToString());
+                    //XmlElement Traslado = m_xmlDOM.CreateElement("cfdi", "Traslado", URI_SAT);
+                    var Traslado = new SAT_Entities.Traslado();
+                    //Traslado.SetAttribute("Impuesto", drTraslado["tra_impuesto"].ToString());
+                    Traslado.Impuesto = drTraslado["tra_impuesto"].ToString();
+                    //Traslado.SetAttribute("TipoFactor", drTraslado["tra_tipofactor"].ToString());
+                    Traslado.TipoFactor = drTraslado["tra_tipofactor"].ToString();
+                    //Traslado.SetAttribute("TasaOCuota", drTraslado["tra_tasaocuota"].ToString());
+                    Traslado.TasaOCuota = Convert.ToDecimal( drTraslado["tra_tasaocuota"].ToString());
+                    //Traslado.SetAttribute("Importe", drTraslado["tra_importe"].ToString());
+                    Traslado.Importe = Convert.ToDecimal(drTraslado["tra_importe"].ToString());
 
-                    Traslados.AppendChild(Traslado);
+                    //Traslados.AppendChild(Traslado);
+                    Impuestos.Traslados.Add(Traslado);
                 }
 
-                Impuestos.AppendChild(Traslados);
+                //Impuestos.AppendChild(Traslados);
             }
 
 
@@ -361,17 +419,21 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             //}
 
 
-            ComprobanteCfdi.AppendChild(Impuestos);
+            //ComprobanteCfdi.AppendChild(Impuestos);
+            ComprobanteCfdi40.Impuestos = new SAT_Entities.Impuestos();
+            ComprobanteCfdi40.Impuestos = Impuestos;
             //IndentarNodo(ComprobanteCfdi);
         }
         public void SellarCfdi()
         {
             string Sello = GenerarSello();
 
-            ComprobanteCfdi.SetAttribute("Sello", Sello);
+            //ComprobanteCfdi.SetAttribute("Sello", Sello);
+            ComprobanteCfdi40.Sello = Sello;
         }
         public void GuardarCfdi()
         {
+            /*
             //_xmlPorTimbrar = @"\XML\" + Cliente.RFC + _serieTicket + _folioTicket + ".xml";//ClassEmpresa._CarpetaLocal + "\\FACTURAS\\Factura.xml";
             _xmlPorTimbrar = HttpContext.Current.Server.MapPath("/XML/" + Cliente.RFC + _serieTicket + _folioTicket + ".xml");
 
@@ -380,6 +442,13 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
 
             m_xmlDOM.PreserveWhitespace = true;
             m_xmlDOM.Save(_xmlPorTimbrar);
+            */
+            _xmlPorTimbrar = HttpContext.Current.Server.MapPath("/XML/" + Cliente.RFC + _serieTicket + _folioTicket + ".xml");
+
+            SAT_Entities.zzGenerarXML generarxml = new SAT_Entities.zzGenerarXML();
+            string xmlcadena = generarxml.GuardarXMLPorCertificado(ComprobanteCfdi40, _rutacer, _rutakey, _clavekey, _xmlPorTimbrar);
+            
+            
         }
         public void timbrarXML()
         {
@@ -1733,12 +1802,14 @@ query += "tra_impuesto ";
 
             XmlDocument xmldoc = new XmlDocument();
 
-            xmldoc.LoadXml(m_xmlDOM.InnerXml);
+            //xmldoc.LoadXml(m_xmlDOM.InnerXml);
+            xmldoc.LoadXml(_xmlPorTimbrar);
 
             XPathNavigator navigator = xmldoc.CreateNavigator();
-
+            
             //string esquema = Application.StartupPath + @"\XSLT\zzcadenaoriginal_3_3_temp.xslt"; // Importante Tener Archivo en el proyecto y Actualizarlo
-            string esquema =  HttpContext.Current.Server.MapPath("/XSLT/zzcadenaoriginal_3_3_temp.xslt"); // Importante Tener Archivo en el proyecto y Actualizarlo
+            //string esquema =  HttpContext.Current.Server.MapPath("/XSLT/zzcadenaoriginal_3_3_temp.xslt"); // Importante Tener Archivo en el proyecto y Actualizarlo
+            string esquema = HttpContext.Current.Server.MapPath("/XSLT/cadenaoriginal.xslt"); // Importante Tener Archivo en el proyecto y Actualizarlo
             XslCompiledTransform xslt = new XslCompiledTransform();
             xslt.Load(esquema);
             xslt.Transform(navigator, null, output);
@@ -1748,7 +1819,7 @@ query += "tra_impuesto ";
         //Formatea el aspecto de los nodos para que sea mas comoda su lectura.
         private void IndentarNodo(XmlNode Nodo)
         {
-            Nodo.AppendChild(m_xmlDOM.CreateTextNode(Environment.NewLine));
+            //Nodo.AppendChild(m_xmlDOM.CreateTextNode(Environment.NewLine));
         }
 
         private void extraerTimbre(string rutaXML)

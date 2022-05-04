@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -77,6 +78,38 @@
     <Compile Include="Reports\BaseStrDub.cs" />
     <Compile Include="Reports\RepFacturaPG.cs" />
     <Compile Include="Reports\RepIngresosDSM.cs" />
+    <Compile Include="SAT_XML_Entities\ACuentaTerceros.cs" />
+    <Compile Include="SAT_XML_Entities\Acuse.cs" />
+    <Compile Include="SAT_XML_Entities\Addenda.cs" />
+    <Compile Include="SAT_XML_Entities\CfdiRelacionado.cs" />
+    <Compile Include="SAT_XML_Entities\CfdiRelacionados.cs" />
+    <Compile Include="SAT_XML_Entities\Complemento.cs" />
+    <Compile Include="SAT_XML_Entities\ComplementoConcepto.cs" />
+    <Compile Include="SAT_XML_Entities\Complementos\CartaPorte.cs" />
+    <Compile Include="SAT_XML_Entities\Complementos\Pagos.cs" />
+    <Compile Include="SAT_XML_Entities\Complementos\TimbreFiscalDigital.cs" />
+    <Compile Include="SAT_XML_Entities\Comprobante.cs" />
+    <Compile Include="SAT_XML_Entities\Concepto.cs" />
+    <Compile Include="SAT_XML_Entities\Conceptos.cs" />
+    <Compile Include="SAT_XML_Entities\CuentaPredial.cs" />
+    <Compile Include="SAT_XML_Entities\Emisor.cs" />
+    <Compile Include="SAT_XML_Entities\Impuestos.cs" />
+    <Compile Include="SAT_XML_Entities\ImpuestosC.cs" />
+    <Compile Include="SAT_XML_Entities\InformacionAduanera.cs" />
+    <Compile Include="SAT_XML_Entities\InformacionGlobal.cs" />
+    <Compile Include="SAT_XML_Entities\Parte.cs" />
+    <Compile Include="SAT_XML_Entities\Receptor.cs" />
+    <Compile Include="SAT_XML_Entities\RespuestaProdigia.cs" />
+    <Compile Include="SAT_XML_Entities\Retencion.cs" />
+    <Compile Include="SAT_XML_Entities\RetencionC.cs" />
+    <Compile Include="SAT_XML_Entities\Retenciones.cs" />
+    <Compile Include="SAT_XML_Entities\RetencionesC.cs" />
+    <Compile Include="SAT_XML_Entities\Traslado.cs" />
+    <Compile Include="SAT_XML_Entities\TrasladoC.cs" />
+    <Compile Include="SAT_XML_Entities\Traslados.cs" />
+    <Compile Include="SAT_XML_Entities\TrasladosC.cs" />
+    <Compile Include="SAT_XML_Entities\zzGenerarXML.cs" />
+    <Compile Include="SAT_XML_Entities\zzOpenSSL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QSG.QSystem.Common\QSG.QSystem.Common.csproj">
