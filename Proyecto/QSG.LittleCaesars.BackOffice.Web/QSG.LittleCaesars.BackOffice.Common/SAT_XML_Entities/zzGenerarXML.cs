@@ -309,7 +309,7 @@ namespace QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities
                 foreach (TrasladoC traslado in impuestos.Traslados)
                 {
                     XmlElement nodoTraslado = documento.CreateElement("cfdi", "Traslado", NAMESPACE_CFD);
-                    nodoTraslado.SetAttribute("Base", traslado.Basee.ToString("F6"));
+                    nodoTraslado.SetAttribute("Base", traslado.Basee.ToString("F2")); // "F6"
                     nodoTraslado.SetAttribute("Impuesto", traslado.Impuesto);
                     nodoTraslado.SetAttribute("TipoFactor", traslado.TipoFactor);
 
@@ -336,7 +336,7 @@ namespace QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities
                 foreach (RetencionC retencion in impuestos.Retenciones)
                 {
                     XmlElement nodoRetencion = documento.CreateElement("cfdi", "Retencion", NAMESPACE_CFD);
-                    nodoRetencion.SetAttribute("Base", retencion.Basee.ToString("F6"));
+                    nodoRetencion.SetAttribute("Base", retencion.Basee.ToString("F2")); // "F6"
                     nodoRetencion.SetAttribute("Impuesto", retencion.Impuesto);
                     nodoRetencion.SetAttribute("TipoFactor", retencion.TipoFactor);
 
@@ -464,7 +464,7 @@ namespace QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities
                 foreach (Traslado traslado in impuestos.Traslados)
                 {
                     XmlElement nodoTraslado = documento.CreateElement("cfdi", "Traslado", NAMESPACE_CFD);
-                    nodoTraslado.SetAttribute("Base", traslado.Basee.ToString("F6"));
+                    nodoTraslado.SetAttribute("Base", traslado.Basee.ToString("F2")); // "F6"
                     nodoTraslado.SetAttribute("Impuesto", traslado.Impuesto);
                     nodoTraslado.SetAttribute("TipoFactor", traslado.TipoFactor);
 
@@ -816,7 +816,7 @@ namespace QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities
                 foreach (TrasladoP traslado in impuestosP.TrasladosP.TrasladoP)
                 {
                     XmlElement nodoPTraslado = documento.CreateElement("pago20", "Traslado", NAMESPACE_CFD);
-                    nodoPTraslado.SetAttribute("BaseP", traslado.BaseP.ToString("F6"));
+                    nodoPTraslado.SetAttribute("BaseP", traslado.BaseP.ToString("F2")); // "F6"
                     nodoPTraslado.SetAttribute("ImpuestoP", traslado.ImpuestoP);
                     nodoPTraslado.SetAttribute("TipoFactorP", traslado.TipoFactorP);
                     nodoPTraslado.SetAttribute("TasaOCuotaP", traslado.TasaOCuotaP.ToString("F6"));

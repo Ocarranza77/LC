@@ -161,7 +161,8 @@ namespace QSG.LittleCaesars.BackOffice.BL
                 FechaTimbrado = String.Format("{0:dd/MM/yyyy}", _fechaTimbrado);
                 XslCompiledTransform transformador = new XslCompiledTransform();
                 //transformador.Load(_rutaxlst + "\\cadenaoriginal_TFD_1_0.xslt");
-                transformador.Load(_rutaxlst + "\\zzcadenaoriginal_3_3_temp.xslt");
+                //transformador.Load(_rutaxlst + "\\zzcadenaoriginal_3_3_temp.xslt"); 3.3
+                transformador.Load(_rutaxlst + "\\cadenaoriginal.xslt"); // XML 4.0
 
                 StringWriter CadenaOriginal = new StringWriter();
                 transformador.Transform(xmldoc.CreateNavigator(), null, CadenaOriginal);

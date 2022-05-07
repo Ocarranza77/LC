@@ -192,6 +192,9 @@ namespace QSG.LittleCaesars.Facturacion.Web
                 cl.CP = Client_Parameters[14].ToString();
                 cl.Contacto = Client_Parameters[15].ToString();
 
+                // TODO agegarlo en la pantalla y en el JS.
+                cl.RegimenFiscal = "612"; //Client_Parameters[17].ToString();
+
                 if (correos.Length > 0)
                 {
 

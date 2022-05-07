@@ -217,6 +217,22 @@ namespace QSG.LittleCaesars.BackOffice.BL //VersatilVentaServidor
         public static string SiguienteFolio = "0"; //+
         public static bool CFDIGenerado = false;//+
 
+        
+        public static string Exportacion = string.Empty; // 4.0 +
+
+        /// <summary>
+        /// 01-Diario; 02-Semanal; 03-Quincenal; 04-Mensual; 05-Bimensual
+        /// </summary>
+        public static string InformacionGlobal_Periodicidad = string.Empty; // 4.0 +
+        /// <summary>
+        /// Mes del año en formato de 2 Digitos: 01-Ene; 02-Feb; 03-Mar...
+        /// </summary>
+        public static string InformacionGlobal_Meses = string.Empty; // 4.0 +
+        /// <summary>
+        /// Año de la factua
+        /// </summary>
+        public static int InformacionGlobal_anio = 0; // 4.0 +
+
         public static bool ConsultarTimbres(string UsuarioPac, string ContraseniaPac)
         {
             bool success = true;

@@ -12,6 +12,9 @@ namespace QSG.LittleCaesars.BackOffice.Common.Entities
    public  class Cliente:BaseEntity
     {
        public string RFC { get; set; }
+        /// <summary>
+        /// Requerido en el XML 4.0
+        /// </summary>
        public string RazonSocial { get; set; }
        public string Calle { get; set; }
        public string NoInt { get; set; }
@@ -21,10 +24,18 @@ namespace QSG.LittleCaesars.BackOffice.Common.Entities
        public string Ciudad { get; set; }
        public string Municipio { get; set; }
        public string Estado { get; set; }
-       public string CP { get; set; }
+        /// <summary>
+        /// DomicilioFistalReceptor en el XML
+        /// </summary>
+        public string CP { get; set; }
        public string Contacto { get; set; }
        public string Email1 { get; set; }
        public string Email2 { get; set; }
        public string Email3 { get; set; }
+        /// <summary>
+        /// Requerido en el XML 4.0
+        /// </summary>
+       public string RegimenFiscal { get; set; } // 4.0 +
+
     }
 }
