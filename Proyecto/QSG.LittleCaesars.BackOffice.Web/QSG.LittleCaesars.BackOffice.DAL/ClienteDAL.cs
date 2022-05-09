@@ -56,6 +56,7 @@ namespace QSG.LittleCaesars.BackOffice.DAL
                 result.Email3 = row["Email3"].ToString();
                 result.Estado = row["Estado"].ToString();
                 result.RazonSocial = row["RazonSocial"].ToString();
+                result.RegimenFiscal = row["RegimenFiscal"].ToString();
 
             }
 

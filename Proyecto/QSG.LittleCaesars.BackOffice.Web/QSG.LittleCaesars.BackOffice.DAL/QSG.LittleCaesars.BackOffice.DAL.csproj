@@ -47,6 +47,7 @@
     <Compile Include="PlantillaContaIngresosDAL.cs" />
     <Compile Include="DepositoDAL.cs" />
     <Compile Include="CuentaBancoDAL.cs" />
+    <Compile Include="RegimenFiscalDAL.cs" />
     <Compile Include="SucursalUsuarioDAL.cs" />
     <Compile Include="RepFacturaPGDAL.cs" />
     <Compile Include="CorteSucursalDAL.cs" />

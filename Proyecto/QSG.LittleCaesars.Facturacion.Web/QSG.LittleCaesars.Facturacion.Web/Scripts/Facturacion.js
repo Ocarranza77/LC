@@ -47,16 +47,23 @@ $(function () {
 
 $('input[name="btnEditar"]').click(function function_name (argument) {
 	// body...
-		$('.content_datos_cap_3 > div').children('input[name=empresa]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=calle]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div > span').children('input[name=Next]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div > span').children('input[name=Nint]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=colonia]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=delegacion]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=ciudad]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=municipio]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=estado]').removeAttr('disabled');
-		$('.content_datos_cap_3 > div').children('input[name=codpostal]').removeAttr('disabled');
+    $('.content_datos_cap_3 > div').children('input[name=empresa]').removeAttr('disabled');
+    //$('.content_datos_cap_3 > div').children('input[name=RegimenFiscal]').removeAttr('disabled');
+    $("#select_RegimenFiscal").removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=calle]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div > span').children('input[name=Next]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div > span').children('input[name=Nint]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=colonia]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=delegacion]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=ciudad]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=municipio]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=estado]').removeAttr('disabled');
+	$('.content_datos_cap_3 > div').children('input[name=codpostal]').removeAttr('disabled');
+
+	$('.content_datos_cap_3 > div').addClass('editandoCliente');
+	$('input[name="btnEditar"]').addClass('editandoClienteBtn');
+	$('input[name="btnEditar"]').css({ 'background-color': 'green' });
+	$('input[name="btnEditar"]').val("Editando Domicilio");
 
 });
 $('.content_nav > h2').hide();
@@ -142,16 +149,21 @@ $('.content_nav > h2').hide();
 		
 	});
 	$('input[name="next2"]').click(function () {
-		if($('.content_datos_cap_2').children('input[type=text]').val()!="" && $('.content_datos_cap_2').children('input[type=text]').val()!=null ){
+	    if ($('.content_datos_cap_2').children('input[type=text]').val() != "" && $('.content_datos_cap_2').children('input[type=text]').val() != null && $('.content_datos_cap_2').children('input[type=text]').val() != 'XAXX010101000') {
 			
 			if(ValRFC($('.content_datos_cap_2').children('input[type=text]').val().trim())){
 			
 				GetCliente($('.content_datos_cap_2').children('input[type=text]').val().trim());
 
-			$('.content_nav > h2').show();
-			$('.content_datos_cap_3').toggle();
-			$('.content_datos_cap_2').hide();
-			dibujarCanvas(135);
+				$('.content_datos_cap_3 > div').removeClass('editandoCliente');
+				$('input[name="btnEditar"]').removeClass('editandoClienteBtn');
+				$('input[name="btnEditar"]').css({ 'background-color': 'rgb(0, 128, 255)' });
+				$('input[name="btnEditar"]').val("Editar Domicilio");
+
+			    $('.content_nav > h2').show();
+			    $('.content_datos_cap_3').toggle();
+			    $('.content_datos_cap_2').hide();
+			    dibujarCanvas(135);
 			
 			$('.lst_info').append('<li class="l2"><input type="hidden" value="'+$('.content_datos_cap_2').children('input')[0].value+'" />RFC: '+$('.content_datos_cap_2').children('input')[0].value +'</li>');
 
@@ -202,22 +214,25 @@ $('.content_nav > h2').hide();
 			//validarEmail($(this).val());
 		});
 
-		if($('.content_datos_cap_3 > div').children('input')[0].value!="" && $('.content_datos_cap_3 > div').children('input')[8].value!="" && bolEmail==true ){
+        // Valida: Razon Social, Regimen Fiscal, Contactos, Correo y Codigo Postal.
+		if ($('.content_datos_cap_3 > div').children('input')[0].value != "" && $('.content_datos_cap_3 > div').children('input')[8].value != "" && bolEmail == true
+            && $('#select_RegimenFiscal option:selected')[0].value != "0" && $('.content_datos_cap_3 > div').children('input')[7].value != ""
+            ) {
 		
 			$('.content_datos_cap_4').toggle();
 			$('.content_datos_cap_3').hide();
 			dibujarCanvas(225);
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[0].value+'" />Razon Social: '+$('.content_datos_cap_3 > div').children('input')[0].value +'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[1].value+'" />Calle: '+$('.content_datos_cap_3 > div').children('input')[1].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[2].value+'" />Calle: '+$('.content_datos_cap_3 > div').children('input')[2].value+'</li>');
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div > span').children('input')[1].value+'" /> Num  Ext: '+$('.content_datos_cap_3 > div > span').children('input')[0].value+'  Int: '+$('.content_datos_cap_3 > div > span').children('input')[1].value+'</li>');
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div > span').children('input')[0].value+'" /></li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[2].value+'" />Colonia: '+$('.content_datos_cap_3 > div').children('input')[2].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[3].value+'" />Delegacion: '+$('.content_datos_cap_3 > div').children('input')[3].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[4].value+'" />Ciudad: '+$('.content_datos_cap_3 > div').children('input')[4].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[5].value+'" />Municipio: '+$('.content_datos_cap_3 > div').children('input')[5].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[6].value+'" />Estado: '+$('.content_datos_cap_3 > div').children('input')[6].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[7].value+'" />CP: '+$('.content_datos_cap_3 > div').children('input')[7].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[8].value+'" />Contacto: '+$('.content_datos_cap_3 > div').children('input')[8].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[3].value+'" />Colonia: '+$('.content_datos_cap_3 > div').children('input')[3].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[4].value+'" />Delegacion: '+$('.content_datos_cap_3 > div').children('input')[4].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[5].value+'" />Ciudad: '+$('.content_datos_cap_3 > div').children('input')[5].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[6].value+'" />Municipio: '+$('.content_datos_cap_3 > div').children('input')[6].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[7].value+'" />Estado: '+$('.content_datos_cap_3 > div').children('input')[7].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[8].value+'" />CP: '+$('.content_datos_cap_3 > div').children('input')[8].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[9].value+'" />Contacto: '+$('.content_datos_cap_3 > div').children('input')[9].value+'</li>');
 			/*
 			$('.content_datos_cap_3 > div > div > input').each(function  (index) {
 				// body...
@@ -228,7 +243,13 @@ $('.content_nav > h2').hide();
 				
 			});
 			*/
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+correos+'" />Correo (s):  '+correos+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="' + correos + '" />Correo (s):  ' + correos + '</li>');
+
+			$('.content_datos_cap_3 > div').removeClass('editandoCliente');
+			$('input[name="btnEditar"]').removeClass('editandoClienteBtn');
+			$('input[name="btnEditar"]').css({ 'background-color': 'rgb(0, 128, 255)' });
+			$('input[name="btnEditar"]').val("Editar Domicilio");
+
 		}else{
 			alert("Para poder continuar es necesario ingresar los datos minimos marcados con (*)");
 		}
@@ -494,7 +515,7 @@ $('.content_nav > h2').hide();
 	GetSucursales();
 	$('.content_datos_cap_1 > input[name=content1]').css({'background-color':'lightblue','border':'1px solid #7ac9b7'});
 	$('.content_datos_cap_1 > input[name=content1]').attr('disabled',true);
-
+	GetRegimenFiscales();
 });
 
 function dibujarCanvas(valor){
@@ -587,7 +608,26 @@ function dibujarCanvas(valor){
         	$('.loader').toggle();
         }
     });
-
+ }
+ function GetRegimenFiscales() {
+     // body...
+     $('.loader').toggle();
+     $.ajax({
+         type: "POST",
+         url: "Default.aspx/GetRegimenFiscales",
+         data: "{}",
+         contentType: "application/json; charset=utf-8",
+         dataType: "json",
+         success: function (response) {
+             $("#select_RegimenFiscal option").remove();
+             $.each(response.d, function (index, reg) {
+                 // body...
+                 $('#select_RegimenFiscal').append(new Option(reg.Nombre, reg.CodRegimenFiscal, true, true));
+             });
+             $('#select_RegimenFiscal').append(new Option("Seleccionar Regimen Fiscal", 0, true, true));
+             $('.loader').toggle();
+         }
+     });
  }
 
  function  GetTicket (Folio,Importe) {
@@ -644,10 +684,13 @@ function dibujarCanvas(valor){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
+            $("#select_RegimenFiscal option").removeAttr('selected');
         	if(response.d.RFC!=null){
-        		
+        	    // $('input[name="btnEditar"]').css({'background-color':'#0080FF','border':'1px solid #7ac9b7'});
         		$('.lst_info > li').find('input[name=rfc2_temp]').val(response.d.RFC);
-				$('.content_dat_cap').children('input')[0].value=response.d.RazonSocial;
+        		$('.content_dat_cap').children('input')[0].value = response.d.RazonSocial;
+        		$("#select_RegimenFiscal option[value='" + response.d.RegimenFiscal + "']").attr('selected', true);
+        		//$('.content_dat_cap').children('input')[1].value = response.d.RegimenFiscal;
 				$('.content_dat_cap').children('input')[1].value=response.d.Calle;
 			
 				$('.content_dat_cap > span').children('input')[0].value=response.d.NoExt;
@@ -670,7 +713,8 @@ function dibujarCanvas(valor){
 					$('.content_dat_cap > div').append('<input type="text" placeholder="luis@hotmail.com" value="'+response.d.Email3+'"/>');
 				}
 
-				$('.content_datos_cap_3 > div').children('input[name=empresa]').attr('disabled','disabled');
+				$('.content_datos_cap_3 > div').children('input[name=empresa]').attr('disabled', 'disabled');
+				$('.content_datos_cap_3 > div').children('input[name=RegimenFiscal]').attr('disabled', 'disabled');
 				$('.content_datos_cap_3 > div').children('input[name=calle]').attr('disabled','disabled');
 				$('.content_datos_cap_3 > div > span').children('input[name=Next]').attr('disabled','disabled');
 				$('.content_datos_cap_3 > div > span').children('input[name=Nint]').attr('disabled','disabled');
@@ -681,10 +725,16 @@ function dibujarCanvas(valor){
 				$('.content_datos_cap_3 > div').children('input[name=estado]').attr('disabled','disabled');
 				$('.content_datos_cap_3 > div').children('input[name=codpostal]').attr('disabled','disabled');
 
+				$('.content_datos_cap_3 > div').removeClass('editandoCliente');
+				$('input[name="btnEditar"]').removeClass('editandoClienteBtn');
+				$('input[name="btnEditar"]').css({ 'background-color': 'rgb(0, 128, 255)' });
+				$('input[name="btnEditar"]').val("Editar Domicilio");
 
 			}else{
 
-				$('.content_datos_cap_3 > div').children('input[name=empresa]').removeAttr('disabled');
+        	    $('.content_datos_cap_3 > div').children('input[name=empresa]').removeAttr('disabled');
+        	    //$('.content_datos_cap_3 > div').children('input[name=RegimenFiscal]').removeAttr('disabled');
+        	    $("#select_RegimenFiscal option[value='0']").removeAttr('disabled');
 				$('.content_datos_cap_3 > div').children('input[name=calle]').removeAttr('disabled');
 				$('.content_datos_cap_3 > div > span').children('input[name=Next]').removeAttr('disabled');
 				$('.content_datos_cap_3 > div > span').children('input[name=Nint]').removeAttr('disabled');
@@ -697,7 +747,8 @@ function dibujarCanvas(valor){
 
 
 				$('.lst_info > li').find('input[name=rfc2_temp]').val("");
-				$('.content_dat_cap').children('input')[0].value="";
+				$('.content_dat_cap').children('input')[0].value = "";
+				$("#select_RegimenFiscal option[value='0']").attr('selected', true);
 				$('.content_dat_cap').children('input')[1].value="";
 			
 				$('.content_dat_cap > span').children('input')[0].value="";
@@ -708,7 +759,8 @@ function dibujarCanvas(valor){
 				$('.content_dat_cap').children('input')[5].value="";
 				$('.content_dat_cap').children('input')[6].value="";
 				$('.content_dat_cap').children('input')[7].value="";
-				$('.content_dat_cap').children('input')[8].value="";
+				$('.content_dat_cap').children('input')[8].value = "";
+				//$('.content_dat_cap').children('input')[9].value = "";
 				
 				if($('.content_dat_cap > div > input').length>1){
 					$('.content_dat_cap > div > input').each(function  (index) {
@@ -742,7 +794,8 @@ function dibujarCanvas(valor){
  		
  		//alert(GetDatos(".lst_info:visible > li"));
  		
- 		var Client_Info=new Array();
+ 	    var Client_Info = new Array();
+ 	    var idx = 0;
 	 	$('.lst_info:visible > li').each(function (index) {
 	 		// body...
 	 		if(index==3){
@@ -750,9 +803,10 @@ function dibujarCanvas(valor){
 	 		}else{
 	 			Client_Info[index]=$(this).children('input').val();
 	 		}
+            idx = index
 	 	});
 
-
+	 	Client_Info[index + 1] = $('#select_RegimenFiscal option:selected')[0].value;
 
  		$.ajax({
 	        type:"POST",

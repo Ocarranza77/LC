@@ -47,14 +47,17 @@
     <Compile Include="ClienteMessage.cs" />
     <Compile Include="DepositoMessage.cs" />
     <Compile Include="CuentaBancoMessage.cs" />
+    <Compile Include="RegimenFiscalMessage.cs" />
     <Compile Include="Requests\ClienteRequest.cs" />
     <Compile Include="Requests\DepositoRequest.cs" />
     <Compile Include="Requests\CuentaBancoRequest.cs" />
     <Compile Include="Requests\PlantillaContaIngresosRequest.cs" />
+    <Compile Include="Requests\RegimenFiscalRequest.cs" />
     <Compile Include="Response\PlantillaContaIngresosResponse.cs" />
     <Compile Include="Response\EmpresaClienteResponse.cs" />
     <Compile Include="Response\DepositolResponse.cs" />
     <Compile Include="Response\CuentaBancoResponse.cs" />
+    <Compile Include="Response\RegimenFiscalResponse.cs" />
     <Compile Include="SucursalUsuarioMessage.cs" />
     <Compile Include="RepFacturaPGMessage.cs" />
     <Compile Include="CorteSucursalMessage.cs" />

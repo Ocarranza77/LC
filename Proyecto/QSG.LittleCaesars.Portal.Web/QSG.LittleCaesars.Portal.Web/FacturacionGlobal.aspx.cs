@@ -425,7 +425,8 @@ namespace QSG.LittleCaesars.Portal.Web
                  // Certificado cert = new Certificado(rutacertificado);
                 empresa.CertificadoCerSerie = cert.Serie; // número del certificado otorgado por el SAT
                 empresa.CertificadoCer64bits = cert.CertificadoBase64; // Certificado en base64
-                CFDIv33 = new claseCFDIv33("." , empresa, cl, valorunitario.ToString(), ImpTraslados.ToString(), Factura.serie, Factura.folio, Factura.total.ToString(), tasa.ToString());
+                cl.CP = empresa.CP; // XML 4.0 
+                CFDIv33 = new claseCFDIv33("." , empresa, cl, valorunitario.ToString(), ImpTraslados.ToString(), Factura.serie, Factura.folio, Factura.total.ToString(), tasa.ToString(), rutacertificado, rutacertificadoKey, passkey);
                 // claseTemporal.
                 claseTemporal.FechaEmision = fechaFactura;
                 claseTemporal.CFDIGenerado = false;

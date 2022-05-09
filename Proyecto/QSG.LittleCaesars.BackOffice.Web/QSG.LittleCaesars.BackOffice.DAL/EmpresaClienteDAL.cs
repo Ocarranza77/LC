@@ -119,6 +119,9 @@ namespace QSG.LittleCaesars.BackOffice.DAL
             result.ClavePak = row["ClavePak"].ToString();
             result.CertificadoCer = row["CertificadoCer"].ToString();
             result.CertificadoKey = row["CertificadoKey"].ToString();
+
+            result.RegimenCapital = row["RegimenCapital"].ToString();
+            
         }
 
         public bool SaveEmpresa(EmpresaCliente empresa, ref string friendlyMessage)

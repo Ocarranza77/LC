@@ -163,6 +163,13 @@
 		padding: 2px;
 	}
 
+    .editandoCliente {
+        border:1px solid green;
+    }
+    .editandoClienteBtn {
+        background-color: green;
+    }
+
 	h3{
 		font-weight: bold;
 	}

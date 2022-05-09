@@ -68,6 +68,7 @@
     <Compile Include="DepositoBL.cs" />
     <Compile Include="CuentaBancoBL.cs" />
     <Compile Include="PlantillaContaIngresosBL.cs" />
+    <Compile Include="RegimenFiscalBL.cs" />
     <Compile Include="Service References\FELv33\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

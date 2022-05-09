@@ -54,6 +54,7 @@
     <Compile Include="Entities\CorteSucursalDeposito.cs" />
     <Compile Include="Entities\CuentaBanco.cs" />
     <Compile Include="Entities\AsientosPolizaIngresos.cs" />
+    <Compile Include="Entities\RegimenFiscal.cs" />
     <Compile Include="Entities\SucursalUsuario.cs" />
     <Compile Include="Entities\CorteSucursal.cs" />
     <Compile Include="Entities\CorteSucursalFilter.cs" />

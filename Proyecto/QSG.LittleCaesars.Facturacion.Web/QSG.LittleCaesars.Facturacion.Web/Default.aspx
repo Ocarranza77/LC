@@ -90,6 +90,10 @@
                         <label><input type="button" name="btnEditar" value="Editar Domicilio"/></label>
 		                <label>Razon social <img src="Images/asterisk.png" /></label>
 		                <input type="text" placeholder="Nombre personal o empresa" name="empresa" onkeypress="return pulsar(event,this)"/>	
+                        <label>Regimen fiscal <img src="Images/asterisk.png" /></label>
+                        <select  placeholder="Salinas" id="select_RegimenFiscal" disabled></select>
+		                <%--<input type="text" placeholder="" name="RegimenFiscal" onkeypress="return pulsar(event,this)"/>--%>	
+
 		                <span style="float:left;width:100%;color:gray;">Direcci&oacute;n Fiscal</span>
 		                <label>Calle</label>
 		                <input type="text" placeholder="" name="calle" onkeypress="return pulsar(event,this)"/>	
@@ -107,7 +111,7 @@
 		                <input type="text" placeholder="" name="municipio" onkeypress="return pulsar(event,this)"/>		
 		                <label>Estado</label>
 		                <input type="text" placeholder="" name="estado" onkeypress="return pulsar(event,this)"/>	
-		                <label>CP</label>
+		                <label>CP <img src="Images/asterisk.png" /></label>
 		                <input type="text" placeholder="" name="codpostal" onkeypress="return pulsar(event,this)"/>	
 
 		                <label>Contacto<img src="Images/asterisk.png" /></label>

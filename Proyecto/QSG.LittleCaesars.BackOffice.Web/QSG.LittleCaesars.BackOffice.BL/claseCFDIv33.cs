@@ -290,7 +290,7 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             ComprobanteCfdi40.Receptor.Nombre = Cliente.RazonSocial;
             if (Cliente.RFC == "XAXX010101000")
             {
-                ComprobanteCfdi40.Receptor.UsoCFDI = "P01";
+                ComprobanteCfdi40.Receptor.UsoCFDI = "S01"; // P01 ya no existe
             }
             else
             {
@@ -606,6 +606,8 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
                 //alerta._Titulo = "FACTURAS";
                 //alerta._Mensaje = msgFEL;
                 //alerta.ShowDialog();
+
+                claseTemporal.MsgError_Timbrado = msgFEL;
             }
 
             #endregion

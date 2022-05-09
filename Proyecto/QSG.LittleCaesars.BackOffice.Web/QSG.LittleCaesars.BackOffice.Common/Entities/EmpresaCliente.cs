@@ -42,6 +42,10 @@ namespace QSG.LittleCaesars.BackOffice.Common.Entities
         public string CertificadoCerSerie { get; set; }
         public string CertificadoCer64bits { get; set; }
 
+        public string RegimenCapital { get; set; }
+
+
+
         public List<Sucursal> Sucursales { get; set; }
 
     }

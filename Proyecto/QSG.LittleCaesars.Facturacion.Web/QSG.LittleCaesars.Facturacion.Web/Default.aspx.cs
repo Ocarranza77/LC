@@ -65,6 +65,18 @@ namespace QSG.LittleCaesars.Facturacion.Web
             return response.Sucursales;
         }
         [WebMethod]
+        public static List<RegimenFiscal> GetRegimenFiscales()
+        {
+            var rf = new RegimenFiscal();
+            var sv = new ServiceImplementation();
+            var rfr = new RegimenFiscalRequest();
+
+            rfr.UserIDRqst = 1;
+            rfr.MessageOperationType = QSystem.Common.Enums.MessageOperationType.Report; //BackOffice.Common.Enums.MessageOperationType.Report;
+            var response = sv.RegimenFiscalMessage(rfr);
+            return response.RegimenFiscales;
+        }
+        [WebMethod]
         public static Ticket ValidarTicket(string cadena, double Importe)
         {
             //101#0001
@@ -178,22 +190,22 @@ namespace QSG.LittleCaesars.Facturacion.Web
                 var correos = Client_Parameters[16].ToString().Split(new char[] { ';' });
                 var opcion = Client_Parameters[0].ToString();
 
-                cl.RFC = Client_Parameters[4].ToString();
-                cl.RazonSocial = Client_Parameters[5].ToString();
-                cl.Calle = Client_Parameters[6].ToString();
-                cl.NoInt = Client_Parameters[7].ToString();
-                cl.NoExt = Client_Parameters[8].ToString();
+                cl.RFC = Client_Parameters[3].ToString();
+                cl.RazonSocial = Client_Parameters[4].ToString();
+                cl.Calle = Client_Parameters[5].ToString();
+                cl.NoInt = Client_Parameters[6].ToString();
+                cl.NoExt = Client_Parameters[7].ToString();
                 // cl.Municipio
-                cl.Colonia = Client_Parameters[9].ToString();
-                cl.Delegacion = Client_Parameters[10].ToString();
-                cl.Ciudad = Client_Parameters[11].ToString();
-                cl.Municipio = Client_Parameters[12].ToString();
-                cl.Estado = Client_Parameters[13].ToString();
-                cl.CP = Client_Parameters[14].ToString();
-                cl.Contacto = Client_Parameters[15].ToString();
+                cl.Colonia = Client_Parameters[8].ToString();
+                cl.Delegacion = Client_Parameters[9].ToString();
+                cl.Ciudad = Client_Parameters[10].ToString();
+                cl.Municipio = Client_Parameters[11].ToString();
+                cl.Estado = Client_Parameters[12].ToString();
+                cl.CP = Client_Parameters[13].ToString();
+                cl.Contacto = Client_Parameters[14].ToString();
 
                 // TODO agegarlo en la pantalla y en el JS.
-                cl.RegimenFiscal = "612"; //Client_Parameters[17].ToString();
+                cl.RegimenFiscal = Client_Parameters[17].ToString(); //"612"; //Client_Parameters[17].ToString();
 
                 if (correos.Length > 0)
                 {
@@ -552,7 +564,8 @@ namespace QSG.LittleCaesars.Facturacion.Web
                 //cfd.DatosAdicionales = new String[] { "664 103-55-72", cl.NoInt.ToString(), fechaVta, regimenfiscal };
        if (response.Ticket.FacturaXML == null || response.Ticket.FacturaXML == "")
           {
-                    CFDIv33.EjecutarSecuencia();
+                CFDIv33.EjecutarSecuencia();
+
                 if (claseTemporal.CFDIGenerado)
                 {
                     // Grabar la informacion
@@ -578,10 +591,9 @@ namespace QSG.LittleCaesars.Facturacion.Web
                     //aqui se genera el pdf
                     estatus = CFDIv33.PDF(Emisor,Factura,sucursal, cfd._rutaXlst, new String[] { "664 103-55-72", cl.NoInt.ToString(),fechaVta, regimenfiscal }, cfd._rutaFacturas, out msg);
 
-                        // aqui se manda el correo 
-                        var AttachXml = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".xml";
-                        var AttachPdf = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".pdf";
-                        
+                    // aqui se manda el correo 
+                    var AttachXml = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".xml";
+                    var AttachPdf = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".pdf";                        
 
                     msg += SendMail(correos , "Facturacion@little-caesars.com.mx", "Caesars2014", "Little Caesars", "Factura Electronica", "RFC: " + cl.RFC + "\n" + "Razon Social: " + cl.RazonSocial, AttachPdf, AttachXml);
 
@@ -597,14 +609,16 @@ namespace QSG.LittleCaesars.Facturacion.Web
                     }
 
                     ms = dal.SaveCliente(cl, ref msg);
-
-
+                        
                 }
                 else
                 {
-
-                        msg += "Factura No Timbrada desde la clase claseTemporal.CFDIGenerado ";
+                    msg += "Factura No Timbrada desde la clase claseTemporal.CFDIGenerado;       ";
+                    if (!string.IsNullOrEmpty(claseTemporal.MsgError_Timbrado))
+                    {
+                        msg += claseTemporal.MsgError_Timbrado;
                     }
+                }
                 ///////////////////////////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/////////////////
                 //  FIN NUEVO PROCESO v33
                 ///////////////////////////////////////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/////////////////
@@ -613,87 +627,81 @@ namespace QSG.LittleCaesars.Facturacion.Web
                 //if (response.Ticket.FacturaXML == null || response.Ticket.FacturaXML == "")
                  //   {
 
-                        if (msg == "")
-                        {
-                            //este ya no se usa 3.3
-                           // estatus = cfd.GenerarSello(out msg);
-                        }
-                        if (msg == "")
-                        {
-                            //DatosTimbrado = cfd.Timbrar(out msg);
-                            if (msg == "")
-                            {
-
+                if (msg == "")
+                {
+                    //este ya no se usa 3.3
+                    // estatus = cfd.GenerarSello(out msg);
+                }
+                if (msg == "")
+                {
+                    //DatosTimbrado = cfd.Timbrar(out msg);
+                    if (msg == "")
+                    {
                                 
-                                //ESTE PROCESO YA NO SE USARA CAMBIOP VERSION33
-                                //var objTicket = response.Ticket;
-                                //objTicket.Cliente = new Cliente() { RFC = Client_Parameters[4].ToString() };
-                                //objTicket.FechaFactura = DateTime.Parse(DatosTimbrado.FechaTimbrado.ToShortDateString(), culture);// new System.Globalization.CultureInfo("es-ES"));
-                                //objTicket.FolioFactura = Factura.serie.ToString().ToUpper() + Factura.folio;
-                                //objTicket.FechaCancelacion = null;
-                                //objTicket.UUID = DatosTimbrado.UUID;
-
-
-                                //objTicket.FacturaXML = DatosTimbrado.XML;
-                                //objTicket.OperationType = QSystem.Common.Enums.OperationType.Edit;
-
-
-                                //var mss = tkDAL.SaveTicket(objTicket, ref msg);
-                            }
-
-                        }
-                    }
-                    else
-                    {
-
-                        estatus = cfd.PrepararXML(out msg);
-                        if (estatus)
-                        {
-                         var AttachXml = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".xml";
-                         var AttachPdf = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".pdf";
-                         msg += SendMail(correos, "Facturacion@little-caesars.com.mx", "Caesars2014", "Little Caesars", "Factura Electronica", "RFC: " + cl.RFC + "\n" + "Razon Social: " + cl.RazonSocial, AttachPdf, AttachXml);
-                       }
-                    }
-
-
-                    if (msg == "")
-                    {
-                        //este proceso se quita por la version 3.3
-                        //cfd.Factura.metodoDePago =response.Ticket.MetodoPago.CodMetodoP + ' ' + response.Ticket.MetodoPago.Descripcion; // "Efectivo";
-                        //estatus = cfd.PDF(out msg);
-                    }
-
-                    if (msg == "")
-                    {
+                        //ESTE PROCESO YA NO SE USARA CAMBIOP VERSION33
+                        //var objTicket = response.Ticket;
+                        //objTicket.Cliente = new Cliente() { RFC = Client_Parameters[4].ToString() };
+                        //objTicket.FechaFactura = DateTime.Parse(DatosTimbrado.FechaTimbrado.ToShortDateString(), culture);// new System.Globalization.CultureInfo("es-ES"));
+                        //objTicket.FolioFactura = Factura.serie.ToString().ToUpper() + Factura.folio;
+                        //objTicket.FechaCancelacion = null;
+                        //objTicket.UUID = DatosTimbrado.UUID;
                         
-                        //este proceso se quita por la nerva version 3.3
-                        //var AttachXml = cfd.PathXML();
-                        //var AttachPdf = cfd.PathPDF();
-
-                        //msg += SendMail(correos, "Facturacion@little-caesars.com.mx", "Caesars2014", "Little Caesars", "Factura Electronica", "RFC: " + cl.RFC + "\n" + "Razon Social: " + cl.RazonSocial, AttachPdf, AttachXml);
-
-
+                        //objTicket.FacturaXML = DatosTimbrado.XML;
+                        //objTicket.OperationType = QSystem.Common.Enums.OperationType.Edit;
+                        
+                        //var mss = tkDAL.SaveTicket(objTicket, ref msg);
                     }
-
-                    if (opcion == "")
-                    {
-                        //cl.OperationType = QSystem.Common.Enums.OperationType.New;
-                    }
-                    else 
-                    {
-                        //cl.OperationType = QSystem.Common.Enums.OperationType.Edit;
-                    }
-
-                    //ms = dal.SaveCliente(cl, ref msg);
-                    
-                    /**************************/
+                }
             }
-            catch (Exception err)
+            else
             {
-                msg += err.Message.ToString();
 
+                estatus = cfd.PrepararXML(out msg);
+                if (estatus)
+                {
+                    var AttachXml = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".xml";
+                    var AttachPdf = HttpContext.Current.Server.MapPath("/Facturas") + "\\" + Factura.Receptor.rfc + Factura.serie + Factura.folio + ".pdf";
+                    msg += SendMail(correos, "Facturacion@little-caesars.com.mx", "Caesars2014", "Little Caesars", "Factura Electronica", "RFC: " + cl.RFC + "\n" + "Razon Social: " + cl.RazonSocial, AttachPdf, AttachXml);
+                }
             }
-            return msg;
+
+
+            if (msg == "")
+            {
+                //este proceso se quita por la version 3.3
+                //cfd.Factura.metodoDePago =response.Ticket.MetodoPago.CodMetodoP + ' ' + response.Ticket.MetodoPago.Descripcion; // "Efectivo";
+                //estatus = cfd.PDF(out msg);
+            }
+
+            if (msg == "")
+            {
+                        
+                //este proceso se quita por la nerva version 3.3
+                //var AttachXml = cfd.PathXML();
+                //var AttachPdf = cfd.PathPDF();
+
+                //msg += SendMail(correos, "Facturacion@little-caesars.com.mx", "Caesars2014", "Little Caesars", "Factura Electronica", "RFC: " + cl.RFC + "\n" + "Razon Social: " + cl.RazonSocial, AttachPdf, AttachXml);
+            }
+
+            if (opcion == "")
+            {
+                //cl.OperationType = QSystem.Common.Enums.OperationType.New;
+            }
+            else 
+            {
+                //cl.OperationType = QSystem.Common.Enums.OperationType.Edit;
+            }
+
+                //ms = dal.SaveCliente(cl, ref msg);
+                    
+                /**************************/
+        }
+        catch (Exception err)
+        {
+            msg += err.Message.ToString();
+
+        }
+        return msg;
         
            
         }

@@ -233,6 +233,8 @@ namespace QSG.LittleCaesars.BackOffice.BL //VersatilVentaServidor
         /// </summary>
         public static int InformacionGlobal_anio = 0; // 4.0 +
 
+        public static string MsgError_Timbrado = string.Empty; // 4.0 +
+
         public static bool ConsultarTimbres(string UsuarioPac, string ContraseniaPac)
         {
             bool success = true;
