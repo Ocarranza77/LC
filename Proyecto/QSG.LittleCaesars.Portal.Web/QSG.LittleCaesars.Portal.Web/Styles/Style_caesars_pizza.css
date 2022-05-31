@@ -702,8 +702,9 @@ ul#submenu2 li a:hover{
 .Content_rep_facturas{
 	position: relative;
 	min-height:900px;
-	width:1000px;
+	width:1300px;
 	height:auto;
+    /*width:1000px;*/
 	/*
     margin-top:10px;
    	left: 50%;
@@ -1189,12 +1190,12 @@ width: 60px;
 }
 #container_history > li {
     display: table;
-    font-size: 14pt;
+    font-size: 12pt;
     width: 100%;
     height: auto;
     font-weight: bold;
    /* margin:0 auto 4em;*/
-   
+   /*font-size: 14pt;*/
  
     
 }
@@ -1395,16 +1396,11 @@ background-color: #F16527;
 }
 
 #container_history > li:first-child {
-    font-size: 14pt;
+    font-size: 12pt;
    	font-weight: bold;
     text-align: center;
-   background-color: #F16527;
-
-  
- 	
-
-
-	
+    background-color: #F16527;
+    /*font-size: 14pt;*/
 }
 
 .Rowfooter > ul > li > input{
@@ -1585,8 +1581,11 @@ background-color: #F16527;
 
 
 #container_history > li:first-child > ul > li.column_ID {
- width: 40px;
- padding: 20px 10px 5px 0px;
+ width: 28px;
+ padding: 20px 5px 5px 0px;
+ /*width: 40px;
+   padding: 20px 10px 5px 0px;
+ */
 }
 
 
@@ -1734,8 +1733,9 @@ background-color: #F16527;
 #container_history > li:first-child > ul > li.column_FolioT {
     width: 105px;
     border-left: 1px solid white;
-    padding: 20px 10px 5px 0px;
+    padding: 20px 5px 5px 0px;
   	height: 30px;
+    /*padding: 20px 10px 5px 0px;*/
 }
 #container_history > li:first-child > ul > li.column_Caja {	
      width: 85px;
@@ -1750,11 +1750,12 @@ background-color: #F16527;
   	height: 30px;
 }
 #container_history > li:first-child > ul > li.column_Importe {
-     width: 120px;
+     width: 104px;
      text-align: center;
      border-left: 1px solid white;
      padding: 10px 10px 5px 0px;
   	height: 40px;
+    /*width: 120px;*/
 }
 #container_history > li:first-child > ul > li.column_UserCap {
     width: 165px;
@@ -1787,16 +1788,19 @@ background-color: #F16527;
 }
 
 #container_history > li:first-child > ul > li.column_fechaFact {
-    width:100px;
+    width:90px;
+    padding: 5px 5px 5px 0;
     border-left: 1px solid white;
-   
+   /*width:100px;
+    padding: 5px 10px 5px 0;
+   */
 
 }
 #container_history > li:first-child > ul > li.column_folioFact {
-    width:100px;
+    width:98px;
     border-left: 1px solid white;
-   
-
+   padding: 5px 5px 5px 0;
+   /*width:100px;*/
 }
 #container_history > li:first-child > ul > li.column_RFC1 {
     width:120px;
@@ -1804,13 +1808,22 @@ background-color: #F16527;
   
 }
 #container_history > li:first-child > ul > li.column_STTFact {
-	width: 100px;
+	width: 84px;
 	border-left: 1px solid white;
+    /*width: 100px;*/
 }
 #container_history > li:first-child > ul > li.column_UUID {
 width: 100px;
 border-left: 1px solid white;
 display: none;
+}
+#container_history > li:first-child > ul > li.column_TipoCan {
+	width: 132px;
+	border-left: 1px solid white;
+}
+#container_history > li:first-child > ul > li.column_UUID_RelCan {
+	width: 275px;
+	border-left: 1px solid white;
 }
 #container_history > li:first-child > ul > li.column_MotC {
 width: 200px;
@@ -2071,9 +2084,9 @@ border-left: 1px solid white;
   	height: 40px;
 }
 #container_history > li:first-child > ul > li.column_RFCfact {
-	width: 140px;
+	width: 119px;
 	border-left: 1px solid white;
-
+    /*width: 140px;*/
 }
 
 #container_history > li:first-child > ul > li.column_Usuarios {
@@ -2162,11 +2175,11 @@ border-left: 1px solid white;
 	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
 	 font-weight: normal;
-    font-size: 15pt;
+    font-size: 12pt;
     text-align: center;
     padding: 4px;
   	margin-left: 2px;
-
+    /*font-size: 15pt;*/
 }
 
 .ButtonNormal{
@@ -2189,15 +2202,17 @@ border-left: 1px solid white;
     width: 100%;
     height:auto;
     font-weight: normal;
-    font-size: 15pt;
+    font-size: 10pt;
     padding: 0;
     text-align: right;
+    /*font-size: 15pt;*/
     /*border:none;
     border-bottom: 1px solid #F16527;
    /* border-top:1px solid #F16527;*/
-	
-	
+}
 
+#container_history > li > ul > li.column_UUID_RelCan {
+    width: 268px;
 }
 
 #container_history > li> ul > li span{
@@ -2257,6 +2272,9 @@ border-left: 1px solid white;
     font-size: 12pt;
     padding: 0;
 }
+#container_history > li> ul > li.column_TipoCan select{
+    /*width: 120px;*/
+}
 
 .inactive{
 	border: none;
@@ -2293,11 +2311,8 @@ border-left: 1px solid white;
 }
 
 #container_history > li > ul > li.column_ID {
-
-    width: 40px;
-   
-  
-   
+   width: 28px;
+   /*width: 40px;*/
 }
 
 #container_history > li > ul > li.column_Edit {
@@ -2391,8 +2406,9 @@ float: left;
     width: 150px;
 }
 #container_history > li > ul > li.column_Importe {
-     width: 120px;
+     width: 110px;
      text-align: right;
+     /*width: 120px;*/
 
 }
 #container_history > li > ul > li.column_UserCap {
@@ -2455,8 +2471,8 @@ float: left;
 
 
 #container_history > li> ul > li.column_fechaFact {
-    width:100px;
-   
+    width:92px;
+   /*width:100px;*/
 
 }
 #container_history > li> ul > li.column_folioFact {
@@ -2470,15 +2486,20 @@ float: left;
   
 }
 #container_history > li > ul > li.column_STTFact {
-	width: 100px;
+	width: 90px;
+    /*width: 100px;*/
 }
 #container_history > li > ul > li.column_UUID {
 width: 100px;
 display: none;
 }
+#container_history > li > ul > li.column_TipoCan {
+	width: 130px;
+    /*width: 100px;*/
+}
 #container_history > li > ul > li.column_MotC {
+/*width: 140px;*/
 width: 200px;
-
 }
 
 #container_history > li > ul > li.column_NT{
@@ -2757,13 +2778,15 @@ width: 200px;
 */
 
 #container_history > li > ul > li.column_RFCfact {
-	width: 140px;
+    width: 125px;
+	/*width: 140px;*/
 }
 
 #container_history > li.row > ul > li{
-    padding: 10px 10px 5px 0;
+    padding: 6px 4px 4px 0;
     border-right: 1px solid lightgray;
     /* border-bottom: 1px solid lightgray;*/
+    /*padding: 10px 10px 5px 0;*/
 }
 #container_history > li.rowM > ul > li{
     padding: 10px 10px 5px 0;

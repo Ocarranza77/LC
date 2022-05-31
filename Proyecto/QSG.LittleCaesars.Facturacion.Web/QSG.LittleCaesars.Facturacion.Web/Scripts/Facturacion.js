@@ -223,16 +223,16 @@ $('.content_nav > h2').hide();
 			$('.content_datos_cap_3').hide();
 			dibujarCanvas(225);
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[0].value+'" />Razon Social: '+$('.content_datos_cap_3 > div').children('input')[0].value +'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[2].value+'" />Calle: '+$('.content_datos_cap_3 > div').children('input')[2].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[1].value+'" />Calle: '+$('.content_datos_cap_3 > div').children('input')[1].value+'</li>');
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div > span').children('input')[1].value+'" /> Num  Ext: '+$('.content_datos_cap_3 > div > span').children('input')[0].value+'  Int: '+$('.content_datos_cap_3 > div > span').children('input')[1].value+'</li>');
 			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div > span').children('input')[0].value+'" /></li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[3].value+'" />Colonia: '+$('.content_datos_cap_3 > div').children('input')[3].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[4].value+'" />Delegacion: '+$('.content_datos_cap_3 > div').children('input')[4].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[5].value+'" />Ciudad: '+$('.content_datos_cap_3 > div').children('input')[5].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[6].value+'" />Municipio: '+$('.content_datos_cap_3 > div').children('input')[6].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[7].value+'" />Estado: '+$('.content_datos_cap_3 > div').children('input')[7].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[8].value+'" />CP: '+$('.content_datos_cap_3 > div').children('input')[8].value+'</li>');
-			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[9].value+'" />Contacto: '+$('.content_datos_cap_3 > div').children('input')[9].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[2].value+'" />Colonia: '+$('.content_datos_cap_3 > div').children('input')[2].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[3].value+'" />Delegacion: '+$('.content_datos_cap_3 > div').children('input')[3].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[4].value+'" />Ciudad: '+$('.content_datos_cap_3 > div').children('input')[4].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[5].value+'" />Municipio: '+$('.content_datos_cap_3 > div').children('input')[5].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[6].value+'" />Estado: '+$('.content_datos_cap_3 > div').children('input')[6].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[7].value+'" />CP: '+$('.content_datos_cap_3 > div').children('input')[7].value+'</li>');
+			$('.lst_info').append('<li class="l3"><input type="hidden" value="'+$('.content_datos_cap_3 > div').children('input')[8].value+'" />Contacto: '+$('.content_datos_cap_3 > div').children('input')[8].value+'</li>');
 			/*
 			$('.content_datos_cap_3 > div > div > input').each(function  (index) {
 				// body...
@@ -806,7 +806,7 @@ function dibujarCanvas(valor){
             idx = index
 	 	});
 
-	 	Client_Info[index + 1] = $('#select_RegimenFiscal option:selected')[0].value;
+	 	Client_Info[idx + 1] = $('#select_RegimenFiscal option:selected')[0].value;
 
  		$.ajax({
 	        type:"POST",

@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cfdi:Comprobante Version="4.0" Serie="CU" Folio="9604" Fecha="2022-05-14T12:21:05" Sello="KjNhBjuRHZf4B2e5x/su5YxdBmZvHOGUoaHCIQyLEJs1i3XE9MyHls6NbMN+l+v7shpyHs80N7r3A8+bOP6gPp7hK/JU4oinTKHhx3uYlNI0fVSPdZJVql+5/gwNGxp/hiV8q/JKN1K43i3naM3k9AUwFwy2g6jJ0ZXAAfnW4qsVRe8R0eVBPvn3yERHn+3GpIF+5OC+peuxOsJOb1W1sEMChJ2bztQnK5b2eN+rnolq4t/UAcmnfKVQFW0dxsAEcs0xrksUtXZdMG6FrUdVqYTwE6KmAb0sDikxTUEQBZIEx2fbVrS3d/A5lYxfT7NnXBaj3+yluacpcUlmDlHyxQ==" FormaPago="01" NoCertificado="00001000000506110459" Certificado="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" SubTotal="0.93" Moneda="MXN" Total="1.00" TipoDeComprobante="I" MetodoPago="PUE" LugarExpedicion="22200" Exportacion="01" xmlns:cfdi="http://www.sat.gob.mx/cfd/4" xsi:schemaLocation="http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <cfdi:Emisor Rfc="PAA160908RP5" Nombre="PLC ALIMENTOS ADMINISTRADORA SA DE CV" RegimenFiscal="601" />
+  <cfdi:Receptor Rfc="1" Nombre="CAGX760228A89" DomicilioFiscalReceptor="SDF" RegimenFiscalReceptor="612" UsoCFDI="G03" />
+  <cfdi:Conceptos>
+    <cfdi:Concepto ClaveProdServ="90101503" NoIdentificacion="9604" Cantidad="1.00" ClaveUnidad="E48" Unidad="SER" Descripcion="Establecimientos de comida rapida" ValorUnitario="0.930000" Importe="0.93" ObjetoImp="02">
+      <cfdi:Impuestos>
+        <cfdi:Traslados>
+          <cfdi:Traslado Base="0.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="0.07" />
+        </cfdi:Traslados>
+      </cfdi:Impuestos>
+    </cfdi:Concepto>
+  </cfdi:Conceptos>
+  <cfdi:Impuestos TotalImpuestosTrasladados="0.07">
+    <cfdi:Traslados>
+      <cfdi:Traslado Base="0.93" Impuesto="002" TipoFactor="Tasa" TasaOCuota="0.080000" Importe="0.07" />
+    </cfdi:Traslados>
+  </cfdi:Impuestos>
+</cfdi:Comprobante>

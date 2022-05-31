@@ -26,6 +26,23 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Timbre33" nillable="true" type="tns:Timbre33" />
+  <xs:complexType name="ArrayOfDetalleCFDICancelacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetalleCFDICancelacion" nillable="true" type="tns:DetalleCFDICancelacion" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDetalleCFDICancelacion" nillable="true" type="tns:ArrayOfDetalleCFDICancelacion" />
+  <xs:complexType name="DetalleCFDICancelacion">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EsCancelable" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FolioSustitucion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Motivo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RFCReceptor" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UUID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DetalleCFDICancelacion" nillable="true" type="tns:DetalleCFDICancelacion" />
   <xs:complexType name="RespuestaCancelacion">
     <xs:sequence>
       <xs:element minOccurs="0" name="DetallesCancelacion" nillable="true" type="tns:ArrayOfDetalleCancelacion" />
@@ -193,21 +210,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="FolioRespuesta" nillable="true" type="tns:FolioRespuesta" />
-  <xs:complexType name="ArrayOfDetalleCFDICancelacion">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="DetalleCFDICancelacion" nillable="true" type="tns:DetalleCFDICancelacion" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfDetalleCFDICancelacion" nillable="true" type="tns:ArrayOfDetalleCFDICancelacion" />
-  <xs:complexType name="DetalleCFDICancelacion">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="EsCancelable" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RFCReceptor" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Total" type="xs:decimal" />
-      <xs:element minOccurs="0" name="UUID" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="DetalleCFDICancelacion" nillable="true" type="tns:DetalleCFDICancelacion" />
   <xs:complexType name="RespuestaRelacionados">
     <xs:sequence>
       <xs:element minOccurs="0" name="MensajeError" nillable="true" type="xs:string" />

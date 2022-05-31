@@ -247,14 +247,16 @@ namespace QSG.LittleCaesars.Portal.Web
             html+="        <li>";
             html+="             <ul>";
             html+="                 <li class='column_ID'>ID</li>";
-            html += "                 <li class='column_fechaFact'>Fecha</li>";
-            html += "                 <li class='column_FolioT'>Ticket ID</li>";
+            html+="                 <li class='column_fechaFact'>Fecha</li>";
+            html+="                 <li class='column_FolioT'>Ticket ID</li>";
             html+="                 <li class='column_folioFact'>Folio</li>";
-            html += "                 <li class='column_RFCfact'>RFC</li>";
-            html+="                  <li class='column_Importe'>Importe</li>";
-            html+="                   <li class='column_STTFact'>Estatus</li>";
-            html += "                   <li class='column_UUID'>Estatus</li>";
-            html += "                   <li class='column_MotC'>Detalle Cancelacion</li>";
+            html+="                 <li class='column_RFCfact'>RFC</li>";
+            html+="                 <li class='column_Importe'>Importe</li>";
+            html+="                 <li class='column_STTFact'>Estatus</li>";
+            html+="                 <li class='column_UUID'>Estatus</li>";
+            html += "                 <li class='column_TipoCan'>Tipo Cancelacion</li>";
+            html += "                 <li class='column_UUID_RelCan'>UUID Rel. a Cancelar</li>";
+            html +="                 <li class='column_MotC'>Detalle Cancelacion</li>";
             html+="               </ul>";
             html+="           </li>";
 
@@ -271,18 +273,29 @@ namespace QSG.LittleCaesars.Portal.Web
                 html += "                 <li class='column_FolioT'>" + ticket.Sucursal.SucursalID.ToString("000") + ticket.CajaID.ToString("000") + "#" + ticket.TicketID + "</li>";
                 html += "                 <li class='column_folioFact'>" + ticket.FolioFactura + "</li>";
                 html += "                 <li class='column_RFCfact' title='" + ticket.Cliente.RazonSocial + "' style='cursor: pointer;' >" + ticket.Cliente.RFC + "</li>";
-                html += "                  <li class='column_Importe'>" + ticket.Importe.ToString("$#,##0.00")+ "<input type='text' style='display:none;' value='" + ticket.Importe + "' reaonly/></li>";
+                html += "                 <li class='column_Importe'>" + ticket.Importe.ToString("$#,##0.00")+ "<input type='text' style='display:none;' value='" + ticket.Importe + "' reaonly/></li>";
 
                 if (ticket.FechaCancelacion > new DateTime(1900, 01, 01))
                 {
                     html += " <li class='column_STTFact'><input type='button' class='ButtonCancelado' value='Cancelado' /></li>";
                     html += " <li class='column_UUID'>" + ticket.UUID + "</li>";
+                    html += " <li class='column_TipoCan'></li>";
+                    html += " <li class='column_UUID_RelCan'></li>";
                     html += " <li class='column_MotC'><input type='text'style='border:none;' value='" + ticket.MotivoCancelacion + "' readonly/></li>";
                 }
                 else
                 {
-                    html += " <li class='column_STTFact'><input type='button' class='ButtonCancelar' value='Cancelar' onclick='return BntClick(event);'/></li>";
+                    html += " <li class='column_STTFact'><input type='button' class='ButtonCancelar' value='Cancelar' onclick='return BntClick(event);' /> </li>";
                     html += " <li class='column_UUID'>" + ticket.UUID + "</li>";
+                    html += " <li class='column_TipoCan'> <select placeholder='Tipo Cancelacion' > "
+                        + " <option value='01'>01 Comprobante emitido con errores con relacion</option>"
+                        + " <option value='02'>02 Comprobante emitido con errores sin cancelacion</option>"
+                        + " <option value='03'>03 No se llevo a cabo la operacion</option>"
+                        + " <option value='04'>04 Operacion nominativa relacionada en la factura global</option>"
+                        + "</select> "
+                        + "</li>";
+
+                    html += " <li class='column_UUID_RelCan'><input type='text' placeholder='UUID Rel. a Cancelar' /></li>";
                     html += " <li class='column_MotC'><input type='text' value='" + ticket.MotivoCancelacion + "' /></li>";
 
                 }
@@ -372,7 +385,9 @@ namespace QSG.LittleCaesars.Portal.Web
 
                 //objTicket.AcuseXML = CFDI.Cancelar(out msg);
                 bool GrabaTiket = false;
-                objTicket.AcuseXML = CFDIv33.Cancelar(CFDI._Clave, CFDI._UserPak, CFDI._ClavePak, CFDI._rutaLogoSAT, CFDI._rutaFacturas, CFDI._RutaPKcs12, CFDI._rutaXML, CFDI.Emisor, CFDI.LstUUID, _rutaAcuse, _rutaAcuseHTML,tk.RFC,tk.Importe, out msg, out GrabaTiket); 
+                var motivoClaveSAT = Fact_Inf[5];
+                var UUID_Sustituyente = Fact_Inf[6];
+                objTicket.AcuseXML = CFDIv33.Cancelar(CFDI._Clave, CFDI._UserPak, CFDI._ClavePak, CFDI._rutaLogoSAT, CFDI._rutaFacturas, CFDI._RutaPKcs12, CFDI._rutaXML, CFDI.Emisor, CFDI.LstUUID, _rutaAcuse, _rutaAcuseHTML,tk.RFC,tk.Importe, UUID_Sustituyente, motivoClaveSAT, out msg, out GrabaTiket); 
                 objTicket.MotivoCancelacion = Fact_Inf[4].ToString();
 
                 if (GrabaTiket == true)

@@ -647,7 +647,7 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
         }
 
 
-        public string Cancelar(string _Clave, string _UserPak, string _ClavePak, string _rutaLogoSAT, string _rutaFacturas, string _RutaPKcs12, string _rutaXML, ComprobanteEmisor Emisor, List<string> LstUUID, string _rutaAcuse, string _rutaAcuseHTML, string rfcReceptor, double totalCfdi, out string msg, out bool success)
+        public string Cancelar(string _Clave, string _UserPak, string _ClavePak, string _rutaLogoSAT, string _rutaFacturas, string _RutaPKcs12, string _rutaXML, ComprobanteEmisor Emisor, List<string> LstUUID, string _rutaAcuse, string _rutaAcuseHTML, string rfcReceptor, double totalCfdi, string _UUID_Sustituyente, string _motivoClaveSAT, out string msg, out bool success)
         {
 
             msg = string.Empty;
@@ -662,14 +662,22 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
             DetalleCancelacionSingle.RFCReceptor = rfcReceptor;
             DetalleCancelacionSingle.Total = Convert.ToDecimal(totalCfdi);  
             DetalleCancelacionSingle.UUID = LstUUID[0];
+            
+            DetalleCancelacionSingle.Motivo = _motivoClaveSAT; 
+            if(_motivoClaveSAT == "01")
+            {
+                DetalleCancelacionSingle.FolioSustitucion = _UUID_Sustituyente; // UUID del que se captura en pantalla
+            }
 
             FELv33.DetalleCFDICancelacion[] DetalleCancelacion = new FELv33.DetalleCFDICancelacion[1];
             DetalleCancelacion[0] = DetalleCancelacionSingle;
 
             string certificadoPkcs12 = File.ReadAllText(_RutaPKcs12);
 
-            _respuestaCancelacion = FELService.CancelarCFDIConValidacion(_UserPak, _ClavePak, Emisor.rfc, DetalleCancelacion, certificadoPkcs12, _Clave);
+            _respuestaCancelacion = FELService.CancelarCFDI(_UserPak, _ClavePak, Emisor.rfc, DetalleCancelacion, certificadoPkcs12, _Clave);  // 4.0
+            //_respuestaCancelacion = FELService.CancelarCFDIConValidacion(_UserPak, _ClavePak, Emisor.rfc, DetalleCancelacion, certificadoPkcs12, _Clave); // 3.3
             //_respuestaCancelacion = FELService.CancelarCFDI(_UserPak , _ClavePak, Emisor.rfc, LstUUID.ToArray(), certificadoPkcs12, _Clave);
+            
 
             List<FELv33.DetalleCancelacion> respuestaDetallada = _respuestaCancelacion.DetallesCancelacion.ToList();
             FELv33.DetalleCancelacion uuidcancelado = respuestaDetallada[0];
@@ -816,9 +824,10 @@ namespace QSG.LittleCaesars.BackOffice.BL //namespace VersatilVentaServidor
                         }
 
                         msg += Environment.NewLine + mensajeresultado;
+                        msg += Environment.NewLine + "Codigo de Resultado: " + uuidcancelado.CodigoResultado;
                         //return msg;
 
-                         
+
                     } break;
             }
 

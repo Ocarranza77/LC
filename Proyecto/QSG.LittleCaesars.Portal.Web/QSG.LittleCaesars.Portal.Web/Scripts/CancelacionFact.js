@@ -13,7 +13,7 @@ function Cancel (event) {
 function OK (event) {
 	// body...
 }
-
+// Boton para cancelar
 function BntClick (event) {
 	// body...
 	
@@ -28,16 +28,28 @@ function BntClick (event) {
 
 	if($('#container_history > li').eq(index1).children('ul').children('li .column_UUID').text()==""){return false;}
 
-	if($('#container_history > li').eq(index1).children('ul').children('li .column_MotC').children('input').val()!=""){
+	if ($('#container_history > li').eq(index1).children('ul').children('li .column_MotC').children('input').val() != ""
+        && $('#container_history > li').eq(index1).children('ul').children('li .column_TipoCan').children('select').val() != "00"
+       ) {
+
+	    if ($('#container_history > li').eq(index1).children('ul').children('li .column_TipoCan').children('select').val() == "01"
+          && $('#container_history > li').eq(index1).children('ul').children('li .column_UUID_RelCan').children('input').val().length < 36)
+	    {
+	        alert("Por Favor Ingrese informacion faltante: UUID Rel. a Cancelar,  Gracias.");
+	        return false;
+        }
 
 			if(confirm('Esta seguro que desea cancelar esta factura?')){
 
 					
-					_Fact_Inf[2]=$('#container_history > li').eq(index1).children('ul').children('li .column_folioFact').text();
-					_Fact_Inf[1]=$('#container_history > li').eq(index1).children('ul').children('li .column_RFCfact').text();
-					_Fact_Inf[0]=$('#container_history > li').eq(index1).children('ul').children('li .column_UUID').text();
-					_Fact_Inf[3]=$('#container_history > li').eq(index1).children('ul').children('li .column_FolioT').text()+"#"+$('#container_history > li').eq(index1).children('ul').children('li .column_Importe').children('input').val();
-					_Fact_Inf[4]=$('#container_history > li').eq(index1).children('ul').children('li .column_MotC').children('input').val();
+					_Fact_Inf[2] = $('#container_history > li').eq(index1).children('ul').children('li .column_folioFact').text();
+					_Fact_Inf[1] = $('#container_history > li').eq(index1).children('ul').children('li .column_RFCfact').text();
+					_Fact_Inf[0] = $('#container_history > li').eq(index1).children('ul').children('li .column_UUID').text();
+					_Fact_Inf[3] = $('#container_history > li').eq(index1).children('ul').children('li .column_FolioT').text()+"#"+$('#container_history > li').eq(index1).children('ul').children('li .column_Importe').children('input').val();
+					_Fact_Inf[4] = $('#container_history > li').eq(index1).children('ul').children('li .column_MotC').children('input').val();
+					_Fact_Inf[5] = $('#container_history > li').eq(index1).children('ul').children('li .column_TipoCan').children('select').val();
+					_Fact_Inf[6] = $('#container_history > li').eq(index1).children('ul').children('li .column_UUID_RelCan').children('input').val();
+
 
 					//alert($('#container_history > li').eq(index1).children('ul').children('li .column_folioFact').text());
 
@@ -100,7 +112,7 @@ function BntClick (event) {
 				return false;
 			}
 	}else{
-		alert("Por Favor Ingrese detalle de cancelacion, Gracias.");
+	    alert("Por Favor Ingrese informacion faltante: detalle de cancelacion,  Gracias.");
 		$('#container_history > li').eq(index1).children('ul').children('li .column_MotC').children('input').focus();
 	}
 

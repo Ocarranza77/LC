@@ -141,16 +141,17 @@ namespace QSG.LittleCaesars.BackOffice.Common.SAT_XML_Entities
             }
 
             nodoComprobante.SetAttributeNode(schemaLocation);
-            
-            nodoComprobante.AppendChild(AgregarNodoEmisor(c.Emisor, documento.CreateElement("cfdi", "Emisor", NAMESPACE_CFD)));
-            nodoComprobante.AppendChild(AgregarNodoReceptor(c.Receptor, documento.CreateElement("cfdi", "Receptor", NAMESPACE_CFD)));
-            nodoComprobante.AppendChild(AgregarNodoConceptos(c.Conceptos, documento));
 
             XmlElement informacionGlobal = AgregarNodoInformacionGlobal(c.InformacionGlobal, documento);
             if (informacionGlobal != null)
             {
                 nodoComprobante.AppendChild(informacionGlobal);
             }
+            nodoComprobante.AppendChild(AgregarNodoEmisor(c.Emisor, documento.CreateElement("cfdi", "Emisor", NAMESPACE_CFD)));
+            nodoComprobante.AppendChild(AgregarNodoReceptor(c.Receptor, documento.CreateElement("cfdi", "Receptor", NAMESPACE_CFD)));
+            nodoComprobante.AppendChild(AgregarNodoConceptos(c.Conceptos, documento));
+
+            
             
             XmlElement impuestos = AgregarNodoImpuestos(c.Impuestos, documento);
             if (impuestos != null)

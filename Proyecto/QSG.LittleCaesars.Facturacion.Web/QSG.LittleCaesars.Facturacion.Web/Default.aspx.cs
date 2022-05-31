@@ -190,19 +190,19 @@ namespace QSG.LittleCaesars.Facturacion.Web
                 var correos = Client_Parameters[16].ToString().Split(new char[] { ';' });
                 var opcion = Client_Parameters[0].ToString();
 
-                cl.RFC = Client_Parameters[3].ToString();
-                cl.RazonSocial = Client_Parameters[4].ToString();
-                cl.Calle = Client_Parameters[5].ToString();
-                cl.NoInt = Client_Parameters[6].ToString();
-                cl.NoExt = Client_Parameters[7].ToString();
+                cl.RFC = Client_Parameters[4].ToString();
+                cl.RazonSocial = Client_Parameters[5].ToString();
+                cl.Calle = Client_Parameters[6].ToString();
+                cl.NoInt = Client_Parameters[7].ToString();
+                cl.NoExt = Client_Parameters[8].ToString();
                 // cl.Municipio
-                cl.Colonia = Client_Parameters[8].ToString();
-                cl.Delegacion = Client_Parameters[9].ToString();
-                cl.Ciudad = Client_Parameters[10].ToString();
-                cl.Municipio = Client_Parameters[11].ToString();
-                cl.Estado = Client_Parameters[12].ToString();
-                cl.CP = Client_Parameters[13].ToString();
-                cl.Contacto = Client_Parameters[14].ToString();
+                cl.Colonia = Client_Parameters[9].ToString();
+                cl.Delegacion = Client_Parameters[10].ToString();
+                cl.Ciudad = Client_Parameters[11].ToString();
+                cl.Municipio = Client_Parameters[12].ToString();
+                cl.Estado = Client_Parameters[13].ToString();
+                cl.CP = Client_Parameters[14].ToString();
+                cl.Contacto = Client_Parameters[15].ToString();
 
                 // TODO agegarlo en la pantalla y en el JS.
                 cl.RegimenFiscal = Client_Parameters[17].ToString(); //"612"; //Client_Parameters[17].ToString();
